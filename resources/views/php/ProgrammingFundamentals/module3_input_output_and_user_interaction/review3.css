@@ -1,0 +1,119 @@
+@font-face {
+    font-family: Retro;
+    src: url("../../../fonts/Minecraftia.ttf");
+}
+
+@font-face {
+    font-family: Glacial;
+    src: url("../../../fonts/GlacialIndifference-Regular.otf");
+}
+
+body {
+    background-color: #fff8f0; 
+    font-family: Glacial;
+    color: #333;
+    margin-left: 5px;
+    padding: 0;
+}
+
+/* Page container */
+.review-container {
+    max-width: 900px;
+    margin: 60px auto;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 40px 50px;
+}
+
+/* Title */
+.review-container h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #5b3a1d;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: Retro;
+}
+
+/* Subtitle */
+.review-container h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #7b5535;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.code-snippet{
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: Retro;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
+/* Paragraphs */
+.review-container p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+.review-container ul {
+    margin: 10px 0 20px 30px;
+}
+
+.review-container li {
+    margin-bottom: 8px;
+}
+
+.lesson-nav{
+    text-align: center;
+}
+
+/* Buttons */
+.action-button {
+    background-color: #b6743f;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin: 15px 8px 0 0;
+}
+
+.action-button {
+    background-color: #8e562e;
+}
+
+/* Divider line */
+.divider {
+    height: 1px;
+    background-color: #e0d1c2;
+    margin: 25px 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .review-container {
+        padding: 25px 20px;
+    }
+
+    .review-container h1 {
+        font-size: 24px;
+    }
+}
