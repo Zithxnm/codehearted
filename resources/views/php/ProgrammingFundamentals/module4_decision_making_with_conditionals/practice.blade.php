@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 4 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 4 Practice Problems - Conditionals, Logical Operators, and Debugging">
-    <link rel="stylesheet" href="../module4_decision_making_with_conditionals/practice4.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/progfund/mod4/practice4.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -71,13 +71,13 @@
 
                 <div class="code-snippet">
                     <pre><code>temperature = input("Enter temperature: ")
- 
+
 if temperature = 32:
     print("Water freezes")
- 
+
 elif temperature >= 100
     print("Water boils")
- 
+
 else
     print("Water is liquid")</code></pre>
                 </div>

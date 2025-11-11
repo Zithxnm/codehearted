@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 5 - Order of Rotation">
-    <link rel="stylesheet" href="practice5.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/diffcalc/mod5/practice5.css')}}?v={{ time(); }}">
 </head>
 
 <body>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 2 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 2 Practice Problems - Variables, Data Types, and Memory Concepts">
-    <link rel="stylesheet" href="../module2_Hardware_Assembly/practice2.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod2/practice2.css')}}?v={{ time(); }}">
 </head>
 
 <body>

@@ -8,7 +8,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/DiffCall_Styles.css') ? filemtime(__DIR__ . '/../css/DiffCall_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="../css/DiffCall_Styles.css?v=<?php echo $cssVersion; ?>">
+    <link rel="stylesheet" href="{{ asset('css/DiffCall_Styles.css') }}">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="Landing_Page.blade.php"><img src="../imgs/CodeHearted_Logo.png" alt="Logo"></a>
+                    <a href="/"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
@@ -32,8 +32,8 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="Landing_Page.blade.php" class="dropdown-link">Home</a>
-                        <a href="Courses.blade.php" class="dropdown-link">Courses</a>
+                        <a href="/" class="dropdown-link">Home</a>
+                        <a href="/courses" class="dropdown-link">Courses</a>
                         <a href="#" class="dropdown-link">About</a>
                         <a href="#" class="dropdown-link">Contact</a>
                     </div>
@@ -109,13 +109,13 @@
                     ];
 
                     $moduleFolders = [
-                        'module1_functions_and_graphs',
-                        'module2_basic_differentiation_rules',
-                        'module3_limits_and_continuity',
-                        'module4_applications_of_derivatives',
-                        'module5_order_of_rotation',
-                        'module6_the_nature_of_mathematics',
-                        'module7_the_fibonacci_sequence'
+                        'module1',
+                        'module2',
+                        'module3',
+                        'module4',
+                        'module5',
+                        'module6',
+                        'module7'
                     ];
 
                     foreach ($modules as $i => $title) {
@@ -126,13 +126,13 @@
                                 <?php echo htmlspecialchars($title); ?>
                             </h3>
 
-                            <a href="DifferentialCalculus/<?php echo $moduleFolders[$i]; ?>/review.php"
+                            <a href="diff-calc/<?php echo $moduleFolders[$i]; ?>/review"
                                 class="action-button review" data-action="review" data-module="<?php echo $i; ?>">Review</a>
 
-                            <a href="DifferentialCalculus/<?php echo $moduleFolders[$i]; ?>/practice.php"
+                            <a href="diff-calc/<?php echo $moduleFolders[$i]; ?>/practice"
                                 class="action-button" data-action="practice" data-module="<?php echo $i; ?>" style="margin-left:8px;">Practice</a>
 
-                            <a href="DifferentialCalculus/<?php echo $moduleFolders[$i]; ?>/quiz.php"
+                            <a href="diff-calc/<?php echo $moduleFolders[$i]; ?>/quiz"
                                 class="action-button" data-action="quiz" data-module="<?php echo $i; ?>" style="margin-left:8px;">Quiz</a>
 
                             <div style="clear: both;"></div>
@@ -221,7 +221,7 @@
     </footer>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/DiffCall_Scripts.js') ? filemtime(__DIR__ . '/../js/DiffCall_Scripts.js') : time(); ?>
-    <script src="../js/DiffCall_Scripts.js?v=<?php echo $jsVersion; ?>"></script>
+    <script src="{{ asset('js/DiffCall_Scripts.js') }}"></script>
 </body>
 
 </html>

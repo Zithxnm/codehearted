@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 3 Quiz | CodeHearted</title>
     <meta name="description" content="Lesson 3 Quiz - Input, Output, and Type Conversion">
-    <link rel="stylesheet" href="../module3_BIOS_UEFI_&_Bootable_Media/quiz3.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod3/quiz3.css')}}?v={{ time(); }}">
 </head>
 
 <body>

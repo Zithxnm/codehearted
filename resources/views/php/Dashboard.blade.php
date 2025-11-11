@@ -6,8 +6,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that l
 ast.">
-    <?php $cssVersion = file_exists(__DIR__ . '/../css/Dashboard_Styles.css') ? filemtime(__DIR__ . '/../css/Dashboard_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="../css/Dashboard_Styles.css?v=<?php echo $cssVersion; ?>">
+    <link rel="stylesheet" href="{{ asset('css/Dashboard_Styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -16,7 +15,7 @@ ast.">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="../imgs/CodeHearted_Logo.png" alt="Logo">
+                    <a href="/"><img src="{{asset('imgs/CodeHearted_Logo.png')}}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
@@ -32,8 +31,8 @@ ast.">
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="Profile.blade.php" class="dropdown-link">Profile</a>
-                        <a href="Landing_Page.blade.php" class="dropdown-link">Logout</a>
+                        <a href="/profile" class="dropdown-link">Profile</a>
+                        <a href="/" class="dropdown-link">Logout</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +45,7 @@ ast.">
             <p>Get college-ready by exploring our courses. Tale the first step today toward building the skills for your dream career.</p>
             <a href="#"><button class="view-catalog"><b>View Catalog</b></button></a>
             <div class="course-card">
-                <img src="../imgs/Icon_Computing.png" alt="Course Image" class="course-image">
+                <img src="{{ asset('imgs/Icon_Computing.png') }}" alt="Course Image" class="course-image">
                 <div class="course-details">
                     <h2 class="course-title">Fundamentals of Computing</h2>
                     <p class="course-description">Lesson 2: Lesson Title</p>
@@ -57,7 +56,7 @@ ast.">
             <h1>Achievemets</h1>
             <a href="#">Show All</a>
             <div class="achievement-card">
-                <img src="../imgs/5.png" alt="Achievement Badge" class="achievement-badge">
+                <img src="{{ asset('imgs/5.png') }}" alt="Achievement Badge" class="achievement-badge">
                 <p class="achievements">You currently don't have any badges or certificates available to show</p>
                 <a href="#"><button class="view-catalog"><b>View Catalog</b></button></a>
             </div>
@@ -67,7 +66,7 @@ ast.">
     </div>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/Dashboard_Scripts.js') ? filemtime(__DIR__ . '/../js/Dashboard_Scripts.js') : time(); ?>
-    <script src="../js/Dashboard_Scripts.js?v=<?php echo $jsVersion; ?>"></script>
+    <script src="{{ asset('js/Dashboard_Scripts.js') }}"></script>
 
 </body>
 

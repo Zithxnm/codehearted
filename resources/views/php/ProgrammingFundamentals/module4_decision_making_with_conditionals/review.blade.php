@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 4 Review | CodeHearted</title>
     <meta name="description" content="Lesson 4: Control Flow and Conditional Logic">
-    <link rel="stylesheet" href="../module4_decision_making_with_conditionals/review4.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/progfund/mod4/review4.css')}}?v={{ time(); }}">
 </head>
 
 <body>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 6 Quiz | CodeHearted</title>
     <meta name="description" content="Lesson 6 - The Nature of Mathematics">
-    <link rel="stylesheet" href="quiz6.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/diffcalc/mod6/quiz6.css')}}?v={{ time(); }}">
 </head>
 
 <body>

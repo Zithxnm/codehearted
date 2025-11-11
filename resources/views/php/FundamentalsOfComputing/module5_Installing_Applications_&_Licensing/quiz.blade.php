@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5 Quiz | CodeHearted</title>
     <meta name="description" content="Lesson 5 Quiz - Iteration and Loops">
-    <link rel="stylesheet" href="../module5_Installing_Applications_&_Licensing/quiz5.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod5/quiz5.css')}}?v={{ time(); }}">
 </head>
 
 <body>

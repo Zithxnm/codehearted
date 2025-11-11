@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>     
-    <meta charset="UTF-8">     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
-    <title>Lesson 5 Practice | CodeHearted</title>     
-    <meta name="description" content="Lesson 5 Practice Problems - Iteration, Loops, and Control Statements">     
-    <link rel="stylesheet" href="../module5_Installing_Applications_&_Licensing/practice5.css?php echo time(); ?>"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5 Practice | CodeHearted</title>
+    <meta name="description" content="Lesson 5 Practice Problems - Iteration, Loops, and Control Statements">
+    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod5/practice5.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -90,7 +90,7 @@
                     <li><label><input type="radio" name="q5"> It removes all advertisements</label></li>
                 </ul>
             </div>
-            
+
             <button class="submit-btn">Submit Answers</button>
         </section>
     </main>

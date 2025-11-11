@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 2 Quiz | CodeHearted</title>
     <meta name="description" content="Lesson 2 Quiz - Variables, Data Types, and Memory Concepts">
-    <link rel="stylesheet" href="../module2_Arithmetic_Sequence/quiz2.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod2/quiz2.css')}}?v={{ time(); }}">
 </head>
 <body>
     <main class="lesson-container">

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5 Review | CodeHearted</title>
     <meta name="description" content="Lesson 5: Iteration and Loops in Python">
-    <link rel="stylesheet" href="../module5_loops_and_iterations/review5.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/progfund/mod5/review5.css')}}?v={{ time(); }}">
 </head>
 
 <body>

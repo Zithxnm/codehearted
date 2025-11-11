@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 6 Review | CodeHearted</title>
     <meta name="description" content="Lesson 6 - The Nature of Mathematics">
-    <link rel="stylesheet" href="review6.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/diffcalc/mod6/review6.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -29,9 +29,9 @@
                 <h2>📘 Learning Materials & Core Lesson</h2>
 
                 <h3>1. What is Mathematics?</h3>
-                <p>Mathematics comes from the Greek word <strong>“mathema”</strong>, meaning knowledge, study, or learning. 
-                   Mathematics is often perceived as the study of numbers, symbols, formulas, and calculations. However, its nature goes far beyond arithmetic. 
-                   It is a science of patterns and relationships both abstract (numbers, functions) and real (nature, economy, and society). 
+                <p>Mathematics comes from the Greek word <strong>“mathema”</strong>, meaning knowledge, study, or learning.
+                   Mathematics is often perceived as the study of numbers, symbols, formulas, and calculations. However, its nature goes far beyond arithmetic.
+                   It is a science of patterns and relationships both abstract (numbers, functions) and real (nature, economy, and society).
                    From ancient counting systems to modern-day algorithms, mathematics has always been the foundation of knowledge, science, and human progress.</p>
 
                 <h3>2. Characteristics of Mathematics</h3>
@@ -57,7 +57,7 @@
                     <li><strong>Nature:</strong> Displays mathematical patterns such as Fibonacci sequences and symmetry.</li>
                     <li><strong>Technology:</strong> Relies on mathematics for algorithms, artificial intelligence, and cryptography.</li>
                 </ul>
-                
+
             <section class="references">
                 <h2>📚 References</h2>
                 <ul>

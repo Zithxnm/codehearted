@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 2 Review | CodeHearted</title>
     <meta name="description" content="Lesson 2">
-    <link rel="stylesheet" href="../module2_Arithmetic_Sequence/review2.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod2/review2.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -57,7 +57,7 @@
                     <li>Example: For the sequence 3, 6, 9, 12, …, a<sub>1</sub> = 3, d = 3. Then:</li>
                     <p> a<sub>5</sub> = 3 + (5-1) ⋅ 3 = 3 + 12 = 15</p>
                     <li>If given a later term instead of a<sub>1</sub>  , you can still find a<sub>1</sub>  or n by manipulating the formula.</li>
-                
+
                 </ul>
 
                 <h4>Sum of Terms (arithmetic Series)</h4>
@@ -82,7 +82,7 @@
                     <li>d= -<sup>7</sup>&frasl;<sub>2</sub> - (-5) = <sup>-7</sup>&frasl;<sub>2</sub> + <sup>10</sup>&frasl;<sub>2</sub> = <sup>3</sup>&frasl;<sub>2</sub>.</li>
                     <li>So a<sub>n</sub> = -5 + (n-1) ⋅ <sup>3</sup>&frasl;<sub>2</sub>.<i>Simplify if needed</i></li>
                 </ul>
-                
+
                 <li>Example 2: Which term of −3, −8, −13, −18, … is -248?</li>
 
                 <ul>
@@ -107,7 +107,7 @@
                 <a href="practice.php?module=2" class="action-button">Go to Practice</a>
                 <a href="quiz.php?module=2" class="action-button" style="margin-left:8px;">Take Quiz</a>
             </div>
-                
+
         </div>
     </main>
 </body>

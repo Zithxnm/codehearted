@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5 Review | CodeHearted</title>
     <meta name="description" content="Lesson 5: Octal Number System">
-    <link rel="stylesheet" href="../module5_Octal_Number_System/review5.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod5/review5.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -14,9 +14,9 @@
         <div class="review-container">
             <h1>Lesson 5: Octal Number System</h1>
             <p>
-                The octal number system (base-8) is a positional numeral system that uses eight digits: 0, 1, 2, 3, 4, 5, 6, 7. 
-                It is similar in structure to decimal (base-10), binary (base-2), and hexadecimal (base-16), but its base is 8. 
-                It is used in computing (historically for permissions in Unix, for grouping binary digits, etc.), mathematics, 
+                The octal number system (base-8) is a positional numeral system that uses eight digits: 0, 1, 2, 3, 4, 5, 6, 7.
+                It is similar in structure to decimal (base-10), binary (base-2), and hexadecimal (base-16), but its base is 8.
+                It is used in computing (historically for permissions in Unix, for grouping binary digits, etc.), mathematics,
                 and in conversion examples.
             </p>
             <p>In octal, each position represents a power of 8. For example, in the octal number (215)<sub>8</sub>, the digits stand for:</p>
@@ -103,7 +103,7 @@
                 <p>Reading remainders (bottom to top): (144)<sub>8</sub></p>
 
                 <p>
-                    For decimals (fractional part), multiply the fractional part by 8, take the integer part, 
+                    For decimals (fractional part), multiply the fractional part by 8, take the integer part,
                     then continue with the new fractional remainder.
                 </p>
 

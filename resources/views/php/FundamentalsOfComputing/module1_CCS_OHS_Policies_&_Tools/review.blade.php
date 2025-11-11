@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 1 Review | CodeHearted</title>
     <meta name="description" content="Lesson 1">
-    <link rel="stylesheet" href="../module1_CCS_OHS_Policies_&_Tools/review1.css?v=2>">
+    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod1/review1.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -65,9 +65,9 @@
                 <p><strong>Here are the most commonly used tools:</strong></p>
 
                 <div class="image-center">
-                    <img src="images/tools.png" alt="Computer servicing tools" class="image-center">
+                    <img src="../../../../../public/css/modules/compfund/mod1/images/tools.png" alt="Computer servicing tools" class="image-center">
                 </div>
-                
+
                 <ul>
                     <li><strong>Anti-static Wrist Strap:</strong> Worn on the wrist and clipped to a grounded surface. Prevents static electricity that can damage motherboards, RAM, and other sensitive parts.</li>
                     <li><strong>Screwdriver Set:</strong> Includes flathead, Phillips, and Torx screwdrivers. Used for opening computer cases, drives, and other hardware. Always use the correct size to avoid stripping screws.</li>

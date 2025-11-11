@@ -7,7 +7,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/Login_Styles.css') ? filemtime(__DIR__ . '/../css/Login_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="../css/Login_Styles.css?v=<?php echo $cssVersion; ?>">
+    <link rel="stylesheet" href="{{ asset('css/Login_Styles.css') }}">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="Landing_Page.blade.php"><img src="../imgs/CodeHearted_Logo.png" alt="Logo"></a>
+                    <a href="/"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
@@ -31,7 +31,7 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="Landing_Page.blade.php" class="dropdown-link">Home</a>
+                        <a href="/" class="dropdown-link">Home</a>
                         <a href="#" class="dropdown-link">About</a>
                         <a href="#" class="dropdown-link">Contact</a>
                     </div>
@@ -47,7 +47,7 @@
             <div class="form-container">
                 <h2 class="form-title">Login</h2>
 
-                <form id="registerForm" action="register.php" method="POST">
+                <form id="registerForm" action="/register" method="POST">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -85,7 +85,7 @@
                                     Remember me
                                 </label>
                             </div>
-                                <label class="no-account">No account yet? <a href="Register.blade.php">Register here.</a></label>
+                                <label class="no-account">No account yet? <a href="/register">Register here.</a></label>
                         </div>
                     </div>
 
@@ -100,7 +100,7 @@
     </div>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/Login_Scripts.js') ? filemtime(__DIR__ . '/../js/Login_Scripts.js') : time(); ?>
-    <script src="../js/Login_Scripts.js?v=<?php echo $jsVersion; ?>"></script>
+    <script src="{{ asset('js/Login_Scripts.js') }}"></script>
 </body>
 
 </html>

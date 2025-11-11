@@ -7,7 +7,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/Courses_Styles.css') ? filemtime(__DIR__ . '/../css/Courses_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="../css/Courses_Styles.css?v=<?php echo $cssVersion; ?>">
+    <link rel="stylesheet" href="{{ asset('css/Courses_Styles.css') }}">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="Landing_Page.blade.php"><img src="../imgs/CodeHearted_Logo.png" alt="Logo"></a>
+                    <a href="/"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
@@ -31,8 +31,8 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="Landing_Page.blade.php" class="dropdown-link">Home</a>
-                        <a href="../php/Courses.php" class="dropdown-link">Courses</a>
+                        <a href="/" class="dropdown-link">Home</a>
+                        <a href="/courses" class="dropdown-link">Courses</a>
                         <a href="#" class="dropdown-link">About</a>
                         <a href="#" class="dropdown-link">Contact</a>
                     </div>
@@ -46,10 +46,10 @@
         </div>
         <div class="middle-panel">
             <div class="courses">Courses</div>
-            <a href="ProgFund.blade.php" class="subject-card-link">
+            <a href="/courses/programming-fundamentals" class="subject-card-link">
             <div class="subject-card">
                 <div class="subject-image">
-                    <img src="../imgs/Catalog_Programming.jpg" alt="Programming Fundamentals">
+                    <img src="{{ asset('imgs/Catalog_Programming.jpg') }}" alt="Programming Fundamentals">
                 </div>
                 <div class="subject-content">
                     <p class="tag">Self-paced</p>
@@ -63,10 +63,10 @@
             </div>
             </a>
 
-            <a href="DigiLogic.blade.php" class="subject-card-link">
+            <a href="/courses/digital-logic" class="subject-card-link">
             <div class="subject-card">
                 <div class="subject-image">
-                    <img src="../imgs/Catalog_Logic.jpg" alt="Digital Logic">
+                    <img src="{{ asset('imgs/Catalog_Logic.jpg') }}" alt="Digital Logic">
                 </div>
                 <div class="subject-content">
                     <p class="tag">Self-paced</p>
@@ -80,10 +80,10 @@
             </div>
             </a>
 
-            <a href="CompFund.blade.php" class="subject-card-link">
+            <a href="/courses/computer-fundamentals" class="subject-card-link">
             <div class="subject-card">
                 <div class="subject-image">
-                    <img src="../imgs/Catalog_Computing.jpg" alt="Fundamentals of Computing">
+                    <img src="{{ asset('imgs/Catalog_Computing.jpg') }}" alt="Fundamentals of Computing">
                 </div>
                 <div class="subject-content">
                     <p class="tag">Self-paced</p>
@@ -97,10 +97,10 @@
             </div>
             </a>
 
-            <a href="DiffCall.blade.php" class="subject-card-link">
+            <a href="/courses/differential-calculus" class="subject-card-link">
             <div class="subject-card">
                 <div class="subject-image">
-                    <img src="../imgs/Catalog_Calculus.jpg" alt="Differential Calculus">
+                    <img src="{{ asset('imgs/Catalog_Calculus.jpg') }}" alt="Differential Calculus">
                 </div>
                 <div class="subject-content">
                     <p class="tag">Self-paced</p>
@@ -119,7 +119,7 @@
     </div>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/Courses_Scripts.js') ? filemtime(__DIR__ . '/../js/Courses_Scripts.js') : time(); ?>
-    <script src="../js/Courses_Scripts.js?v=<?php echo $jsVersion; ?>"></script>
+    <script src="{{ asset('js/Courses_Scripts.js') }}"></script>
 </body>
 
 </html>

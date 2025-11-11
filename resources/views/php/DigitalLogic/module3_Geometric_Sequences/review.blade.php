@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 3 Review | CodeHearted</title>
     <meta name="description" content="Lesson 3: Geometric Sequences">
-    <link rel="stylesheet" href="../module3_Geometric_Sequences/review3.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod3/review3.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -19,13 +19,13 @@
             <section class="objectives">
                 <h2>🎯 Learning Objectives</h2>
                 <p>By the end of this lesson, students  will be able to:</p>
-            
+
                 <p>1.	Define a geometric sequence and identify its <strong>initial term</strong> and <strong>common ratio</strong>.</p>
                 <p>2.	Write a recursive formula and a <strong>closed-form</strong> (explicit) formula for a geometric sequence.</p>
                 <p>3.	Compute any term of a geometric sequence directly using the closed-form formula.</p>
                 <p>4.	Calculate the <strong>sum of a finite geometric sequence</strong>.</p>
                 <p>5.	Recognize real-life applications of geometric sequences.</p>
-                
+
             </section>
 
             <!-- Core Lesson -->
@@ -43,7 +43,7 @@
                 <h3><strong>Detailed Explanation & Examples</strong></h3>
                 <p><strong> Identifying a Geometric Sequences,</strong><p>
                     <p>A sequence is geometric if the ratio between consecutive terms is constant:</p>
- 
+
                         <p> <sup>a<sub>1</sub></sup> &frasl; a<sub>0</sub> = <sup>a<sub>2</sub></sup> &frasl; a<sub>1</sub> = <sup>a<sub>3</sub></sup> &frasl; a<sub>2</sub> = ... = r </p>
                     <p><strong>Example:</strong></p>
                     <p>Sequence: 3, 6, 12, 24, 48, . . .</p>
@@ -52,13 +52,13 @@
                         <li>Recursive: a<sub>n</sub> = 2 . a<sub>n-1</sub>, a<sub>0</sub> = 3 </li>
                         <li>Closed-form: a<sub>n</sub> = 3 . 2<sup>n</sup> </li>
                     </ul>
-                
+
                     <h4><strong> Finding a Specific Term</strong></h4>
                     <p>You can find the nnn-th term without computing all previous terms using:</p>
                         <p> a<sub>n</sub> = a<sub>0</sub> . r<sup>n</sup> </p>
 
                     <p><strong>Example:</strong> <br>Given a<sub>0</sub> = 5, r = 3, find a<sub>4</sub></p>
-                    
+
                         <p> a<sub>4</sub> = 5 . 3<sup>4</sup></p>
 
                     <h4>Finite Sum of a Geometric Sequence</h4>
@@ -77,7 +77,7 @@
                     <ul>
                         <li>a<sub>0</sub> = 2, r = 2, n = 4</li>
                     </ul>
-                    <p> S = 2 . 
+                    <p> S = 2 .
                         <span style="display:inline-block; text-align:center;">
                         <span style="border-bottom:1px solid black; display:block;">
                                 2<sup>5</sup> − 1
@@ -85,8 +85,8 @@
                                 2 − 1
                             </span>
                             2 . (32 – 1) = 2 . 31 = 62
-                            </p>  
-                    
+                            </p>
+
                     <p><strong>Real-Life Example</strong></p>
                     <p><strong>Compound Interest:</strong> <br>If you deposit $1000 in a bank account with 5% interest compounded yearly, the amount after <i>n</i> years is:</p>
                         <p>A<sub>n</sub> = 1000 . (1.05)<sup>n</sup></p>

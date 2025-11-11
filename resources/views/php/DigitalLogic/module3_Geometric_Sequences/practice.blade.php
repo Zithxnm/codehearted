@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 3 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 3 Practice Problems - Basic Input/Output, Type Conversion, and String Formatting">
-    <link rel="stylesheet" href="../module3_Geometric_Sequences/practice3.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod3/practice3.css')}}?v={{ time(); }}">
 </head>
 
 <body>

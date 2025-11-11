@@ -7,7 +7,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/Register_Styles.css') ? filemtime(__DIR__ . '/../css/Register_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="../css/Register_Styles.css?v=<?php echo $cssVersion; ?>">
+    <link rel="stylesheet" href="{{ asset('css/Register_Styles.css') }}">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="Landing_Page.blade.php"><img src="../imgs/CodeHearted_Logo.png" alt="Logo"></a>
+                    <a href="/"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
@@ -31,7 +31,7 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="Landing_Page.blade.php" class="dropdown-link">Home</a>
+                        <a href="/" class="dropdown-link">Home</a>
                         <a href="#" class="dropdown-link">About</a>
                         <a href="#" class="dropdown-link">Contact</a>
                     </div>
@@ -143,7 +143,7 @@
     </div>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/Register_Scripts.js') ? filemtime(__DIR__ . '/../js/Register_Scripts.js') : time(); ?>
-    <script src="../js/Register_Scripts.js?v=<?php echo $jsVersion; ?>"></script>
+    <script src="{{ asset('js/Register_Scripts.js') }}"></script>
 </body>
 
 </html>

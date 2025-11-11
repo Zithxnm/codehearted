@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 1 Review | CodeHearted</title>
     <meta name="description" content="Lesson 1">
-    <link rel="stylesheet" href="../module1_Truth_Table/quiz1.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod1/quiz1.css')}}?v={{ time(); }}">
 </head>
 
 <body>

@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php $cssVersion = file_exists(__DIR__ . '/../css/Admin_Styles.css') ? filemtime(__DIR__ . '/../css/Admin_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="../css/Admin_Styles.css?v=<?php echo $cssVersion; ?>">
+    <link rel="stylesheet" href="{{ asset('css/Admin_Styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>CodeHearted - Admin Page</title>
 </head>
@@ -13,13 +12,13 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="Landing_Page.blade.php"><img src="../imgs/CodeHearted_Logo.png" alt="Logo"></a>
+                    <a href="/"><img src="{{asset('imgs/CodeHearted_Logo.png')}}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
                     <div class="search-box">
                         <button class="search-icon-btn" type="button" aria-label="Search">
-                            <img class="search-icon" src="../imgs/7.jpg" alt="Search Icon">
+                            <img class="search-icon" src="{{asset("imgs/7.jpg")}}" alt="Search Icon">
                         </button>
                         <input type="text" placeholder="Search..." class="search-input">
                     </div>
@@ -29,8 +28,8 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="Landing_Page.blade.php" class="dropdown-link">Home</a>
-                        <a href="Courses.blade.php" class="dropdown-link">Courses</a>
+                        <a href="/" class="dropdown-link">Home</a>
+                        <a href="courses" class="dropdown-link">Courses</a>
                         <a href="#" class="dropdown-link">About</a>
                         <a href="#" class="dropdown-link">Contact</a>
                     </div>
@@ -143,7 +142,6 @@
         </main>
     </div>
 
-    <?php $jsVersion = file_exists(__DIR__ . '/../js/Admin_Scripts.js') ? filemtime(__DIR__ . '/../js/Admin_Scripts.js') : time(); ?>
-    <script src="../js/Admin_Scripts.js?v=<?php echo $jsVersion; ?>"></script>
+    <script src="{{asset('js/Admin_Scripts.js')}}"></script>
 </body>
 </html>

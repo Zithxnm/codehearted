@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 3 Review | CodeHearted</title>
     <meta name="description" content="Lesson 3: Input and Output Fundamentals">
-    <link rel="stylesheet" href="../module3_BIOS_UEFI_&_Bootable_Media/review3.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod3/review3.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -53,14 +53,14 @@
                 <p>Examples:</p>
 
                 <div class="image-center">
-                    <img src="images/tools2.png" alt="Bootable Media" class="image-center">
+                    <img src="../../../../../public/css/modules/compfund/mod3/images/tools2.png" alt="Bootable Media" class="image-center">
                 </div>
 
                 <ul>
                     <li><strong>USB Flash Drive (Bootable):</strong> Most common; used to install Windows, Linux, or diagnostic tools.</li>
                     <li><strong>CD/DVD (Bootable):</strong> Older but still used in some systems.</li>
                     <li><strong>External Hard Drive (Bootable):</strong> Can store full OS environments.</li>
-                    <li><strong>Network Boot (PXE):</strong> Boots a computer over a network connection.</li> 
+                    <li><strong>Network Boot (PXE):</strong> Boots a computer over a network connection.</li>
                 </ul>
 
                 <h3>Importance of Bootable Media in CSS</h3>

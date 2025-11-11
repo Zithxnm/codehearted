@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 3 Quiz | CodeHearted</title>
     <meta name="description" content="Lesson 3 Quiz - Input, Output, and Type Conversion">
-    <link rel="stylesheet" href="../module3_Geometric_Sequences/quiz3.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod3/quiz3.css')}}?v={{ time(); }}">
 </head>
 <body>
     <main class="lesson-container">
@@ -38,7 +38,7 @@
             <div class="lesson-section">
                 <p class="question">3. Compute the sum of the first 6 terms of a<sub>n</sub>= 3 ⋅ (0.5)<sup>n</sup></p>
                 <textarea name="q3" placeholder="Write your answer here..."><?php if(isset($_POST['q3'])) echo htmlspecialchars($_POST['q3']); ?></textarea>
-                
+
             </div>
 
             <!-- Question 4 -->

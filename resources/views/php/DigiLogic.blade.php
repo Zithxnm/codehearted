@@ -7,7 +7,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/DigiLogic_Styles.css') ? filemtime(__DIR__ . '/../css/DigiLogic_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="../css/DigiLogic_Styles.css?v=<?php echo $cssVersion; ?>">
+    <link rel="stylesheet" href="{{ asset('css/DigiLogic_Styles.css') }}">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="Landing_Page.blade.php"><img src="../imgs/CodeHearted_Logo.png" alt="Logo"></a>
+                    <a href="/"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
@@ -31,8 +31,8 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="Landing_Page.blade.php" class="dropdown-link">Home</a>
-                        <a href="Courses.blade.php" class="dropdown-link">Courses</a>
+                        <a href="/" class="dropdown-link">Home</a>
+                        <a href="/courses" class="dropdown-link">Courses</a>
                         <a href="#" class="dropdown-link">About</a>
                         <a href="#" class="dropdown-link">Contact</a>
                     </div>
@@ -106,11 +106,11 @@
                     ];
 
                     $moduleFolders = [
-                        'module1_Truth_Table',
-                        'module2_Arithmetic_Sequence',
-                        'module3_Geometric_Sequences',
-                        'module4_Binary_Number_System',
-                        'module5_Octal_Number_System',
+                        'module1',
+                        'module2',
+                        'module3',
+                        'module4',
+                        'module5',
                     ];
 
                     foreach ($modules as $i => $title) {
@@ -121,13 +121,13 @@
                                 <?php echo htmlspecialchars($title); ?>
                             </h3>
 
-                            <a href="DigitalLogic/<?php echo $moduleFolders[$i]; ?>/review.php"
+                            <a href="digi-logic/<?php echo $moduleFolders[$i]; ?>/review"
                                 class="action-button review" data-action="review" data-module="<?php echo $i; ?>">Review</a>
 
-                            <a href="DigitalLogic/<?php echo $moduleFolders[$i]; ?>/practice.php"
+                            <a href="digi-logic/<?php echo $moduleFolders[$i]; ?>/practice""
                                 class="action-button" data-action="practice" data-module="<?php echo $i; ?>" style="margin-left:8px;">Practice</a>
 
-                            <a href="DigitalLogic/<?php echo $moduleFolders[$i]; ?>/quiz.php"
+                            <a href="digi-logic/<?php echo $moduleFolders[$i]; ?>/quiz"
                                 class="action-button" data-action="quiz" data-module="<?php echo $i; ?>" style="margin-left:8px;">Quiz</a>
 
                             <div style="clear: both;"></div>
@@ -206,7 +206,7 @@
     </footer>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/DigiLogic_Scripts.js') ? filemtime(__DIR__ . '/../js/DigiLogic_Scripts.js') : time(); ?>
-    <script src="../js/DigiLogic_Scripts.js?v=<?php echo $jsVersion; ?>"></script>
+    <script src="{{ asset('js/DigiLogic_Scripts.js') }}"></script>
 </body>
 
 </html>

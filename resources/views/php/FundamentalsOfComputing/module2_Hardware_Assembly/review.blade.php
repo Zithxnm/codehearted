@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 2 Review | CodeHearted</title>
     <meta name="description" content="Lesson 2">
-    <link rel="stylesheet" href="../module2_Hardware_Assembly/review2.css?v=2>">
+    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod2/review2.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                 <h3>Major Parts of the System Unit:</h3>
 
                 <div class="image-center">
-                    <img src="images/parts.png" alt="System Unit Parts" class="image-center">
+                    <img src="../../../../../public/css/modules/compfund/mod2/images/parts.png" alt="System Unit Parts" class="image-center">
                 </div>
 
                 <h4>Motherboard:</h4>

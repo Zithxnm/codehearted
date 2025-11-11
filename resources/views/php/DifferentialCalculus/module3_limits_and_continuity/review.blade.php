@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 3 Review | CodeHearted</title>
     <meta name="description" content="Lesson 3 - Limits & Continuity">
-    <link rel="stylesheet" href="review3.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/diffcalc/mod3/review3.css')}}?v={{ time(); }}">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -32,15 +32,15 @@
 
                 <h3>1. Definition of a Limit</h3>
                 <p>
-                    The concept of a Limit is fundamental to the study of calculus. In simple terms, 
-                    the limit of a function at a particular point refers to the value that the function approaches as the input 
-                    (or variable) approaches a specific value. It allows us to analyze how functions behave as they get close to 
+                    The concept of a Limit is fundamental to the study of calculus. In simple terms,
+                    the limit of a function at a particular point refers to the value that the function approaches as the input
+                    (or variable) approaches a specific value. It allows us to analyze how functions behave as they get close to
                     a certain point, even if they never actually reach that point.
                 </p>
-                <p> 
-                    Continuity, on the other hand, is a property of a function that ensures it behaves in a predictable manner. 
-                    A function is continuous if, roughly speaking, you can sketch its graph without lifting your pen. 
-                    More formally, a function is considered continuous at a point if the limit of the function exists as it 
+                <p>
+                    Continuity, on the other hand, is a property of a function that ensures it behaves in a predictable manner.
+                    A function is continuous if, roughly speaking, you can sketch its graph without lifting your pen.
+                    More formally, a function is considered continuous at a point if the limit of the function exists as it
                     approaches that point is equal to the function’s value at that point.
                 </p>
                 <p>
@@ -50,27 +50,27 @@
 
                 <h3>2. Basic Limit Laws</h3>
                 <ul>
-                    <li><strong>Constant Rule:</strong> 
+                    <li><strong>Constant Rule:</strong>
                         <div class="code-snippet">\( \lim_{x \to a} c = c \)</div>
                     </li>
-                    
-                    <li><strong>Identity Rule:</strong> 
+
+                    <li><strong>Identity Rule:</strong>
                         <div class="code-snippet">\( \lim_{x \to a} x = a \)</div>
                     </li>
-                    
-                    <li><strong>Power Rule:</strong> 
+
+                    <li><strong>Power Rule:</strong>
                         <div class="code-snippet">\( \lim_{x \to a} x^n = a^n \)</div>
                     </li>
-                    
-                    <li><strong>Sum/Difference Rule:</strong> 
+
+                    <li><strong>Sum/Difference Rule:</strong>
                         <div class="code-snippet">\( \lim_{x \to a} [f(x) \pm g(x)] = \lim_{x \to a} f(x) \pm \lim_{x \to a} g(x) \)</div>
                     </li>
-                    
-                    <li><strong>Product Rule:</strong> 
+
+                    <li><strong>Product Rule:</strong>
                         <div class="code-snippet">\( \lim_{x \to a} [f(x)g(x)] = (\lim_{x \to a} f(x))(\lim_{x \to a} g(x)) \)</div>
                     </li>
-                    
-                    <li><strong>Quotient Rule:</strong> 
+
+                    <li><strong>Quotient Rule:</strong>
                         <div class="code-snippet">\( \lim_{x \to a} \frac{f(x)}{g(x)} = \frac{\lim_{x \to a} f(x)}{\lim_{x \to a} g(x)}, \ g(a) \neq 0 \)</div>
                     </li>
                 </ul>
@@ -89,7 +89,7 @@
                     <li>
                         \( f(a) \) is defined,
                     </li>
-                    <li> 
+                    <li>
                         \( \lim_{x \to a} f(x) \) exists,
                     </li>
                     <li>

@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5 Review | CodeHearted</title>
     <meta name="description" content="Lesson 5 - Order of Rotation">
-    <link rel="stylesheet" href="review5.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/diffcalc/mod5/review5.css')}}?v={{ time(); }}">
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async 
+    <script id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
 </head>
@@ -35,21 +35,21 @@
 
                 <h3>1. What is an Order of Rotation?</h3>
                 <p>
-                    The <strong>order of rotation</strong> refers to the number of times a shape can be rotated around a central point 
-                    and still look the same within a full rotation of 360 degrees. This concept is closely linked to symmetry, 
-                    as it helps identify the degree of rotational symmetry a shape possesses, whether in two-dimensional figures 
+                    The <strong>order of rotation</strong> refers to the number of times a shape can be rotated around a central point
+                    and still look the same within a full rotation of 360 degrees. This concept is closely linked to symmetry,
+                    as it helps identify the degree of rotational symmetry a shape possesses, whether in two-dimensional figures
                     like polygons or three-dimensional objects like spheres and cubes.
                 </p>
 
                 <h3>2. Rotational Symmetry</h3>
                 <p>
-                    A figure has <strong>rotational symmetry</strong> if it looks the same after being rotated (turned) 
+                    A figure has <strong>rotational symmetry</strong> if it looks the same after being rotated (turned)
                     by some angle less than 360°.
                 </p>
 
                 <h3>3. Order of Rotation</h3>
                 <p>
-                    The <strong>order of rotation</strong> is the number of times a figure maps onto itself 
+                    The <strong>order of rotation</strong> is the number of times a figure maps onto itself
                     in one complete turn (360°).
                 </p>
                 <p><strong>Formula:</strong></p>

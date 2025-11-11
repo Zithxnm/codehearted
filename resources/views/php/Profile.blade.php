@@ -8,7 +8,7 @@
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that l
 ast.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/Profile_Styles.css') ? filemtime(__DIR__ . '/../css/Login_Signup_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="../css/Profile_Styles.css?v=<?php echo $cssVersion; ?>">
+    <link rel="stylesheet" href="{{ asset('css/Profile_Styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -17,7 +17,7 @@ ast.">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="../imgs/CodeHearted_Logo.png" alt="Logo">
+                    <a href="/"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
@@ -33,8 +33,8 @@ ast.">
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="Courses.blade.php" class="dropdown-link">Courses</a>
-                        <a href="Landing_Page.blade.php" class="dropdown-link">Logout</a>
+                        <a href="/courses" class="dropdown-link">Courses</a>
+                        <a href="/" class="dropdown-link">Logout</a>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@ ast.">
     </footer>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/Profile_Scripts.js') ? filemtime(__DIR__ . '/../js/Profile_Scripts.js') : time(); ?>
-    <script src="../js/Profile_Scripts.js?v=<?php echo $jsVersion; ?>"></script>
+    <script src="{{ asset('js/Profile_Scripts.js') }}"></script>
 </body>
 
 </html>

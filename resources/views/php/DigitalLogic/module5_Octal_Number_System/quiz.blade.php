@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5 Quiz | CodeHearted</title>
     <meta name="description" content="Lesson 5 Quiz - Octal Number System">
-    <link rel="stylesheet" href="../module5_Octal_Number_System/quiz5.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod5/quiz5.css')}}?v={{ time(); }}">
 </head>
 <body>
     <main class="lesson-container">
@@ -40,7 +40,7 @@
             <!-- Question 5 -->
             <div class="lesson-section">
                 <p class="question">5. 	Convert (101101)<sub>2</sub> to octal.</p>
-                <textarea name="q3" placeholder="Write your answer here..."><?php if(isset($_POST['q3'])) echo htmlspecialchars($_POST['q3']); ?></textarea> 
+                <textarea name="q3" placeholder="Write your answer here..."><?php if(isset($_POST['q3'])) echo htmlspecialchars($_POST['q3']); ?></textarea>
             </div>
 
             <button class="submit-btn">Submit Answers</button>

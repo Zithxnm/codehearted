@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
-    <?php $cssVersion = file_exists(__DIR__ . '/../css/Landing_Styles.css') ? filemtime(__DIR__ . '/../css/Landing_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="../css/Landing_Styles.css?v=<?php echo $cssVersion; ?>">
+    <link rel="stylesheet" href="{{ asset('css/Landing_Styles.css') }}">
 </head>
 <body>
     <header class="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="../imgs/CodeHearted_Logo.png" alt="Logo">
+                    <img src="{{asset("imgs/CodeHearted_Logo.png") }}" alt="Logo">
                 </div>
 
                 <div class="search-container">
                     <div class="search-box">
                         <button class="search-icon-btn" type="button" aria-label="Search">
-                            <img class="search-icon" src="../imgs/7.jpg" alt="Search Icon">
+                            <img class="search-icon" src="{{asset('imgs/7.jpg')}}" alt="Search Icon">
                         </button>
                         <input type="text" placeholder="Search..." class="search-input">
                     </div>
@@ -29,7 +28,7 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="#" class="dropdown-link">Home</a>
+                        <a href="/" class="dropdown-link">Home</a>
                         <a href="#" class="dropdown-link">About</a>
                         <a href="#" class="dropdown-link">Contact</a>
                     </div>
@@ -47,7 +46,7 @@
                     Sharpen your logic, learn coding fundamentals, and grow with confidence — with
                     CodeHearted, you build skills that don't just pass, they last.
                 </p>
-                <a href="Login_Signup.blade.php"><button data-text="Get Started" class="btn-primary">Get Started</button></a>
+                <a href="/login-signup"><button data-text="Get Started" class="btn-primary">Get Started</button></a>
             </div>
         </div>
     </section>
@@ -136,7 +135,7 @@
 
     <section class="mascot">
         <div class="mascot-container">
-            <img src="../imgs/Coding_Journey.png" alt="Coding">
+            <img src="{{asset('../imgs/Coding_Journey.png')}}" alt="Coding">
         </div>
     </section>
 
@@ -178,13 +177,13 @@
                     <h4 class="footer-title">Stay sharp as a fox — follow us for news and updates.</h4>
                     <div class="social-links">
                         <a href="https://www.facebook.com/PampangaStateU" class="social-link" aria-label="PSU" target="_blank">
-                            <img class="psu" src="../imgs/WhiteLogo_PSU.png" alt="PSU">
+                            <img class="psu" src="{{asset('/imgs/WhiteLogo_PSU.png')}}" alt="PSU">
                         </a>
                         <a href="https://www.facebook.com/dhvsu.ccssc" class="social-link" aria-label="CCS" target="_blank">
-                            <img class="ccs" src="../imgs/WhiteLogo_CCSSC.png" alt="PSU">
+                            <img class="ccs" src="{{asset('/imgs/WhiteLogo_CCSSC.png')}}" alt="PSU">
                         </a>
                         <a href="https://www.facebook.com/ComPressCCS" class="social-link" aria-label="ComPress" target="_blank">
-                            <img class="compress" src="../imgs/WhiteLogo_ComPress.png" alt="PSU">
+                            <img class="compress" src="{{asset('/imgs/WhiteLogo_ComPress.png')}}" alt="PSU">
                         </a>
                     </div>
                 </div>
@@ -196,7 +195,6 @@
         </div>
     </footer>
 
-    <?php $jsVersion = file_exists(__DIR__ . '/../js/Landing_Scripts.js') ? filemtime(__DIR__ . '/../js/Landing_Scripts.js') : time(); ?>
-    <script src="../js/Landing_Scripts.js?v=<?php echo $jsVersion; ?>"></script>
+    <script src="{{asset('/js/Landing_Scripts.js')}}"></script>
 </body>
 </html>

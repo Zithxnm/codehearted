@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 4 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 4 Practice Problems - Conditionals, Logical Operators, and Debugging">
-    <link rel="stylesheet" href="../module4_Binary_Number_System/practice4.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod4/practice4.css')}}?v={{ time(); }}">
 </head>
 <body>
     <main class="lesson-container">

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5 Review | CodeHearted</title>
     <meta name="description" content="Lesson 5: Iteration and Loops in Python">
-    <link rel="stylesheet" href="../module5_Installing_Applications_&_Licensing/review5.css?php echo time(); ?>">
+    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod5/review5.css')}}?v={{ time(); }}">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
 
                 <h3>Installing Applications – Definition</h3>
                 <p><strong>Applications (or software programs)</strong> are tools designed to perform specific tasks, such as word processing, browsing the internet, or editing photos. Installing applications means setting up these programs on a computer so they can be used by the user.</p>
-          
+
                 <p><strong>Examples:</strong> Microsoft Office, Google Chrome, Adobe Photoshop, VLC Media Player.</p>
 
                 <h3>Steps in Installing Applications</h3>
@@ -45,7 +45,7 @@
                     <li><strong>Complete Installation</strong> —  Wait until files are copied and program shortcuts are created.</li>
                     <li><strong>Restart if Required</strong> — Some applications need a system restart to finish setup.</li>
                 </ul>
-                   
+
                 <h3>Licensing – Definition</h3>
                 <p>A <strong>software license</strong> is a legal agreement that defines how software can be used, shared, or distributed. It ensures that applications are used legally and protects both the user and the software developer.</p>
 
