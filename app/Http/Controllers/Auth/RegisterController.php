@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -20,7 +21,14 @@ class RegisterController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255|min:3',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|max:30|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'max:8',
+                'regex:/^.*(?=.{8,30})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).*$/',
+                'confirmed',
+            ],
         ]);
 
         $user = User::create([
