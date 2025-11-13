@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // 1. The Users Table (Updated with your ERD columns)
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -19,24 +18,23 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            // --- Custom Columns from your ERD ---
-            $table->string('role')->default('student'); // Default to student
-            $table->text('bio')->nullable();            // Optional bio
-            $table->string('profile_picture_path')->nullable(); // Optional image
-            // ------------------------------------
+
+            $table->string('role')->default('student');
+            $table->text('bio')->nullable();
+            $table->string('profile_picture_path')->nullable();
+
 
             $table->rememberToken();
             $table->timestamps();
         });
 
-        // 2. Password Reset Tokens Table (Standard Laravel)
+
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
 
-        // 3. Sessions Table (REQUIRED to fix your "Table sessions doesn't exist" error)
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
