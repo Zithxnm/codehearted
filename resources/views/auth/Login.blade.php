@@ -47,7 +47,8 @@
             <div class="form-container">
                 <h2 class="form-title">Login</h2>
 
-                <form id="registerForm" action="/register" method="POST">
+                <form id="loginForm" action="{{ route('login') }}" method="POST">
+                    @csrf
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -56,6 +57,7 @@
                                 id="email"
                                 name="email"
                                 placeholder="codehearted@fox.com"
+                                value="{{ old('email') }}"
                                 required>
                             <span class="error-message" id="emailError"></span>
                         </div>
