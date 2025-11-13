@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmPasswordInput = document.getElementById('confirmPassword');
     const emailInput = document.getElementById('email');
     const usernameInput = document.getElementById('username');
-    
+
     // Password visibility toggle
     const toggleButtons = document.querySelectorAll('.toggle-password');
     toggleButtons.forEach(button => {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetId = this.getAttribute('data-target');
             const targetInput = document.getElementById(targetId);
             const eyeIcon = this.querySelector('.eye-icon');
-            
+
             if (targetInput.type === 'password') {
                 targetInput.type = 'text';
                 eyeIcon.textContent = '👁️‍🗨️';
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Password validation requirements
     const requirements = {
         length: document.getElementById('req-length'),
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form submission
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         // Clear previous errors
         clearErrors();
 
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isValid) {
             showToast('Registration successful!', 'success');
             // Uncomment the next line to submit to PHP
-            // form.submit();
+            form.submit();
         }
     });
 

@@ -47,7 +47,8 @@
             <div class="form-container">
                 <h2 class="form-title">Register Account</h2>
 
-                <form id="registerForm" action="register.php" method="POST">
+                <form id="registerForm" action="{{route('register')}}" method="POST">
+                    @csrf
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -56,6 +57,7 @@
                                 id="email"
                                 name="email"
                                 placeholder="codehearted@fox.com"
+                                value="{{ old('email') }}"
                                 required>
                             <span class="error-message" id="emailError"></span>
                         </div>
@@ -77,23 +79,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="username">Username</label>
+                            <label for="name">Username</label>
                             <input
                                 type="text"
-                                id="username"
-                                name="username"
+                                id="name"
+                                name="name"
                                 placeholder="foxycode"
                                 required>
                             <span class="error-message" id="usernameError"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
+                            <label for="password_confirmation">Confirm Password</label>
                             <div class="password-input-wrapper">
                                 <input
                                     type="password"
                                     id="confirmPassword"
-                                    name="confirmPassword"
+                                    name="password_confirmation"
                                     placeholder="Enter password"
                                     required>
                                 <button type="button" class="toggle-password" data-target="confirmPassword">
@@ -142,7 +144,6 @@
         </div>
     </div>
 
-    <?php $jsVersion = file_exists(__DIR__ . '/../js/Register_Scripts.js') ? filemtime(__DIR__ . '/../js/Register_Scripts.js') : time(); ?>
     <script src="{{ asset('js/Register_Scripts.js') }}"></script>
 </body>
 
