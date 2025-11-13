@@ -8,11 +8,11 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('php.Login');
-})->name('login');
+})->name('show.login');
 
 Route::get('/register', function () {
     return view('php.Register');
-})->name('register');
+})->name('show.register');
 
 Route::get('/login-signup', function () {
     return view('php.Login_Signup');
