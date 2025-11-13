@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // 1. The Users Table (Updated with your ERD columns)
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -18,13 +19,31 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            // Add your custom ERD columns here:
-            $table->string('role')->default('student'); // 'student' or 'admin'
-            $table->text('bio')->nullable();
-            $table->string('profile_picture_path')->nullable();
+            // --- Custom Columns from your ERD ---
+            $table->string('role')->default('student'); // Default to student
+            $table->text('bio')->nullable();            // Optional bio
+            $table->string('profile_picture_path')->nullable(); // Optional image
+            // ------------------------------------
 
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        // 2. Password Reset Tokens Table (Standard Laravel)
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
+        });
+
+        // 3. Sessions Table (REQUIRED to fix your "Table sessions doesn't exist" error)
+        Schema::create('sessions', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->foreignId('user_id')->nullable()->index();
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->longText('payload');
+            $table->integer('last_activity')->index();
         });
     }
 
@@ -34,5 +53,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('sessions');
     }
 };
