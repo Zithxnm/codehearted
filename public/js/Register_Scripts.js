@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('confirmPassword');
     const emailInput = document.getElementById('email');
-    const usernameInput = document.getElementById('username');
+    const usernameInput = document.getElementById('name');
 
     // Password visibility toggle
     const toggleButtons = document.querySelectorAll('.toggle-password');
