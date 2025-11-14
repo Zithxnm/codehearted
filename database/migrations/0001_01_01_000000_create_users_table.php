@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->string('role')->default('student');
             $table->text('bio')->nullable();
-            $table->string('profile_picture_path')->nullable();
+            $table->string('profile_picture_path')->nullable()->default('imgs/9.png');
 
 
             $table->rememberToken();

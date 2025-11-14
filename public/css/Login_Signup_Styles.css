@@ -238,11 +238,11 @@ body {
 .right-panel h1{
     font-size: 7vw;
     color: #ef8a34;
-    text-shadow: 
-        -1px -1px 0 #3d555e, 
-        1px -1px 0 #3d555e,   
-        -1px 1px 0 #3d555e ,   
-        1px 1px 0 #3d555e; 
+    text-shadow:
+        -1px -1px 0 #3d555e,
+        1px -1px 0 #3d555e,
+        -1px 1px 0 #3d555e ,
+        1px 1px 0 #3d555e;
 }
 
 .right-panel p{
@@ -257,8 +257,10 @@ body {
     justify-content: center;
 }
 
-.login, 
-.signup {
+.login,
+.signup,
+.dashboard,
+.profile{
     --color: #ffffff;
     --bg-color: #ef8a34;
     color: var(--color);
@@ -282,7 +284,9 @@ body {
 }
 
 .login:active,
-.signup:active {
+.signup:active,
+.dashboard:active,
+.profile:active {
     transform: translateY(5px);
     box-shadow:
         0px 5px black,
@@ -293,7 +297,9 @@ body {
 }
 
 .login:hover,
-.signup:hover {
+.signup:hover,
+.dashboard:hover,
+.profile:hover {
     background: hsl(18, 89%, 55%);
     transform: translateY(-1px);
     box-shadow:
@@ -306,6 +312,7 @@ body {
         -5px 5px #00000038,
         inset 0px 5px #ffffff36;
 }
+
 
 .footer {
     background-image: url("../imgs/MC_Footer.png");

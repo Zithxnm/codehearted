@@ -177,7 +177,7 @@ body {
     min-width: 10rem;
     z-index: 50000;
     flex-direction: column;
-}
+}   
 
 .burger-menu.open .burger-dropdown {
     display: flex;

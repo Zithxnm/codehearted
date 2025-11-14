@@ -45,8 +45,15 @@
             <h1>CodeHearted</h1>
             <p>Where Clever Foxes Code with Heart</p>
             <div class="buttons">
-                <a href="/login"><button class="login"><b>Login</b></button></a>
-                <a href="/register"><button class="signup"><b>Sign up</b></button></a>
+                @guest
+                    <a href="/login"><button class="login"><b>Login</b></button></a>
+                    <a href="/register"><button class="signup"><b>Sign up</b></button></a>
+                @endguest
+
+                @auth
+                    <a href="{{ route('profile') }}"><button class="profile">Profile</button></a>
+                    <a href="{{ route('dashboard') }}"><button class="dashboard">Dashboard</button></a>
+                @endauth
             </div>
         </div>
     </div>

@@ -36,6 +36,7 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'student',
+            'profile_picture_path' => 'imgs/9.png',
         ]);
 
         Auth::login($user);

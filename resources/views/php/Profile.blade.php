@@ -48,11 +48,13 @@ ast.">
 
     <div class="main-content">
         <div class="profile-container">
-            <img class="profile-picture" src="../imgs/Profile_Pic.png" alt="Profile Picture">
-            <div class="profile-details">
-                <h1 class="display-name">Name</h1>
-                <p class="username">@Foxycode</p>
-                <p class="user-bio">Tell us about yourself.</p>
+                @auth
+                    <img class="profile-picture" src="{{ Auth::user()->profile_picture_path }}" alt="Profile Picture">
+                    <div class="profile-details">
+                    <h1 class="display-name">{{ Auth::user()->name }}</h1>
+                    <p class="username">@ {{ Auth::user()->name }}</p>
+                    <p class="user-bio">{{ Auth::user()->bio }}</p>
+                @endauth
             </div>
         </div>
 
