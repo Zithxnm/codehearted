@@ -84,7 +84,7 @@ ast.">
     </footer>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/Profile_Scripts.js') ? filemtime(__DIR__ . '/../js/Profile_Scripts.js') : time(); ?>
-    <script src="{{ asset('js/Profile_Scripts.js') }}"></script>
+    <script src="{{ asset('js/Profile_Scripts.js') }}?v{{ time() }}"></script>
 </body>
 
 </html>
