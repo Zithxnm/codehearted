@@ -47,6 +47,8 @@
             <div class="form-container">
                 <h2 class="form-title">Register Account</h2>
 
+                <div id="toast"></div>
+
                 <form id="registerForm" action="{{route('register')}}" method="POST">
                     @csrf
                     <div class="form-grid">
@@ -144,7 +146,8 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/Register_Scripts.js') }}"></script>
+    <?php $jsVersion = file_exists(__DIR__ . '../../js/Register_Script.js') ? filemtime(__DIR__ . '../../js/Register_Scripts.js') : time(); ?>
+    <script src="{{ asset('js/Register_Scripts.js') }}?v{{ time() }}"></script>
 </body>
 
 </html>
