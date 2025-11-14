@@ -59,7 +59,11 @@
                                 placeholder="codehearted@fox.com"
                                 value="{{ old('email') }}"
                                 required>
-                            <span class="error-message" id="emailError"></span>
+                            <span class="error-message show" id="emailError">
+                                @error('email')
+                                {{ $message }}
+                                @enderror
+                            </span>
                         </div>
 
                         <div class="form-group">
@@ -75,14 +79,18 @@
                                     <span class="eye-icon">👁️</span>
                                 </button>
                             </div>
-                            <span class="error-message" id="passwordError"></span>
+                            <span class="error-message show" id="passwordError">
+                                @error('password')
+                                {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                     </div>
 
                     <div class="form-bottom-grid">
                         <div class="checkboxes-container">
                             <div class="checkbox-group">
-                                <input type="checkbox" id="terms" name="terms" required>
+                                <input type="checkbox" id="terms" name="terms">
                                 <label for="terms">
                                     Remember me
                                 </label>
