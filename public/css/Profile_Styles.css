@@ -313,9 +313,9 @@ body {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    word-wrap: break-word;        
-    overflow-wrap: break-word;    
-    overflow: hidden;             
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
 }
 
 .stat-name,
@@ -324,7 +324,7 @@ body {
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
-    max-width: 100%; 
+    max-width: 100%;
 }
 
 

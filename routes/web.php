@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LogoutController;
 
 Route::get('/', function () {
     return view('php.Landing_Page');
@@ -12,6 +13,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('show.logi
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('show.register');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
 
 Route::get('/login-signup', function () {
     return view('php.Login_Signup');

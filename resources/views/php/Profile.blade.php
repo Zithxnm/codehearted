@@ -32,10 +32,15 @@ ast.">
                 <div class="burger-menu">
                     <div class="burger-icon">
                     </div>
-                    <div class="burger-dropdown">
+                    <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
+                        @csrf
                         <a href="/courses" class="dropdown-link">Courses</a>
-                        <a href="/" class="dropdown-link">Logout</a>
-                    </div>
+                        <a href="{{ route('logout') }}"
+                            class="dropdown-link"
+                            onclick="event.preventDefault(); this.closest('form').submit();">
+                            Logout
+                        </a>
+                        </form>
                 </div>
             </div>
         </div>
@@ -53,10 +58,8 @@ ast.">
 
         <div class="stats-header">
             <hr class="stats-separator">
-            </hr>
             <h2 class="stats-title">STATS</h2>
             <hr class="stats-separator">
-            </hr>
         </div>
 
         <div class="stats-container">
