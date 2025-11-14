@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (isValid) {
-            showToast('Registration successful!', 'success');
+            // showToast('Registration successful!', 'success');
             // Uncomment the next line to submit to PHP
             form.submit();
         }
