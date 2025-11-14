@@ -97,7 +97,7 @@
                                 placeholder="foxycode"
                                 required>
                             <span class="error-message" id="usernameError">
-                                @error('name')
+                                @error('email')
                                 {{ $message }}
                                 @enderror
                             </span>
