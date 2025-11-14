@@ -31,8 +31,15 @@ ast.">
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="/profile" class="dropdown-link">Profile</a>
-                        <a href="/" class="dropdown-link">Logout</a>
+                        <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="/profile" class="dropdown-link">Profile</a>
+                            <a href="{{ route('logout') }}"
+                               class="dropdown-link"
+                               onclick="event.preventDefault(); this.closest('form').submit();">
+                                Logout
+                            </a>
+                        </form>
                     </div>
                 </div>
             </div>
