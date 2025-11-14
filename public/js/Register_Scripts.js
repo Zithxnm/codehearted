@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (isValid) {
-            // showToast('Registration successful!', 'success');
+            // showToast('Registration successful!', 'success'); tofix
             // Uncomment the next line to submit to PHP
             form.submit();
         }
@@ -159,6 +159,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
+
+
 
     function showError(elementId, message) {
         const errorElement = document.getElementById(elementId);

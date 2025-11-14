@@ -25,7 +25,7 @@ class RegisterController extends Controller
                 'required',
                 'string',
                 'min:8',
-                'max:8',
+                'max:30',
                 'regex:/^.*(?=.{8,30})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).*$/',
                 'confirmed',
             ],

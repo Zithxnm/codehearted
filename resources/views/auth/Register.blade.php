@@ -61,7 +61,11 @@
                                 placeholder="codehearted@fox.com"
                                 value="{{ old('email') }}"
                                 required>
-                            <span class="error-message" id="emailError"></span>
+                            <span class="error-message show" id="emailError">
+                                @error('email')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
 
                         <div class="form-group">
@@ -77,7 +81,11 @@
                                     <span class="eye-icon">👁️</span>
                                 </button>
                             </div>
-                            <span class="error-message" id="passwordError"></span>
+                            <span class="error-message" id="passwordError">
+                                @error('password')
+                                {{ $message }}
+                                @enderror
+                            </span>
                         </div>
 
                         <div class="form-group">
@@ -88,7 +96,11 @@
                                 name="name"
                                 placeholder="foxycode"
                                 required>
-                            <span class="error-message" id="usernameError"></span>
+                            <span class="error-message" id="usernameError">
+                                @error('email')
+                                {{ $message }}
+                                @enderror
+                            </span>
                         </div>
 
                         <div class="form-group">
@@ -139,7 +151,10 @@
                     <div class="button-container">
                         <button type="submit" class="retro-button">Register</button>
                     </div>
+
+
                 </form>
+
             </div>
         </div>
         <div class="right-panel">
