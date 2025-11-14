@@ -8,33 +8,38 @@ Route::get('/', function () {
     return view('php.Landing_Page');
 })->name('home');
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('show.login');
-Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('show.register');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('show.login');
+    Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('show.register');
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+    Route::get('/login-signup', function () {
+        return view('php.Login_Signup');
+    })->name('login.signup');
+});
 
-Route::get('/login-signup', function () {
-    return view('php.Login_Signup');
-})->name('login.signup');
 
 //Authenticated User Pages
-Route::get('/dashboard', function () {
-    return view('php.Dashboard');
-})->name('dashboard');
 
-Route::get('/profile', function () {
-    return view('php.Profile');
-})->name('profile');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('php.Dashboard');
+    })->name('dashboard');
 
-Route::get('/courses', function () {
-    return view('php.Courses');
-})->name('courses');
+    Route::get('/profile', function () {
+        return view('php.Profile');
+    })->name('profile');
 
-Route::get('/admin', function () {
-    return view('php.Admin');
-})->name('admin');
+    Route::get('/courses', function () {
+        return view('php.Courses');
+    })->name('courses');
+
+    Route::get('/admin', function () {
+        return view('php.Admin');
+    })->name('admin');
+});
 
 //Course Main Pagess
 
