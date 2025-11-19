@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 4 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 4 Practice Problems - Conditionals, Logical Operators, and Debugging">
-    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod4/practice4.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/compfund/mod4/practice4.css')
 </head>
 
 <body>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 6 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 6 - The Nature of Mathematics">
-    <link rel="stylesheet" href="{{asset('css/modules/diffcalc/mod6/practice6.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/diffcalc/mod6/practice6.css')
 </head>
 
 <body>

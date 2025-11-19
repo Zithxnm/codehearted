@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
-    <link rel="stylesheet" href="{{ asset('css/Login_Signup_Styles.css') }}">
+    @vite('resources/css/Login_Signup_Styles.css')
 </head>
 
 <body>
@@ -29,9 +29,9 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="/" class="dropdown-link">Home</a>
-                        <a href="#" class="dropdown-link">About</a>
-                        <a href="#" class="dropdown-link">Contact</a>
+                        <a href="{{ route('show.login') }}" class="dropdown-link">Login</a>
+                        <a href="{{ route('show.register') }}" class="dropdown-link">Sign Up</a>
+                        <a href="{{ route('about') }}" class="dropdown-link">About</a>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
 
     </footer>
 
-    <script src="{{asset('/js/Login_Signup_Scripts.js')}}"></script>
+    @vite('resources/js/Login_Signup_Scripts.js')
 </body>
 
 </html>

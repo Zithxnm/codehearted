@@ -34,6 +34,8 @@ function showDashboard(e) {
     e.target.classList.add('active');
 }
 
+window.showDashboard = showDashboard;
+
 function showAuditLog(e) {
     e.preventDefault();
     document.getElementById('dashboardContent').classList.add('hidden');
@@ -43,6 +45,8 @@ function showAuditLog(e) {
     document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
     e.target.classList.add('active');
 }
+
+window.showAuditLog = showAuditLog;
 
 // Draw Line Chart
 function drawLineChart() {

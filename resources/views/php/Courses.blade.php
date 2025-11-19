@@ -7,7 +7,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/Courses_Styles.css') ? filemtime(__DIR__ . '/../css/Courses_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="{{ asset('css/Courses_Styles.css') }}">
+    @vite('resources/css/Courses_Styles.css')
 </head>
 
 <body>
@@ -21,7 +21,7 @@
                 <div class="search-container">
                     <div class="search-box">
                         <button class="search-icon-btn" type="button" aria-label="Search">
-                            <img class="search-icon" src="../imgs/7.jpg" alt="Search Icon">
+                            <img class="search-icon" src="{{ asset('imgs/7.jpg') }}" alt="Search Icon">
                         </button>
                         <input type="text" placeholder="Search..." class="search-input">
                     </div>
@@ -31,10 +31,11 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="/" class="dropdown-link">Home</a>
-                        <a href="/courses" class="dropdown-link">Courses</a>
-                        <a href="#" class="dropdown-link">About</a>
-                        <a href="#" class="dropdown-link">Contact</a>
+                        <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
+                        <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
+                        <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
+                        <a href="{{ route('about') }}" class="dropdown-link">About</a>
+                        <a href="{{ route('logout') }}" class="dropdown-link">Logout</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +47,7 @@
         </div>
         <div class="middle-panel">
             <div class="courses">Courses</div>
-            <a href="/courses/programming-fundamentals" class="subject-card-link">
+            <a href="{{ route('courses.progfund') }}" class="subject-card-link">
             <div class="subject-card">
                 <div class="subject-image">
                     <img src="{{ asset('imgs/Catalog_Programming.jpg') }}" alt="Programming Fundamentals">
@@ -63,7 +64,7 @@
             </div>
             </a>
 
-            <a href="/courses/digital-logic" class="subject-card-link">
+            <a href="{{ route('courses.digilogic') }}" class="subject-card-link">
             <div class="subject-card">
                 <div class="subject-image">
                     <img src="{{ asset('imgs/Catalog_Logic.jpg') }}" alt="Digital Logic">
@@ -80,7 +81,7 @@
             </div>
             </a>
 
-            <a href="/courses/computer-fundamentals" class="subject-card-link">
+            <a href="{{ route('courses.compfund') }}" class="subject-card-link">
             <div class="subject-card">
                 <div class="subject-image">
                     <img src="{{ asset('imgs/Catalog_Computing.jpg') }}" alt="Fundamentals of Computing">
@@ -97,7 +98,7 @@
             </div>
             </a>
 
-            <a href="/courses/differential-calculus" class="subject-card-link">
+            <a href="{{ route('courses.diffcalc') }}" class="subject-card-link">
             <div class="subject-card">
                 <div class="subject-image">
                     <img src="{{ asset('imgs/Catalog_Calculus.jpg') }}" alt="Differential Calculus">
@@ -119,7 +120,7 @@
     </div>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/Courses_Scripts.js') ? filemtime(__DIR__ . '/../js/Courses_Scripts.js') : time(); ?>
-    <script src="{{ asset('js/Courses_Scripts.js') }}"></script>
+    @vite('resources/js/Courses_Scripts.js')
 </body>
 
 </html>

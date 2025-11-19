@@ -31,21 +31,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailInput = document.getElementById('email');
     const usernameInput = document.getElementById('name');
 
-    // Password visibility toggle
+    // Password visibility toggle (supports emoji and FontAwesome, updates ARIA)
     const toggleButtons = document.querySelectorAll('.toggle-password');
     toggleButtons.forEach(button => {
         button.addEventListener('click', function() {
             const targetId = this.getAttribute('data-target');
             const targetInput = document.getElementById(targetId);
-            const eyeIcon = this.querySelector('.eye-icon');
 
-            if (targetInput.type === 'password') {
-                targetInput.type = 'text';
-                eyeIcon.textContent = '👁️‍🗨️';
-            } else {
-                targetInput.type = 'password';
-                eyeIcon.textContent = '👁️';
+            // Support both emoji span (.eye-icon) and FontAwesome <i class="fa"> elements
+            let eyeIcon = this.querySelector('.eye-icon');
+            if (!eyeIcon) {
+                eyeIcon = this.querySelector('i') || this.querySelector('.fa') || this.querySelector('svg');
             }
+
+            if (!targetInput) return;
+
+            const wasPassword = targetInput.type === 'password';
+            // Toggle the input type
+            targetInput.type = wasPassword ? 'text' : 'password';
+            const visible = targetInput.type === 'text';
+
+            // Update icon: if FontAwesome, swap classes; otherwise update text content (emoji)
+            if (eyeIcon) {
+                if (eyeIcon.classList && (eyeIcon.classList.contains('fa') || eyeIcon.classList.contains('fa-eye') || eyeIcon.classList.contains('fa-eye-slash'))) {
+                    if (visible) {
+                        eyeIcon.classList.remove('fa-eye');
+                        eyeIcon.classList.add('fa-eye-slash');
+                    } else {
+                        eyeIcon.classList.remove('fa-eye-slash');
+                        eyeIcon.classList.add('fa-eye');
+                    }
+                } else {
+                    eyeIcon.textContent = visible ? '👁️‍🗨️' : '👁️';
+                }
+            }
+
+            // Accessibility: indicate state and update label
+            this.setAttribute('aria-pressed', String(visible));
+            this.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
         });
     });
 
@@ -159,8 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-
-
 
     function showError(elementId, message) {
         const errorElement = document.getElementById(elementId);

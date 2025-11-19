@@ -8,7 +8,7 @@
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that l
 ast.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/Profile_Styles.css') ? filemtime(__DIR__ . '/../css/Login_Signup_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="{{ asset('css/Profile_Styles.css') }}">
+    @vite('resources/css/Profile_Styles.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -17,13 +17,13 @@ ast.">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="/"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
                     <div class="search-box">
                         <button class="search-icon-btn" type="button" aria-label="Search">
-                            <img class="search-icon" src="../imgs/7.jpg" alt="Search Icon">
+                            <img class="search-icon" src="{{ asset('imgs/7.jpg') }}" alt="Search Icon">
                         </button>
                         <input type="text" placeholder="Search..." class="search-input">
                     </div>
@@ -34,7 +34,9 @@ ast.">
                     </div>
                     <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="/courses" class="dropdown-link">Courses</a>
+                        <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
+                        <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
+                        <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
                         <a href="{{ route('logout') }}"
                             class="dropdown-link"
                             onclick="event.preventDefault(); this.closest('form').submit();">
@@ -60,8 +62,10 @@ ast.">
 
         <div class="stats-header">
             <hr class="stats-separator">
+            </hr>
             <h2 class="stats-title">STATS</h2>
             <hr class="stats-separator">
+            </hr>
         </div>
 
         <div class="stats-container">
@@ -89,7 +93,7 @@ ast.">
     </footer>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/Profile_Scripts.js') ? filemtime(__DIR__ . '/../js/Profile_Scripts.js') : time(); ?>
-    <script src="{{ asset('js/Profile_Scripts.js') }}?v{{ time() }}"></script>
+    @vite('resources/js/Profile_Scripts.js')
 </body>
 
 </html>

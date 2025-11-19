@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 1 Review | CodeHearted</title>
     <meta name="description" content="Lesson 1">
-    <link rel="stylesheet" href="{{asset('css/modules/progfund/mod1/review1.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/progfund/mod1/review1.css')
 </head>
 
 <body>

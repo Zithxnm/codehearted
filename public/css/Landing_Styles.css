@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: VCR;
-    src: url("../fonts/Better\ VCR.ttf");
+    src: url("../fonts/Better/VCR.ttf");
 }
 
 * {
@@ -30,7 +30,7 @@ body {
 }
 
 .header {
-    background-image: url("../imgs/Header_BG.png");
+    background-image: url("/imgs/Header_BG.png");
     border-bottom: 1px solid rgba(#598392);
     position: sticky;
     top: 0;
@@ -150,7 +150,7 @@ body {
 .burger-icon {
     width: 2.5rem;
     height: 2.5rem;
-    background-image: url("../imgs/Fox_Burger.png");
+    background-image: url("/imgs/Fox_Burger.png");
     background-size: 50px 50px;
     background-position: center;
     background-repeat: no-repeat;
@@ -217,7 +217,7 @@ body {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.1);
-    background-image: url("../imgs/BG_PSU_GRADIENT.png");
+    background-image: url("/imgs/BG_PSU_GRADIENT.png");
     background-repeat: fixed;
     background-size: cover;
 }
@@ -247,7 +247,7 @@ body {
 }
 
 .hero-description {
-    font-size: 2rem;
+    font-size: 2.3rem;
     color: #eff6e0;
     margin-bottom: 2rem;
     width: 50%;
@@ -255,6 +255,7 @@ body {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    font-family: Glacial;
 }
 
 .btn-primary {
@@ -366,7 +367,7 @@ body {
 .prog-icon {
     width: 3rem;
     height: 3rem;
-    background-image: url("../imgs/Icon_Programming.png");
+    background-image: url("/imgs/Icon_Programming.png");
     background-size: cover;
     border-radius: 0.5rem;
     display: flex;
@@ -379,7 +380,7 @@ body {
 .digi-icon {
     width: 3rem;
     height: 3rem;
-    background-image: url("../imgs/Icon_Logic.png");
+    background-image: url("/imgs/Icon_Logic.png");
     background-size: cover;
     border-radius: 0.5rem;
     display: flex;
@@ -392,7 +393,7 @@ body {
 .comp-icon {
     width: 3rem;
     height: 3rem;
-    background-image: url("../imgs/Icon_Computing.png");
+    background-image: url("/imgs/Icon_Computing.png");
     background-size: cover;
     border-radius: 0.5rem;
     display: flex;
@@ -405,7 +406,7 @@ body {
 .calc-icon {
     width: 3rem;
     height: 3rem;
-    background-image: url("../imgs/Icon_Calculus.png");
+    background-image: url("/imgs/Icon_Calculus.png");
     background-size: cover;
     border-radius: 0.5rem;
     display: flex;
@@ -482,7 +483,7 @@ body {
 .minecraft {
     margin-bottom: 0;
     padding-bottom: 0;
-    background-image: url("../imgs/Blocks.png");
+    background-image: url("/imgs/Blocks.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -565,17 +566,17 @@ body {
 }
 
 .psu:hover {
-    background-image: url("../imgs/Logo_PSU.png");
+    background-image: url("/imgs/Logo_PSU.png");
     background-size: cover;
 }
 
 .ccs:hover {
-    background-image: url("../imgs/Logo_CCSSC.png");
+    background-image: url("/imgs/Logo_CCSSC.png");
     background-size: cover;
 }
 
 .compress:hover {
-    background-image: url("../imgs/Logo_ComPress.png");
+    background-image: url("/imgs/Logo_ComPress.png");
     background-size: cover;
 }
 

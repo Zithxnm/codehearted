@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 4 Review | CodeHearted</title>
     <meta name="description" content="Lesson 4: Control Flow and Conditional Logic">
-    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod4/review4.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/digilogic/mod4/review4.css')
 </head>
 
 <body>

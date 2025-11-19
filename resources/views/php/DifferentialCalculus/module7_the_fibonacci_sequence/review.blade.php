@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 7 Review | CodeHearted</title>
     <meta name="description" content="Lesson 7 - The Fibonacci Sequence">
-    <link rel="stylesheet" href="{{asset('css/modules/diffcalc/mod7/review7.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/diffcalc/mod7/review7.css')
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
-    <link rel="stylesheet" href="{{ asset('css/Landing_Styles.css') }}">
+    @vite(['resources/css/Landing_Styles.css', 'resources/js/Landing_Scripts.js'])
 </head>
 <body>
     <header class="header">
@@ -28,9 +28,9 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="/" class="dropdown-link">Home</a>
-                        <a href="#" class="dropdown-link">About</a>
-                        <a href="#" class="dropdown-link">Contact</a>
+                        <a href="{{ route('show.login') }}" class="dropdown-link">Login</a>
+                        <a href="{{ route('show.register') }}" class="dropdown-link">Sign Up</a>
+                        <a href="/about" class="dropdown-link">About</a>
                     </div>
                 </div>
             </div>
@@ -151,22 +151,7 @@
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
                         <li>
-                            <a href="#" class="footer-link">
-                                <span>➤ Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link">
-                                <span>➤ Learning Catalog</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link">
-                                <span>➤ Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link">
+                            <a href="/about" class="footer-link">
                                 <span>➤ About Us</span>
                             </a>
                         </li>
@@ -194,7 +179,5 @@
             </div>
         </div>
     </footer>
-
-    <script src="{{asset('/js/Landing_Scripts.js')}}"></script>
 </body>
 </html>
