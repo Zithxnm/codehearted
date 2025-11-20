@@ -1,16 +1,16 @@
 @font-face {
     font-family: Retro;
-    src: url("../fonts/Better\ VCR.ttf");
+    src: url('/public/fonts/Better VCR.ttf');
 }
 
 @font-face {
     font-family: Glacial;
-    src: url("../fonts/GlacialIndifference-Regular.otf");
+    src: url('/public/fonts/GlacialIndifference-Regular.otf');
 }
 
 @font-face {
     font-family: VCR;
-    src: url("../fonts/Better\ VCR.ttf");
+    src: url('/public/fonts/Better VCR.ttf');
 }
 
 * {

@@ -1,15 +1,15 @@
 @font-face {
     font-family: Retro;
-    src: url("../../../fonts/Minecraftia.ttf");
+    src: url("/public/fonts/Minecraftia.ttf");
 }
 
 @font-face {
     font-family: Glacial;
-    src: url("../../../fonts/GlacialIndifference-Regular.otf");
+    src: url("/public/fonts/GlacialIndifference-Regular.otf");
 }
 
 body {
-    background-color: #fff8f0; 
+    background-color: #fff8f0;
     font-family: Glacial;
     color: #333;
     margin-left: 5px;

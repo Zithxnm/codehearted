@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: Glacial;
-    src: url("../fonts/GlacialIndifference-Regular.otf");
+    src: url('/public/fonts/GlacialIndifference-Regular.otf');
 }
 
 * {
@@ -207,7 +207,7 @@ body {
     text-align: center;
     width: 100%;
     min-height: 100vh;
-    overflow: hidden; 
+    overflow: hidden;
     font-family: Retro;
     color: #ffffff;
     margin: 0;

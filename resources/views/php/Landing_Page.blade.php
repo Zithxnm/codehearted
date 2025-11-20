@@ -135,7 +135,7 @@
 
     <section class="mascot">
         <div class="mascot-container">
-            <img src="{{asset('../imgs/Coding_Journey.png')}}" alt="Coding">
+            <img src="{{asset('/imgs/Coding_Journey.png')}}" alt="Coding">
         </div>
     </section>
 

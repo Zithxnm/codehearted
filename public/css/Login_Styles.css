@@ -5,12 +5,12 @@
 
 @font-face {
     font-family: Glacial;
-    src: url("../fonts/GlacialIndifference-Regular.otf");
+    src: url('/public/fonts/GlacialIndifference-Regular.otf');
 }
 
 @font-face {
     font-family: VCR;
-    src: url("../fonts/Better\ VCR.ttf");
+    src: url('/public/fonts/Better VCR.ttf');
 }
 
 * {
@@ -396,7 +396,7 @@ body {
     color: #ffffff;
     white-space: nowrap;
     margin: 0;
-    display: inline-block;    
+    display: inline-block;
     text-align: left;
 }
 
@@ -471,7 +471,7 @@ body {
 }
 
 .right-panel{
-    width: 30%; 
+    width: 30%;
     background-image: url("../imgs/commy.png");
     background-repeat: no-repeat;
     background-position: left bottom;
@@ -520,7 +520,7 @@ body {
         transform: translateY(0);
     }
 
-    
+
     .checkboxes-container {
         flex-direction: column;
         gap: 16px;

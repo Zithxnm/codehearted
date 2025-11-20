@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: Glacial;
-    src: url("../fonts/GlacialIndifference-Regular.otf");
+    src: url('/public/fonts/GlacialIndifference-Regular.otf');
 }
 
 @font-face {
