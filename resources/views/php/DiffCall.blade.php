@@ -8,7 +8,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/DiffCall_Styles.css') ? filemtime(__DIR__ . '/../css/DiffCall_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="{{ asset('css/DiffCall_Styles.css') }}">
+    @vite('resources/css/DiffCall_Styles.css')
 </head>
 
 <body>
@@ -22,7 +22,7 @@
                 <div class="search-container">
                     <div class="search-box">
                         <button class="search-icon-btn" type="button" aria-label="Search">
-                            <img class="search-icon" src="../imgs/7.jpg" alt="Search Icon">
+                            <img class="search-icon" src="{{ asset('imgs/7.jpg') }}" alt="Search Icon">
                         </button>
                         <input type="text" placeholder="Search..." class="search-input">
                     </div>
@@ -32,10 +32,12 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="/" class="dropdown-link">Home</a>
-                        <a href="/courses" class="dropdown-link">Courses</a>
-                        <a href="#" class="dropdown-link">About</a>
-                        <a href="#" class="dropdown-link">Contact</a>
+                        <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
+                        <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
+                        <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
+                        <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
+                        <a href="{{ route('about') }}" class="dropdown-link">About</a>
+                        <a href="{{ route('logout') }}" class="dropdown-link">Logout</a>
                     </div>
                 </div>
             </div>
@@ -51,10 +53,6 @@
                 <div class="course-info">
                     <div class="info-item">7 lessons</div>
                     <div class="info-item">Self-paced</div>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
                 </div>
 
                 <span class="badge">Continue Learning</span>
@@ -138,27 +136,6 @@
                             <div style="clear: both;"></div>
                         </div>
                     <?php } ?>
-
-                    <div class="references">
-                        <h4>References</h4>
-                        <ul>
-                            <li>Livio, M. (2002). <i>The Golden Ratio: The Story of Phi.</i> Broadway Books.</li>
-                            <li>Smith, D. E. (1958). <i>History of Mathematics.</i> Dover Publications.</li>
-                            <li>Courant, R., & Robbins, H. (1996). <i>What is Mathematics?</i> Oxford University Press.</li>
-                            <li>Singh, A. (2018). <i>Mathematics Class 9 – Symmetry.</i> NCERT.</li>
-                            <li>Allen, G. (n.d.). <i>Limits and Continuity.</i> [Online Resource]</li>
-                            <li>BBC Bitesize. (n.d.). <i>Rotational Symmetry.</i> <a href="https://www.bbc.co.uk/bitesize" target="_blank">https://www.bbc.co.uk/bitesize</a></li>
-                            <li>Byju’s. (n.d.). <i>Functions and Their Graphs.</i> <a href="https://byjus.com" target="_blank">https://byjus.com</a></li>
-                            <li>CK-12. (n.d.). <i>Nature of Mathematics.</i> <a href="https://www.ck12.org" target="_blank">https://www.ck12.org</a></li>
-                            <li>Desmos. (n.d.). <i>Graphing Calculator.</i> <a href="https://www.desmos.com/calculator" target="_blank">https://www.desmos.com/calculator</a></li>
-                            <li>Fiveable. (n.d.). <i>Order of Rotation.</i> <a href="https://www.fiveable.me" target="_blank">https://www.fiveable.me</a></li>
-                            <li>Khan Academy. (n.d.). <i>Calculus, Symmetry, Limits, Differentiation, and Functions.</i> <a href="https://www.khanacademy.org" target="_blank">https://www.khanacademy.org</a></li>
-                            <li>MIT OpenCourseWare. (n.d.). <i>Single Variable Calculus.</i> <a href="https://ocw.mit.edu" target="_blank">https://ocw.mit.edu</a></li>
-                            <li>Paul’s Online Notes. (n.d.). <i>Calculus Notes: Limits, Derivatives, and Graphing Functions.</i> <a href="http://tutorial.math.lamar.edu" target="_blank">http://tutorial.math.lamar.edu</a></li>
-                            <li>Vedantu. (n.d.). <i>Differentiation Rules.</i> <a href="https://www.vedantu.com" target="_blank">https://www.vedantu.com</a></li>
-                            <li>Your Smart Class. (n.d.). <i>Nature of Mathematics.</i> <a href="https://www.yoursmartclass.com" target="_blank">https://www.yoursmartclass.com</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -176,22 +153,22 @@
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
                         <li>
-                            <a href="#" class="footer-link">
-                                <span>➤ Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link">
+                            <a href="{{ route('courses') }}"footer-link">
                                 <span>➤ Learning Catalog</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="footer-link">
+                            <a href="{{ route('profile') }}" class="footer-link">
                                 <span>➤ Profile</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="footer-link">
+                            <a href="{{ route('dashboard') }}" class="footer-link">
+                                <span>➤ Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('about') }}" class="footer-link">
                                 <span>➤ About Us</span>
                             </a>
                         </li>
@@ -201,14 +178,14 @@
                 <div class="footer-section">
                     <h4 class="footer-title">Stay sharp as a fox — follow us for news and updates.</h4>
                     <div class="social-links">
-                        <a href="#" class="social-link" aria-label="PSU">
-                            <img class="psu" src="../imgs/WhiteLogo_PSU.png" alt="PSU">
+                        <a href="https://www.facebook.com/PampangaStateU" class="social-link" aria-label="PSU" target="_blank">
+                            <img class="psu" src="{{ asset('imgs/WhiteLogo_PSU.png') }}" alt="PSU">
                         </a>
-                        <a href="#" class="social-link" aria-label="CCS">
-                            <img class="ccs" src="../imgs/WhiteLogo_CCSSC.png" alt="PSU">
+                        <a href="https://www.facebook.com/dhvsu.ccssc" class="social-link" aria-label="CCS" target="_blank">
+                            <img class="ccs" src="{{ asset('imgs/WhiteLogo_CCSSC.png') }}" alt="PSU">
                         </a>
-                        <a href="#" class="social-link" aria-label="ComPress">
-                            <img class="compress" src="../imgs/WhiteLogo_ComPress.png" alt="PSU">
+                        <a href="https://www.facebook.com/ComPressCCS" class="social-link" aria-label="ComPress" target="_blank">
+                            <img class="compress" src="{{ asset('imgs/WhiteLogo_ComPress.png') }}" alt="PSU">
                         </a>
                     </div>
                 </div>
@@ -221,7 +198,7 @@
     </footer>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/DiffCall_Scripts.js') ? filemtime(__DIR__ . '/../js/DiffCall_Scripts.js') : time(); ?>
-    <script src="{{ asset('js/DiffCall_Scripts.js') }}"></script>
+    @vite('resources/js/DiffCall_Scripts.js')
 </body>
 
 </html>

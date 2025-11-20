@@ -190,3 +190,11 @@ Route::middleware('auth')->group(function () {
 
 });
 
+Route::get('/about', function () {
+    return view('php.About');
+})->name('about');
+
+
+Route::get('/community', function () {
+    return view('php.Community');
+})->name('show.community');

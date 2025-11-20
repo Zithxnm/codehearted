@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 5 Practice Problems - Iteration, Loops, and Control Statements">
-    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod5/practice5.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/compfund/mod5/practice5.css')
 </head>
 
 <body>

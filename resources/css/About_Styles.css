@@ -1,0 +1,359 @@
+@font-face {
+    font-family: Glacial;
+    src: url("/public/fonts/GlacialIndifference-Regular.otf");
+}
+
+@font-face {
+    font-family: VCR;
+    src: url("/public/fonts/Better\ VCR.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eff6e0
+;
+    text-align: center;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header */
+.header {
+    background-image: url("/public/imgs/Header_BG.png");
+    border-bottom: 1px solid rgba(#598392);
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+}
+
+.header-content {
+    height: 4.72rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    size: 10px;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 200px;
+    height: auto;
+    max-height: 60px;
+}
+
+.search-container {
+    flex: 1;
+    max-width: 28rem;
+    margin: 0 2rem;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+}
+
+.search-icon-btn {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.search-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+    background: white;
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    border-radius: 1rem;
+    border-color: rgb(0, 55, 138);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+
+}
+
+.search-input:focus {
+    outline: none;
+    background: white;
+    border-color: hsl(18, 89%, 60%);
+    box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    background: none;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+    background: rgba(243, 244, 246, 0.5);
+    color: #1a1a1a;
+}
+
+.icon-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.burger-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.burger-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-image: url("/public/imgs/Fox_Burger.png");
+    background-size: 50px 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px -2px rgba(251, 191, 36, 0.1);
+    transition: background 0.2s;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.burger-icon:hover {
+    border: solid 2px #fbbf24;
+}
+
+.burger-icon:focus {
+    border: 2px solid #fbbf24;
+}
+
+.burger-dropdown {
+    display: none;
+    position: absolute;
+    top: 3rem;
+    right: 0;
+    background: #fff7ed;
+    border: 1px solid #fbbf24;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 16px -4px rgba(251, 191, 36, 0.15);
+    min-width: 10rem;
+    z-index: 50000;
+    flex-direction: column;
+    text-align: center;
+}
+
+.burger-menu.open .burger-dropdown {
+    display: flex;
+}
+
+.dropdown-link {
+    padding: 0.75rem 1.5rem;
+    color: #92400e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.dropdown-link:hover {
+    background: #fde68a;
+}
+
+.hero{
+    background-color: #eff6e0;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    font-family: VCR;
+}
+
+.hero h1 {
+    color: #6d3428;
+    font-size: 48px;
+    letter-spacing: 8px;
+    margin-bottom: 60px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.team-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1800px;
+    width: 100%;
+}
+
+.team-member {
+    background: transparent;
+    border: 3px solid #6d3428;
+    border-radius: 15px;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 450px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #b8927d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.avatar.has-image {
+    background: #e8d4c4;
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+/* Individual avatar images for each team member */
+.avatar-placeholder.member-1 { background-image: url("/public/imgs/5.png"); }
+.avatar-placeholder.member-2 { background-image: url("/public/imgs/6.png"); }
+.avatar-placeholder.member-3 { background-image: url("/public/imgs/8.png"); }
+.avatar-placeholder.member-4 { background-image: url("/public/imgs/9.png"); }
+.avatar-placeholder.member-5 { background-image: url("/public/imgs/10.png"); }
+.avatar-placeholder.member-6 { background-image: url("/public/imgs/11.png"); }
+.avatar-placeholder.member-7 { background-image: url("/public/imgs/12.png"); }
+.avatar-placeholder.member-8 { background-image: url("/public/imgs/14.png"); }
+
+.member-name {
+    color: #6d3428;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: Glacial;
+}
+
+.team-member-link {
+    text-decoration: none; /* removes underline */
+    color: inherit;        /* keeps the text color the same */
+    display: inline-block; /* preserves layout */
+}
+
+.team-member-link .member-name {
+    /* optional: ensure styling remains consistent */
+    color: #6d3428;
+}
+
+
+.grass-background {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    background-image: url("/public/imgs/Hill_Footer.png");
+    background-size: cover;
+    z-index: -1;
+}
+
+.grass-layer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+}
+
+@keyframes sway {
+
+    0%,
+    100% {
+        transform: translateX(0) scale(1);
+    }
+
+    50% {
+        transform: translateX(5px) scale(1.02);
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 32px;
+        letter-spacing: 4px;
+    }
+
+    .team-member {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .member-name {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .search-container {
+        display: block;
+    }
+}

@@ -1,0 +1,156 @@
+/* === FONT SETUP === */
+@font-face {
+    font-family: Retro;
+    src: url("../../../fonts/Minecraftia.ttf");
+}
+
+@font-face {
+    font-family: Glacial;
+    src: url("../../../fonts/GlacialIndifference-Regular.otf");
+}
+
+body {
+    background-color: #fff8f0; /* soft beige tone */
+    font-family: Glacial;
+    color: #333;
+    margin-left: 5px;
+    padding: 0;
+}
+
+/* === MAIN CONTAINER === */
+.review-container {
+    max-width: 900px;
+    margin: 60px auto;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 40px 50px;
+}
+
+/* === TITLES === */
+.review-container h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #5b3a1d;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: Retro;
+}
+
+.review-container h2 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #7b5535;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.review-container h3 {
+    font-size: 18px;
+    color: #8e562e;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+/* === PARAGRAPHS === */
+.review-container p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* === LISTS === */
+.review-container ul {
+    margin: 10px 0 20px 40px;
+}
+
+.review-container li {
+    margin-bottom: 8px;
+}
+
+.core-lesson img {
+    display: block;
+    max-width: 400px;
+    height: auto;
+    margin: 25px auto;
+    border-radius: 10px;
+}
+
+/* === IMAGE CENTERING === */
+.image-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.image-center img {
+    max-width: 400px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+/* === CODE SNIPPET BLOCKS (for later lessons) === */
+.code-snippet {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    overflow-x: auto;
+    padding: 1em 1.5em;
+    border-radius: 8px;
+}
+
+/* === BUTTONS === */
+.lesson-nav {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.action-button {
+    background-color: #8e562e;
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 8px 0 8px;
+}
+
+.action-button:hover {
+    background-color: #b6743f;
+}
+
+/* === DIVIDER LINE (Optional Section Break) === */
+.divider {
+    height: 1px;
+    background-color: #e0d1c2;
+    margin: 25px 0;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .review-container {
+        padding: 25px 20px;
+    }
+
+    .review-container h1 {
+        font-size: 24px;
+    }
+
+    .review-container h2 {
+        font-size: 18px;
+    }
+
+    .image-center img {
+        max-width: 100%;
+    }
+}

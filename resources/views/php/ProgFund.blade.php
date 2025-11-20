@@ -7,7 +7,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/ProgFund_Styles.css') ? filemtime(__DIR__ . '/../css/ProgFund_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="{{ asset('css/ProgFund_Styles.css') }}">
+    @vite('resources/css/ProgFund_Styles.css')
 </head>
 
 <body>
@@ -21,7 +21,7 @@
                 <div class="search-container">
                     <div class="search-box">
                         <button class="search-icon-btn" type="button" aria-label="Search">
-                            <img class="search-icon" src="../imgs/7.jpg" alt="Search Icon">
+                            <img class="search-icon" src="{{ asset('imgs/7.jpg') }}" alt="Search Icon">
                         </button>
                         <input type="text" placeholder="Search..." class="search-input">
                     </div>
@@ -31,10 +31,12 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="/" class="dropdown-link">Home</a>
-                        <a href="/courses" class="dropdown-link">Courses</a>
-                        <a href="#" class="dropdown-link">About</a>
-                        <a href="#" class="dropdown-link">Contact</a>
+                        <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
+                        <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
+                        <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
+                        <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
+                        <a href="{{ route('about') }}" class="dropdown-link">About</a>
+                        <a href="{{ route('logout') }}" class="dropdown-link">Logout</a>
                     </div>
                 </div>
             </div>
@@ -50,10 +52,6 @@
                 <div class="course-info">
                     <div class="info-item">5 lessons</div>
                     <div class="info-item">Self-paced</div>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
                 </div>
 
                 <span class="badge">Continue Learning</span>
@@ -133,23 +131,14 @@
                             <div style="clear: both;"></div>
                         </div>
                     <?php } ?>
-
-                    <div class="references">
-                        <h4>References</h4>
-                        <ul>
-                            <li>Kernighan, B. W., & Ritchie, D. M. (1978). <i>The C Programming Language</i>. Prentice Hall.</li>
-                            <li>van Rossum, G. (1995). <i>Python Tutorial</i>. Python Software Foundation.</li>
-                            <li>Wing, J. M. (2006). Computational thinking. <i>Communications of the ACM, 49</i>(3), 33–35.</li>
-                            <li>Pears, A., et al. (2007). A survey of literature on the teaching of introductory programming. <i>ACM SIGCSE Bulletin, 39</i>(4), 204–223.</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <section class="before-footer">
-        <div class="hills"></div>
+        <div class="hills">
+        </div>
     </section>
 
     <footer class="footer">
@@ -159,22 +148,22 @@
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
                         <li>
-                            <a href="#" class="footer-link">
-                                <span>➤ Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link">
+                            <a href="{{ route('courses') }}"footer-link">
                                 <span>➤ Learning Catalog</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="footer-link">
+                            <a href="{{ route('profile') }}" class="footer-link">
                                 <span>➤ Profile</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="footer-link">
+                            <a href="{{ route('dashboard') }}" class="footer-link">
+                                <span>➤ Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('about') }}" class="footer-link">
                                 <span>➤ About Us</span>
                             </a>
                         </li>
@@ -184,14 +173,14 @@
                 <div class="footer-section">
                     <h4 class="footer-title">Stay sharp as a fox — follow us for news and updates.</h4>
                     <div class="social-links">
-                        <a href="#" class="social-link" aria-label="PSU">
-                            <img class="psu" src="../imgs/WhiteLogo_PSU.png" alt="PSU">
+                        <a href="https://www.facebook.com/PampangaStateU" class="social-link" aria-label="PSU" target="_blank">
+                            <img class="psu" src="{{ asset('imgs/WhiteLogo_PSU.png') }}" alt="PSU">
                         </a>
-                        <a href="#" class="social-link" aria-label="CCS">
-                            <img class="ccs" src="../imgs/WhiteLogo_CCSSC.png" alt="PSU">
+                        <a href="https://www.facebook.com/dhvsu.ccssc" class="social-link" aria-label="CCS" target="_blank">
+                            <img class="ccs" src="{{ asset('imgs/WhiteLogo_CCSSC.png') }}" alt="PSU">
                         </a>
-                        <a href="#" class="social-link" aria-label="ComPress">
-                            <img class="compress" src="../imgs/WhiteLogo_ComPress.png" alt="PSU">
+                        <a href="https://www.facebook.com/ComPressCCS" class="social-link" aria-label="ComPress" target="_blank">
+                            <img class="compress" src="{{ asset('imgs/WhiteLogo_ComPress.png') }}" alt="PSU">
                         </a>
                     </div>
                 </div>
@@ -204,7 +193,7 @@
     </footer>
 
     <?php $jsVersion = file_exists(__DIR__ . '/../js/ProgFund_Scripts.js') ? filemtime(__DIR__ . '/../js/ProgFund_Scripts.js') : time(); ?>
-    <script src="{{ asset('js/ProgFund_Scripts.js') }}"></script>
+    @vite('resources/js/ProgFund_Scripts.js')
 </body>
 
 </html>

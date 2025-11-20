@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 3 Review | CodeHearted</title>
     <meta name="description" content="Lesson 3: Geometric Sequences">
-    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod3/review3.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/digilogic/mod3/review3.css')
 </head>
 
 <body>

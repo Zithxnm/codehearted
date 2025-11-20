@@ -23,22 +23,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleButtons = document.querySelectorAll('.toggle-password');
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const targetInput = document.getElementById(targetId);
-            const eyeIcon = this.querySelector('.eye-icon');
-            
-            if (targetInput.type === 'password') {
-                targetInput.type = 'text';
-                eyeIcon.textContent = '👁️‍🗨️';
-            } else {
-                targetInput.type = 'password';
-                eyeIcon.textContent = '👁️';
-            }
-        });
-    });
-});

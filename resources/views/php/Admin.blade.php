@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/Admin_Styles.css') }}">
+    @vite('resources/css/Admin_Styles.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>CodeHearted - Admin Page</title>
 </head>
@@ -30,8 +30,7 @@
                     <div class="burger-dropdown">
                         <a href="/" class="dropdown-link">Home</a>
                         <a href="courses" class="dropdown-link">Courses</a>
-                        <a href="#" class="dropdown-link">About</a>
-                        <a href="#" class="dropdown-link">Contact</a>
+                        <a href="{{ route('about') }}" class="dropdown-link">About</a>
                     </div>
                 </div>
             </div>
@@ -46,10 +45,14 @@
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" onclick="showDashboard(event)">Dashboard</a>
+                    <a href="#" class="nav-link active" onclick="showDashboard(event)">
+                        Dashboard
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="showAuditLog(event)">Audit Log</a>
+                    <a href="#" class="nav-link" onclick="showAuditLog(event)">
+                        Audit Log
+                    </a>
                 </li>
             </ul>
         </aside>
@@ -141,7 +144,6 @@
             </div>
         </main>
     </div>
-
-    <script src="{{asset('js/Admin_Scripts.js')}}"></script>
+    @vite('resources/js/Admin_Scripts.js')
 </body>
 </html>

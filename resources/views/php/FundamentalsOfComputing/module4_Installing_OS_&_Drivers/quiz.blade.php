@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 4 Quiz | CodeHearted</title>
     <meta name="description" content="Lesson 4 Quiz - Conditionals, Logical Operators, and Control Flow">
-    <link rel="stylesheet" href="{{asset('css/modules/compfund/mod4/quiz4.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/compfund/mod4/quiz4.css')
 </head>
 
 <body>

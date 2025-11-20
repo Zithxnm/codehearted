@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5 Review | CodeHearted</title>
     <meta name="description" content="Lesson 5: Octal Number System">
-    <link rel="stylesheet" href="{{asset('css/modules/digilogic/mod5/review5.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/digilogic/mod5/review5.css')
 </head>
 
 <body>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 7 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 7 - The Fibonacci Sequence">
-    <link rel="stylesheet" href="{{asset('css/modules/diffcalc/mod7/practice7.css')}}?v={{ time(); }}">
+    @vite('resources/css/modules/diffcalc/mod7/practice7.css')
 </head>
 
 <body>

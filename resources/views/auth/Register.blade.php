@@ -7,7 +7,7 @@
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/Register_Styles.css') ? filemtime(__DIR__ . '/../css/Register_Styles.css') : time(); ?>
-    <link rel="stylesheet" href="{{ asset('css/Register_Styles.css') }}">
+    @vite('resources/css/Register_Styles.css')
 </head>
 
 <body>
@@ -21,7 +21,7 @@
                 <div class="search-container">
                     <div class="search-box">
                         <button class="search-icon-btn" type="button" aria-label="Search">
-                            <img class="search-icon" src="../imgs/7.jpg" alt="Search Icon">
+                            <img class="search-icon" src="{{ asset('imgs/7.jpg') }}" alt="Search Icon">
                         </button>
                         <input type="text" placeholder="Search..." class="search-input">
                     </div>
@@ -31,9 +31,8 @@
                     <div class="burger-icon">
                     </div>
                     <div class="burger-dropdown">
-                        <a href="/" class="dropdown-link">Home</a>
-                        <a href="#" class="dropdown-link">About</a>
-                        <a href="#" class="dropdown-link">Contact</a>
+                        <a href="{{ route('show.login') }}" class="dropdown-link">Login</a>
+                        <a href="{{ route('about') }}" class="dropdown-link">About</a>
                     </div>
                 </div>
             </div>
@@ -78,7 +77,7 @@
                                     placeholder="Enter password"
                                     required>
                                 <button type="button" class="toggle-password" data-target="password">
-                                    <span class="eye-icon">👁️</span>
+                                    <span class="fa fa-eye"></span>
                                 </button>
                             </div>
                             <span class="error-message" id="passwordError">
@@ -113,7 +112,7 @@
                                     placeholder="Enter password"
                                     required>
                                 <button type="button" class="toggle-password" data-target="confirmPassword">
-                                    <span class="eye-icon">👁️</span>
+                                    <span class="fa fa-eye"></span>
                                 </button>
                             </div>
                             <span class="error-message" id="confirmPasswordError"></span>
@@ -151,18 +150,14 @@
                     <div class="button-container">
                         <button type="submit" class="retro-button">Register</button>
                     </div>
-
-
                 </form>
-
             </div>
         </div>
         <div class="right-panel">
         </div>
     </div>
 
-    <?php $jsVersion = file_exists(__DIR__ . '../../js/Register_Script.js') ? filemtime(__DIR__ . '../../js/Register_Scripts.js') : time(); ?>
-    <script src="{{ asset('js/Register_Scripts.js') }}?v{{ time() }}"></script>
+    @vite('resources/js/Register_Scripts.js')
 </body>
 
 </html>
