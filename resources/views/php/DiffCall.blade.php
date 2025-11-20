@@ -31,14 +31,15 @@
                 <div class="burger-menu">
                     <div class="burger-icon">
                     </div>
-                    <div class="burger-dropdown">
+                    <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
+                        @csrf
                         <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
                         <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
                         <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
                         <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
                         <a href="{{ route('about') }}" class="dropdown-link">About</a>
-                        <a href="{{ route('logout') }}" class="dropdown-link">Logout</a>
-                    </div>
+                        <a href="{{ route('logout') }}" class="dropdown-link" onclick="event.preventDefault(); this.closest('form')submit()">Logout</a>
+                    </form>
                 </div>
             </div>
         </div>

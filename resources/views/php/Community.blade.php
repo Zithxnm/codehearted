@@ -27,13 +27,18 @@
                 <div class="burger-menu">
                     <div class="burger-icon">
                     </div>
-                    <div class="burger-dropdown">
-                        <a href="../../../WebSys_Project/php/Courses.php" class="dropdown-link">Courses</a>
-                        <a href="../../../WebSys_Project/php/Profile.php" class="dropdown-link">Profile</a>
-                        <a href="../../../WebSys_Project/php/Dashboard.php" class="dropdown-link">Dashboard</a>
-                        <a href="About.blade.php" class="dropdown-link">About</a>
-                        <a href="../php/Login.php" class="dropdown-link">Logout</a>
-                    </div>
+                    <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
+                        <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
+                        <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
+                        <a href="{{ route('about') }}" class="dropdown-link">About</a>
+                        <a href="{{ route('logout') }}"
+                           class="dropdown-link"
+                           onclick="event.preventDefault(); this.closest('form').submit();">
+                            Logout
+                        </a>
+                    </form>
                 </div>
             </div>
         </div>
