@@ -29,10 +29,10 @@
                 <div class="burger-menu">
                     <div class="burger-icon">
                     </div>
-                    <div class="burger-dropdown">
+                    <form class="burger-dropdown">
                         <a href="{{ route('home') }}" class="dropdown-link">Home</a>
                         <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
