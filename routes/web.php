@@ -128,6 +128,16 @@ Route::middleware('auth')->group(function () {
         Route::get('module5/practice', function () { return view('php.DigitalLogic.module5_Octal_Number_System.practice'); })->name('mod5.practice');
         Route::get('module5/quiz', function () { return view('php.DigitalLogic.module5_Octal_Number_System.quiz'); })->name('mod5.quiz');
         Route::get('module5/review', function () { return view('php.DigitalLogic.module5_Octal_Number_System.review'); })->name('mod5.review');
+
+        // Module 6
+        Route::get('module6/practice', function () { return view('php.DigitalLogic.module6_Decimal_Number_System.practice'); })->name('mod6.practice');
+        Route::get('module6/quiz', function () { return view('php.DigitalLogic.module6_Decimal_Number_System.quiz'); })->name('mod6.quiz');
+        Route::get('module6/review', function () { return view('php.DigitalLogic.module6_Decimal_Number_System.review'); })->name('mod6.review');
+
+        // Module 7
+        Route::get('module7/practice', function () { return view('php.DigitalLogic.module7_Hexadecimal_Number_System.practice'); })->name('mod7.practice');
+        Route::get('module7/quiz', function () { return view('php.DigitalLogic.module7_Hexadecimal_Number_System.quiz'); })->name('mod7.quiz');
+        Route::get('module7/review', function () { return view('php.DigitalLogic.module7_Hexadecimal_Number_System.review'); })->name('mod7.review');
     });
 
 //Fundamentals of Computing Modules

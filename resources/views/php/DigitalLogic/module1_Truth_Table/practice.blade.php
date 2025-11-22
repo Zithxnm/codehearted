@@ -30,26 +30,26 @@
                     <tr>
                         <td>T</td>
                         <td>T</td>
-                        <td></td>
+                        <td><input type="text" class="truth-answer"></td>
                         <td>T</td>
                     </tr>
                     <tr>
                         <td>T</td>
-                        <td></td>
+                        <td><input type="text" class="truth-answer"></td>
                         <td>T</td>
                         <td>T</td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><input type="text" class="truth-answer"></td>
                         <td>T</td>
-                        <td></td>
+                        <td><input type="text" class="truth-answer"></td>
                         <td>F</td>
                     </tr>
                     <tr>
                         <td>F</td>
-                        <td></td>
+                        <td><input type="text" class="truth-answer"></td>
                         <td>T</td>
-                        <td></td>
+                        <td><input type="text" class="truth-answer"></td>
                     </tr>
                 </table>
                 <textarea name="q1" placeholder="Write your answer here..."><?php if (isset($_POST['q1'])) echo htmlspecialchars($_POST['q1']); ?></textarea>

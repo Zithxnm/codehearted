@@ -35,7 +35,7 @@
                 <h3>Major Parts of the System Unit:</h3>
 
                 <div class="image-center">
-                    <img src="../../../../../public/css/modules/compfund/mod2/images/parts.png" alt="System Unit Parts" class="image-center">
+                    <img src="{{ asset('imgs/parts.png') }}" alt="System Unit Parts" class="image-center">
                 </div>
 
                 <h4>Motherboard:</h4>
@@ -121,8 +121,8 @@
             </section>
 
             <div class="lesson-nav">
-                <a href="practice.php?module=1" class="action-button">Go to Practice</a>
-                <a href="quiz.php?module=1" class="action-button" style="margin-left:8px;">Take Quiz</a>
+                <a href="{{ route('compfund.mod2.practice') }}" class="action-button">Go to Practice</a>
+                <a href="{{ route('compfund.mod2.quiz') }}" class="action-button" style="margin-left:8px;">Take Quiz</a>
             </div>
         </div>
     </main>

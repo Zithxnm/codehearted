@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeHearted</title>
     <meta name="description" content="Sharpen your logic, learn coding fundamentals, and grow with confidence. CodeHearted helps you build skills that last.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <?php $cssVersion = file_exists(__DIR__ . '/../css/Register_Styles.css') ? filemtime(__DIR__ . '/../css/Register_Styles.css') : time(); ?>
     @vite('resources/css/Register_Styles.css')
 </head>
@@ -111,9 +112,6 @@
                                     name="password_confirmation"
                                     placeholder="Enter password"
                                     required>
-                                <button type="button" class="toggle-password" data-target="confirmPassword">
-                                    <span class="fa fa-eye"></span>
-                                </button>
                             </div>
                             <span class="error-message" id="confirmPasswordError"></span>
                         </div>

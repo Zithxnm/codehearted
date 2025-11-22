@@ -49,7 +49,7 @@ ast.">
         <div class="left-panel">
             <h1>My Learning</h1>
             <p>Get college-ready by exploring our courses. Tale the first step today toward building the skills for your dream career.</p>
-            <a href="#"><button class="view-catalog"><b>View Catalog</b></button></a>
+            <a href="{{ route('courses') }}"><button class="view-catalog"><b>View Catalog</b></button></a>
             <div class="course-card">
                 <img src="{{ asset('imgs/Icon_Computing.png') }}" alt="Course Image" class="course-image">
                 <div class="course-details">
@@ -60,14 +60,14 @@ ast.">
         </div>
         <div class="right-panel">
             <h1>Achievemets</h1>
-            <a href="#">Show All</a>
+            <a href="{{ route('profile') }}">Show All</a>
             <div class="achievement-card">
                 <img src="{{ asset('imgs/5.png') }}" alt="Achievement Badge" class="achievement-badge">
                 <p class="achievements">You currently don't have any badges or certificates available to show</p>
-                <a href="#"><button class="view-catalog"><b>View Catalog</b></button></a>
+                <a href="{{ route('courses') }}"><button class="view-catalog"><b>View Catalog</b></button></a>
             </div>
             <h1>Assignments</h1>
-            <a href="#">Show All</a>
+            <a href="{{ route('profile') }}">Show All</a>
         </div>
     </div>
 

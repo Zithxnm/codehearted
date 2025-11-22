@@ -99,8 +99,8 @@
             </section>
 
             <div class="lesson-nav">
-                <a href="practice.php?module=0" class="action-button">Go to Practice</a>
-                <a href="quiz.php?module=0" class="action-button" style="margin-left:8px;">Take Quiz</a>
+                <a href="{{ route('progfund.mod1.practice') }}" class="action-button">Go to Practice</a>
+                <a href="{{ route('progfund.mod1.quiz') }}" class="action-button" style="margin-left:8px;">Take Quiz</a>
             </div>
         </div>
     </main>

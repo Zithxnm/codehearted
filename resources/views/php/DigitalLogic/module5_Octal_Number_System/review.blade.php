@@ -130,8 +130,8 @@
             </section>
 
             <div class="lesson-nav">
-                <a href="practice.php?module=5" class="action-button">Go to Practice</a>
-                <a href="quiz.php?module=5" class="action-button" style="margin-left: 8px;">Take Quiz</a>
+                <a href="{{ route('digilogic.mod5.practice') }}" class="action-button">Go to Practice</a>
+                <a href="{{ route('digilogic.mod5.quiz') }}" class="action-button" style="margin-left:8px;">Take Quiz</a>
             </div>
         </div>
     </main>

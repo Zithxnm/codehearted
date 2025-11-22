@@ -7,6 +7,7 @@
     <title>Lesson 7 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 6 Hexadecimal Number System (Base-16)">
     <link rel="stylesheet" href="../../../../css/modules/digilogic/mod7/practice7.css?php echo time(); ?>">
+    @vite('resources/css/modules/digilogic/mod7/practice7.css')
 </head>
 <style>
         textarea {

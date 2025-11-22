@@ -70,20 +70,16 @@ ast.">
 
         <div class="stats-container">
             <div class="perStat-container">
-                <h3 class="stat-name">Achievements</h3>
-                <p class="stat-value">3</p>
+                <h3 class="stat-name">Completed Courses</h3>
+                <p class="stat-value">0</p>
             </div>
             <div class="perStat-container">
                 <h3 class="stat-name">Quizzes</h3>
-                <p class="stat-value">15</p>
+                <p class="stat-value">0</p>
             </div>
             <div class="perStat-container">
                 <h3 class="stat-name">Course Badges</h3>
-                <p class="stat-value">5</p>
-            </div>
-            <div class="perStat-container">
-                <h3 class="stat-name">Daily Streak</h3>
-                <p class="stat-value">7</p>
+                <p class="stat-value">0</p>
             </div>
         </div>
     </div>

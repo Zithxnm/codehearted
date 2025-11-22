@@ -38,7 +38,7 @@
                         <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
                         <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
                         <a href="{{ route('about') }}" class="dropdown-link">About</a>
-                        <a href="{{ route('logout') }}" class="dropdown-link" onclick="event.preventDefault(); this.closest('form')submit()">Logout</a>
+                        <a href="{{ route('logout') }}" class="dropdown-link" onclick="event.preventDefault(); this.closest('form');submit();">Logout</a>
                     </form>
                 </div>
             </div>
@@ -55,8 +55,6 @@
                     <div class="info-item">7 lessons</div>
                     <div class="info-item">Self-paced</div>
                 </div>
-
-                <span class="badge">Continue Learning</span>
             </div>
 
             <div class="content-grid">

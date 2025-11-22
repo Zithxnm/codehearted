@@ -65,7 +65,7 @@
                 <p><strong>Here are the most commonly used tools:</strong></p>
 
                 <div class="image-center">
-                    <img src="../../../../../public/css/modules/compfund/mod1/images/tools.png" alt="Computer servicing tools" class="image-center">
+                    <img src="{{ asset('imgs/tools.png') }}" alt="Computer servicing tools" class="image-center">
                 </div>
 
                 <ul>
@@ -93,8 +93,8 @@
             </section>
 
             <div class="lesson-nav">
-                <a href="practice.php?module=0" class="action-button">Go to Practice</a>
-                <a href="quiz.php?module=0" class="action-button" style="margin-left:8px;">Take Quiz</a>
+                <a href="{{ route('compfund.mod1.practice') }}" class="action-button">Go to Practice</a>
+                <a href="{{ route('compfund.mod1.quiz') }}" class="action-button" style="margin-left:8px;">Take Quiz</a>
             </div>
         </div>
     </main>
