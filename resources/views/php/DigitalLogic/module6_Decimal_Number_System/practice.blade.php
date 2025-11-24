@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 6 Practice | CodeHearted</title>
     <meta name="description" content="Lesson 6 Practice Decimal Number System">
-    <link rel="stylesheet" href="../../../../css/modules/digilogic/mod6/practice6.css?php echo time(); ?>">
+    @vite('resources/css/modules/digilogic/mod6/practice6.css')
 </head>
 <style>
         textarea {

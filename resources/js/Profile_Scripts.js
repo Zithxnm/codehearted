@@ -23,3 +23,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// Handle profile picture upload
+document.addEventListener('DOMContentLoaded', function () {
+    const profilePictureInput = document.getElementById('profile_picture');
+    const profilePicture = document.getElementById('profilePicture');
+    
+    if (profilePictureInput && profilePicture) {
+        profilePictureInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    profilePicture.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+                
+                // Auto-submit the form
+                this.closest('form').submit();
+            }
+        });
+    }
+});

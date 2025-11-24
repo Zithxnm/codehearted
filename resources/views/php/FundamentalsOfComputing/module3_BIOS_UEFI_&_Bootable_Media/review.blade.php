@@ -53,7 +53,7 @@
                 <p>Examples:</p>
 
                 <div class="image-center">
-                    <img src="../../../../../public/css/modules/compfund/mod3/images/tools2.png" alt="Bootable Media" class="image-center">
+                    <img src="{{ asset('imgs/tools2.png') }}" alt="Bootable Media" class="image-center">
                 </div>
 
                 <ul>
@@ -86,8 +86,8 @@
 
             <!-- Navigation Buttons -->
             <div class="lesson-nav">
-                <a href="practice.php?module=3" class="action-button">Go to Practice</a>
-                <a href="quiz.php?module=3" class="action-button" style="margin-left:8px;">Take Quiz</a>
+                <a href="{{ route('compfund.mod3.practice') }}" class="action-button">Go to Practice</a>
+                <a href="{{ route('compfund.mod3.quiz') }}" class="action-button" style="margin-left:8px;">Take Quiz</a>
             </div>
         </div>
     </main>

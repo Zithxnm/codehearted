@@ -155,8 +155,8 @@ print(type(name))</code></pre>
             </section>
 
             <div class="lesson-nav">
-                <a href="practice.php?module=1" class="action-button">Go to Practice</a>
-                <a href="quiz.php?module=1" class="action-button" style="margin-left:8px;">Take Quiz</a>
+                <a href="{{ route('progfund.mod2.practice') }}" class="action-button">Go to Practice</a>
+                <a href="{{ route('progfund.mod2.practice') }}" class="action-button" style="margin-left:8px;">Take Quiz</a>
             </div>
         </div>
     </main>

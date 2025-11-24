@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 7 Review | CodeHearted</title>
     <meta name="description" content="Lesson 7: Hexadecimal Number System (Base-16)">
-    <link rel="stylesheet" href="../../../../css/modules/digilogic/mod7/review7.css??php echo time(); ?>">
+    @vite('resources/css/modules/digilogic/mod7/review7.css')
 </head>
 
 <body>
@@ -129,8 +129,8 @@
 
             <!-- Navigation Buttons -->
             <div class="lesson-nav">
-                <a href="practice.php?module=5" class="action-button">Go to Practice</a>
-                <a href="quiz.php?module=5" class="action-button" style="margin-left:8px;">Take Quiz</a>
+                <a href="{{ route('digilogic.mod7.practice') }}" class="action-button">Go to Practice</a>
+                <a href="{{ route('digilogic.mod7.quiz') }}" class="action-button" style="margin-left:8px;">Take Quiz</a>
             </div>
         </div>
     </main>

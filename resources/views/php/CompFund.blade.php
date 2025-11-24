@@ -58,8 +58,6 @@
                     <div class="info-item">5 lessons</div>
                     <div class="info-item">Self-paced</div>
                 </div>
-
-                <span class="badge">Continue Learning</span>
             </div>
 
             <div class="content-grid">

@@ -276,14 +276,13 @@ body {
 }
 
 /* Individual avatar images for each team member */
-.avatar-placeholder.member-1 { background-image: url("/public/imgs/5.png"); }
-.avatar-placeholder.member-2 { background-image: url("/public/imgs/6.png"); }
-.avatar-placeholder.member-3 { background-image: url("/public/imgs/8.png"); }
-.avatar-placeholder.member-4 { background-image: url("/public/imgs/9.png"); }
-.avatar-placeholder.member-5 { background-image: url("/public/imgs/10.png"); }
-.avatar-placeholder.member-6 { background-image: url("/public/imgs/11.png"); }
-.avatar-placeholder.member-7 { background-image: url("/public/imgs/12.png"); }
-.avatar-placeholder.member-8 { background-image: url("/public/imgs/14.png"); }
+.avatar-placeholder.member-1 { background-image: url("/public/imgs/About_Member1.png"); }
+.avatar-placeholder.member-2 { background-image: url("/public/imgs/About_Member2.jpg"); }
+.avatar-placeholder.member-3 { background-image: url("/public/imgs/About_Member3.png"); }
+.avatar-placeholder.member-4 { background-image: url("/public/imgs/About_Member4.jpg"); }
+.avatar-placeholder.member-5 { background-image: url("/public/imgs/About_Member5.png"); }
+.avatar-placeholder.member-6 { background-image: url("/public/imgs/About_Member6.jpg"); }
+.avatar-placeholder.member-7 { background-image: url("/public/imgs/About_Member7.jpg"); }
 
 .member-name {
     color: #6d3428;

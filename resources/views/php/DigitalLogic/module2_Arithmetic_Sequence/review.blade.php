@@ -104,8 +104,8 @@
 
             <!-- Navigation Buttons -->
             <div class="lesson-nav">
-                <a href="practice.php?module=2" class="action-button">Go to Practice</a>
-                <a href="quiz.php?module=2" class="action-button" style="margin-left:8px;">Take Quiz</a>
+                <a href="{{ route('digilogic.mod2.practice') }}" class="action-button">Go to Practice</a>
+                <a href="{{ route('digilogic.mod2.quiz') }}" class="action-button" style="margin-left:8px;">Take Quiz</a>
             </div>
 
         </div>

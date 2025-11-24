@@ -20,8 +20,8 @@
             <div class="lesson-section">
                 <p class="question">1. Which of the following is a function?</p>
                 <ul class="options">
-                    <li><label><input type="radio" name="q1" value="a"> Circle: \( x2+y2=1x^2 + y^2 = 1x2+y2=1 \)</label></li>
-                    <li><label><input type="radio" name="q1" value="b"> Line: \( y=2x+1y = 2x + 1y=2x+1 \)</label></li>
+                    <li><label><input type="radio" name="q1" value="a"> Circle: \( x^2 + y^2 = 1 \)</label></li>
+                    <li><label><input type="radio" name="q1" value="b"> Line: \( y = 2x + 1 \)</label></li>
                     <li><label><input type="radio" name="q1" value="c"> Relation: \( (1,2), \; (1,3)(1,2), \; (1,3)(1,2), \; (1,3) \)</label></li>
                     <li><label><input type="radio" name="q1" value="d"> Both a and c</label></li>
                 </ul>

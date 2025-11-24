@@ -7,6 +7,7 @@
     <title>Lesson 5 Quiz | CodeHearted</title>
     <meta name="description" content="Lesson 5 Quiz - Octal Number System">
     <link rel="stylesheet" href="../../../../css/modules/digilogic/mod6/quiz6.css?php echo time(); ?>">
+    @vite('resources/css/modules/digilogic/mod6/quiz6.css')
 </head>
 <style>
         textarea {

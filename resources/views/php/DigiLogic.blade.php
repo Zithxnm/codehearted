@@ -55,11 +55,9 @@
                 <p>Digital Logic is all about learning how change works. Instead of diving deep into technical math, this course helps non-STEM students see how limits and derivatives connect to real-life situations. It's designed to build intuition, not just memorize formulas or mechanical applications for both.</p>
 
                 <div class="course-info">
-                    <div class="info-item">5 lessons</div>
+                    <div class="info-item">7 lessons</div>
                     <div class="info-item">Self-paced</div>
                 </div>
-
-                <span class="badge">Continue Learning</span>
             </div>
 
             <div class="content-grid">
