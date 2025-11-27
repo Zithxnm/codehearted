@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('username')->unique()->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -21,7 +22,7 @@ return new class extends Migration
 
             $table->string('role')->default('student');
             $table->text('bio')->nullable();
-            $table->string('profile_picture_path')->nullable()->default('imgs/9.png');
+            $table->string('profile_picture_path')->default('imgs/uploads/1763794838.jpg');
 
 
             $table->rememberToken();

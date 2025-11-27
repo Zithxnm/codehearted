@@ -36,7 +36,21 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'student',
-            'profile_picture_path' => 'imgs/9.png',
+        ]);
+
+       // Create Profile for User
+        $user->profile()->create([
+            'Display_Name' => $user->name, // Default to their name
+            'Theme' => 'light',            // Default theme
+            'Join_Date' => now(),          // Set join date
+        ]);
+
+        // 3. Create Empty Stats
+        $user->stat()->create([
+            'Achievements' => 0,
+            'Quizzes' => 0,
+            'Daily_Streak' => 0,
+            'Course_Badge' => 0,
         ]);
 
         Auth::login($user);
