@@ -31,9 +31,14 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => '12345678',
+            'password' => '1',
         ]);
 
-        $this->call(CourseSeeder::class);
+        $this->call([
+            DiffCalSeeder::class,
+            DigiLogicSeeder::class,
+            FundCompSeeder::class,
+            ProgFundSeeder::class,
+        ]);
     }
 }

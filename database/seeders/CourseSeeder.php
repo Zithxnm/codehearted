@@ -2,48 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\PracticeOption;
-use App\Models\PracticeQuestion;
 use Illuminate\Database\Seeder;
 use App\Models\Course;
 use App\Models\Module;
-use App\Models\Review;
-use App\Models\Practice;
-use App\Models\Quiz;
-use App\Models\Question;
-use App\Models\QuizOption;
 
 class CourseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. DIFFERENTIAL CALCULUS
-        $calc = Course::create([
-            'title' => 'Differential Calculus',
-            'description' => 'Differential Calculus develops how learners view change and rate of change.
-                              Students will learn to handle derivatives, limits, and functions with applications
-                              in motion, optimization, and modeling of real-world phenomena.',
-            'image_path' => 'imgs/Catalog_Calculus.jpg',
-            'objectives' => [
-                'Apply the Constant Rule, Power Rule, Constant Multiple Rule, and Sum/Difference Rule for differentiation.',
-                'Find the derivative of functions involving polynomials, radicals, and negative exponents.',
-                'Use derivatives to find equations of tangent lines and solve problems involving rates of change.'
-            ]
-        ]);
-
-        $calcModules = [
-            'Basic Functions & Graphs',
-            'Basic Differentiation',
-            'Limits and Continuity',
-            'Applications of Derivatives',
-            'Order of Rotation',
-            'The Nature of Mathematics',
-            'The Fibonacci Sequence'
-        ];
-
-        $this->createModules($calc, $calcModules);
-
-
         // 2. DIGITAL LOGIC
         $logic = Course::create([
             'title' => 'Digital Logic',
@@ -117,7 +83,7 @@ class CourseSeeder extends Seeder
     }
 
     /**
-     * Helper function to create modules, reviews, practices, and quizzes automatically.
+     * Helper function to create modules automatically.
      */
     private function createModules(Course $course, array $moduleTitles)
     {
@@ -127,70 +93,6 @@ class CourseSeeder extends Seeder
                 'course_id' => $course->id,
                 'title' => "Module " . ($index + 1) . ": $title",
                 'order' => $index + 1,
-            ]);
-
-            // 2. Create Placeholder Content (Review & Practice)
-            Review::create([
-                'module_id' => $module->id,
-                'title' => 'Review Materials',
-                'content' => "<p>Welcome to the review section for $title. Read this carefully before taking the quiz.</p>",
-            ]);
-
-            // Practice Content Creation Template
-            $practice = Practice::create([
-                'module_id' => $module->id,
-                'title' => 'Practice Exercises',
-                'content' => "<p>Here are some practice problems for $title...</p>",
-            ]);
-
-            $pq1 = PracticeQuestion::create([
-                'practice_id' => $practice->id,
-                'question_text' => "What is 2 + 2?",
-                'type' => 'multiple_choice',
-            ]);
-            //  Choices
-            PracticeOption::create(['practice_question_id' => $pq1->id, 'option_text' => '4', 'is_correct' => true]);
-            PracticeOption::create(['practice_question_id' => $pq1->id, 'option_text' => '5', 'is_correct' => false]);
-            PracticeOption::create(['practice_question_id' => $pq1->id, 'option_text' => '10', 'is_correct' => false]);
-            PracticeOption::create(['practice_question_id' => $pq1->id, 'option_text' => '3', 'is_correct' => false]);
-
-            $pq2 = PracticeQuestion::create([
-                'practice_id' => $practice->id,
-                'question_text' => "Who are you?",
-                'type' => 'identification',
-            ]);
-            //  Identification Answer
-            PracticeOption::create(['practice_question_id' => $pq2->id, 'option_text' => 'Foxycode', 'is_correct' => true]);
-
-            // Quiz Content Creation Template
-            $quiz = Quiz::create([
-                'module_id' => $module->id,
-                'title' => "Quiz: $title",
-            ]);
-
-            // Add a Sample Question to the Quiz
-            $q1 = Question::create([
-                'quiz_id' => $quiz->id,
-                'question_text' => "What is 2 + 2?",
-                'type' => 'multiple_choice', // Specify Type
-                'points' => 1,
-            ]);
-            QuizOption::create(['question_id' => $q1->id, 'option_text' => '4', 'is_correct' => true]);
-            QuizOption::create(['question_id' => $q1->id, 'option_text' => '5', 'is_correct' => false]);
-
-            // 5. Identification Example (Fill in the blank)
-            $q2 = Question::create([
-                'quiz_id' => $quiz->id,
-                'question_text' => "Who is the father of modern computer science?",
-                'type' => 'identification', // Specify Type
-                'points' => 1,
-            ]);
-
-            // For identification, we simply store the CORRECT answer as an option
-            QuizOption::create([
-                'question_id' => $q2->id,
-                'option_text' => 'Alan Turing',
-                'is_correct' => true
             ]);
 
         }

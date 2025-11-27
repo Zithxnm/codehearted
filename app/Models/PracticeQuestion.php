@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\PracticeQuestion;
 
 class PracticeQuestion extends Model
 {
-    protected $fillable = ['practice_id', 'question_text', 'type'];
+    protected $fillable = ['practice_id', 'question_text', 'type', 'details'];
+
+    protected $casts = [
+        'details' => 'array',
+    ];
 
     public function practice()
     {
