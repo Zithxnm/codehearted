@@ -7,39 +7,32 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    // 1. Show the list of ALL courses
     public function index()
     {
-        $courses = Course::all(); // Fetch everything from DB
+        $courses = Course::all();
         return view('php.Courses', compact('courses'));
     }
 
-    // 2. Show ONE specific course and its modules
     public function show($id)
     {
-        // Fetch course with its modules, sorted by order
+        // 1. Fetch the course with modules
         $course = Course::with(['modules' => function($q) {
             $q->orderBy('order');
         }])->findOrFail($id);
 
-        // LOGIC: If you still want to use your specific designs for specific courses,
-        // you can check the ID or Title and return different views.
+        // 2. Determine the correct CSS/JS file based on course title/ID
+        // (This keeps your existing separate files working)
+        $styleMap = [
+            'Differential Calculus' => ['css' => 'DiffCall_Styles.css', 'js' => 'DiffCall_Scripts.js'],
+            'Digital Logic' => ['css' => 'DigiLogic_Styles.css', 'js' => 'DigiLogic_Scripts.js'],
+            'Fundamentals of Computing' => ['css' => 'CompFund_Styles.css', 'js' => 'CompFund_Scripts.js'],
+            'Programming Fundamentals' => ['css' => 'ProgFund_Styles.css', 'js' => 'ProgFund_Scripts.js'],
+        ];
 
-        // Example: If ID 1 is Calculus, load the Calc view
-        if ($course->title === 'Differential Calculus') {
-            return view('php.DiffCall', compact('course'));
-        }
-        if ($course->title === 'Digital Logic') {
-            return view('php.DigiLogic', compact('course'));
-        }
-        if ($course->title === 'Fundamentals of Computing') {
-            return view('php.CompFund', compact('course'));
-        }
-        if ($course->title === 'Programming Fundamentals') {
-            return view('php.ProgFund', compact('course'));
-        }
+        // Default fallback if course name doesn't match
+        $assets = $styleMap[$course->title] ?? ['css' => 'Courses_Styles.css', 'js' => 'Courses_Scripts.js'];
 
-        // Fallback for future courses
-        return view('php.Course_Generic', compact('course'));
+        // 3. Return the generic view
+        return view('php.Course_Show', compact('course', 'assets'));
     }
 }

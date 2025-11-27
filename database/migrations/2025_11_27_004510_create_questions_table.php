@@ -9,11 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void {
+    public function up(): void
+    {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('quiz_id')->constrained()->onDelete('cascade');
             $table->text('question_text');
+
+            //type (multiple_choice, identification, true_false)
+            $table->string('type')->default('multiple_choice');
+
             $table->integer('points')->default(1);
             $table->timestamps();
         });

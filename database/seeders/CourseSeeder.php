@@ -22,6 +22,11 @@ class CourseSeeder extends Seeder
                               Students will learn to handle derivatives, limits, and functions with applications
                               in motion, optimization, and modeling of real-world phenomena.',
             'image_path' => 'imgs/Catalog_Calculus.jpg',
+            'objectives' => [
+                'Apply the Constant Rule, Power Rule, Constant Multiple Rule, and Sum/Difference Rule for differentiation.',
+                'Find the derivative of functions involving polynomials, radicals, and negative exponents.',
+                'Use derivatives to find equations of tangent lines and solve problems involving rates of change.'
+            ]
         ]);
 
         $calcModules = [
@@ -44,6 +49,9 @@ class CourseSeeder extends Seeder
                               decimal, and hexadecimal. Students learn how arithmetic and geometric operations form
                               the core of how computers calculate and “think.',
             'image_path' => 'imgs/Catalog_Logic.jpg',
+            'objectives' => [
+
+            ]
         ]);
 
         $logicModules = [
@@ -67,6 +75,9 @@ class CourseSeeder extends Seeder
                         microcontrollers. Students gain insight into hardware design, algorithms, and
                         knowledge-sharing materials through hands-on activities and quizzes.',
             'image_path' => 'imgs/Catalog_Computing.jpg',
+            'objectives' => [
+
+            ]
         ]);
 
         $compModules = [
@@ -87,6 +98,9 @@ class CourseSeeder extends Seeder
                         solver, and geek. In this course, you’ll learn how to break big problems into smaller
                         ideas, design simple algorithms, and bring your ideas to life through code.',
             'image_path' => 'imgs/Catalog_Programming.jpg',
+            'objectives' => [
+
+            ]
         ]);
 
         $progModules = [
@@ -130,21 +144,32 @@ class CourseSeeder extends Seeder
             $quiz = Quiz::create([
                 'module_id' => $module->id,
                 'title' => "Quiz: $title",
-                // 'time_limit' => null, // Self-paced
             ]);
 
             // 4. Add a Sample Question to the Quiz
-            $q = Question::create([
+            $q1 = Question::create([
                 'quiz_id' => $quiz->id,
-                'question_text' => "This is a sample question for $title. What is the correct answer?",
+                'question_text' => "What is 2 + 2?",
+                'type' => 'multiple_choice', // Specify Type
+                'points' => 1,
+            ]);
+            QuizOption::create(['question_id' => $q1->id, 'option_text' => '4', 'is_correct' => true]);
+            QuizOption::create(['question_id' => $q1->id, 'option_text' => '5', 'is_correct' => false]);
+
+            // 5. Identification Example (Fill in the blank)
+            $q2 = Question::create([
+                'quiz_id' => $quiz->id,
+                'question_text' => "Who is the father of modern computer science?",
+                'type' => 'identification', // Specify Type
                 'points' => 1,
             ]);
 
-            // Add Options
-            QuizOption::create(['question_id' => $q->id, 'option_text' => 'Correct Answer', 'is_correct' => true]);
-            QuizOption::create(['question_id' => $q->id, 'option_text' => 'Wrong Option A', 'is_correct' => false]);
-            QuizOption::create(['question_id' => $q->id, 'option_text' => 'Wrong Option B', 'is_correct' => false]);
-            QuizOption::create(['question_id' => $q->id, 'option_text' => 'Wrong Option C', 'is_correct' => false]);
+            // For identification, we simply store the CORRECT answer as an option
+            QuizOption::create([
+                'question_id' => $q2->id,
+                'option_text' => 'Alan Turing',
+                'is_correct' => true
+            ]);
         }
     }
 }

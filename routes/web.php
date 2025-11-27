@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ModuleController;
 
 Route::get('/', function () {
     return view('php.Landing_Page');
@@ -52,6 +53,9 @@ Route::middleware('auth')->group(function () {
 
 // The Individual Course Pages (Dynamic ID)
     Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
+
+    Route::get('/courses/{course}/modules/{module}', [ModuleController::class, 'show'])
+        ->name('modules.show');
 
 //    Route::get('/courses/differential-calculus', function () {
 //        return view('php.DiffCall');
