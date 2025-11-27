@@ -32,7 +32,7 @@
                     </div>
                     <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
+                        <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
                         <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
                         <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
                         <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
@@ -151,7 +151,7 @@
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
                         <li>
-                            <a href="{{ route('courses') }}"footer-link">
+                            <a href="{{ route('courses.index') }}"footer-link">
                                 <span>➤ Learning Catalog</span>
                             </a>
                         </li>

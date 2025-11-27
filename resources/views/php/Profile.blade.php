@@ -34,7 +34,7 @@ ast.">
                     </div>
                     <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
+                        <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
                         <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
                         <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
                         <a href="{{ route('logout') }}"
