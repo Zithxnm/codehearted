@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
+import glob from 'fast-glob';
 
 export default defineConfig({
     plugins: [
@@ -100,6 +101,8 @@ export default defineConfig({
                     'resources/css/modules/progfund/mod5/practice5.css',
                     'resources/css/modules/progfund/mod5/quiz5.css',
                     'resources/css/modules/progfund/mod5/review5.css',
+
+                    ...glob.sync('resources/css/modules/**/*.css'),
 
                     'resources/js/Admin_Scripts.js',
                     'resources/js/CompFund_Scripts.js',

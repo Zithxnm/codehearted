@@ -31,7 +31,7 @@
                     </div>
                     <form class="burger-dropdown">
                         <a href="{{ route('home') }}" class="dropdown-link">Home</a>
-                        <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
+                        <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
                     </form>
                 </div>
             </div>
@@ -113,5 +113,4 @@
     <?php $jsVersion = file_exists(__DIR__ . '/../js/About_Scripts.js') ? filemtime(__DIR__ . '/../js/About_Scripts.js') : time(); ?>
     @vite('resources/js/About_Scripts.js')
 </body>
-
 </html>

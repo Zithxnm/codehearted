@@ -48,73 +48,27 @@
         </div>
         <div class="middle-panel">
             <div class="courses">Courses</div>
-            <a href="{{ route('courses.progfund') }}" class="subject-card-link">
-            <div class="subject-card">
-                <div class="subject-image">
-                    <img src="{{ asset('imgs/Catalog_Programming.jpg') }}" alt="Programming Fundamentals">
-                </div>
-                <div class="subject-content">
-                    <p class="tag">Self-paced</p>
-                    <h2>Programming Fundamentals</h2>
-                    <p class="description">
-                        Programming Fundamentals is your first step into the world of coding—think like a creator,
-                        solver, and geek. In this course, you’ll learn how to break big problems into smaller
-                        ideas, design simple algorithms, and bring your ideas to life through code.
-                    </p>
-                </div>
-            </div>
-            </a>
 
-            <a href="{{ route('courses.digilogic') }}" class="subject-card-link">
-            <div class="subject-card">
-                <div class="subject-image">
-                    <img src="{{ asset('imgs/Catalog_Logic.jpg') }}" alt="Digital Logic">
-                </div>
-                <div class="subject-content">
-                    <p class="tag">Self-paced</p>
-                    <h2>Digital Logic</h2>
-                    <p class="description">
-                        Digital Logic explores truth tables, logic operations, and number systems—binary, octal,
-                        decimal, and hexadecimal. Students learn how arithmetic and geometric operations form
-                        the core of how computers calculate and “think.”
-                    </p>
-                </div>
-            </div>
-            </a>
-
-            <a href="{{ route('courses.compfund') }}" class="subject-card-link">
-            <div class="subject-card">
-                <div class="subject-image">
-                    <img src="{{ asset('imgs/Catalog_Computing.jpg') }}" alt="Fundamentals of Computing">
-                </div>
-                <div class="subject-content">
-                    <p class="tag">Self-paced</p>
-                    <h2>Fundamentals of Computing</h2>
-                    <p class="description">
-                        Fundamentals of Computing covers essential topics, including assembly, BIOS/ALU, and
-                        microcontrollers. Students gain insight into hardware design, algorithms, and
-                        knowledge-sharing materials through hands-on activities and quizzes.
-                    </p>
-                </div>
-            </div>
-            </a>
-
-            <a href="{{ route('courses.diffcalc') }}" class="subject-card-link">
-            <div class="subject-card">
-                <div class="subject-image">
-                    <img src="{{ asset('imgs/Catalog_Calculus.jpg') }}" alt="Differential Calculus">
-                </div>
-                <div class="subject-content">
-                    <p class="tag">Self-paced</p>
-                    <h2>Differential Calculus</h2>
-                    <p class="description">
-                        Differential Calculus develops how learners view change and rate of change. Students
-                        will learn to handle derivatives, limits, and functions with applications in motion,
-                        optimization, and modeling of real-world phenomena.
-                    </p>
-                </div>
-            </div>
-            </a>
+            @if($courses->isEmpty())
+                <p style="text-align: center; padding: 2rem;">No courses available yet.</p>
+            @else
+                @foreach($courses as $course)
+                    <a href="{{ route('courses.show', $course->id) }}" class="subject-card-link">
+                        <div class="subject-card">
+                            <div class="subject-image">
+                                <img src="{{ asset($course->image_path) }}" alt="{{ $course->title }}">
+                            </div>
+                            <div class="subject-content">
+                                <p class="tag">Self-paced</p>
+                                <h2>{{ $course->title }}</h2>
+                                <p class="description">
+                                    {{ $course->description }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            @endif
         </div>
         <div class="right-panel">
         </div>

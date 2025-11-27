@@ -19,8 +19,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'role',
+        'bio',
+        'profile_picture_path',
     ];
 
     /**
@@ -44,5 +48,42 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'user_id');
+    }
+
+
+    public function stat()
+    {
+        return $this->hasOne(Stat::class, 'user_id');
+    }
+
+
+//  Get all posts made by this user
+    public function posts()
+    {
+        return $this->hasMany(Community::class, 'user_id');
+    }
+
+//  Get all subjects this user is enrolled in
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'participant_subjects', 'user_id', 'Subject_ID')
+            ->withPivot('Case_Type')
+            ->withTimestamps();
+    }
+
+
+    public function dashboardLogs()
+    {
+        return $this->hasMany(Dashboard::class, 'Admin_ID');
+    }
+
+    public function auditLogs()
+    {
+        return $this->hasMany(AuditLog::class, 'Admin_ID');
     }
 }

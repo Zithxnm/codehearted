@@ -34,7 +34,7 @@ ast.">
                     </div>
                     <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="{{ route('courses') }}" class="dropdown-link">Courses</a>
+                        <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
                         <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
                         <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
                         <a href="{{ route('logout') }}"
@@ -51,7 +51,7 @@ ast.">
     <div class="main-content">
         <div class="profile-container">
                 @auth
-                    <img class="profile-picture" src="{{ Auth::user()->profile_picture_path }}" alt="Profile Picture">
+                    <img class="profile-picture" src="{{ Auth::user()->profile_picture_path }}" alt="Profile Picture" id="profile_picture">
                     <div class="profile-details">
                     <h1 class="display-name">{{ Auth::user()->name }}</h1>
                     <p class="username">@ {{ Auth::user()->name }}</p>
@@ -88,7 +88,6 @@ ast.">
         <div class="bg-hill"></div>
     </footer>
 
-    <?php $jsVersion = file_exists(__DIR__ . '/../js/Profile_Scripts.js') ? filemtime(__DIR__ . '/../js/Profile_Scripts.js') : time(); ?>
     @vite('resources/js/Profile_Scripts.js')
 </body>
 
