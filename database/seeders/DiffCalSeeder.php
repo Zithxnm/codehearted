@@ -19,12 +19,12 @@ class DiffCalSeeder extends Seeder
     public function run(): void
     {
         $course = Course::create([
-            'title' => 'Differential Calculus',
+            'title' => 'Differential Calculus', //Title of Course
             'description' => 'Differential Calculus develops how learners view change and rate of change.
                               Students will learn to handle derivatives, limits, and functions with applications
                               in motion, optimization, and modeling of real-world phenomena.',
-            'image_path' => 'imgs/Catalog_Calculus.jpg',
-            'objectives' => [
+            'image_path' => 'imgs/Catalog_Calculus.jpg', //Path to the course image
+            'objectives' => [   // Objectives to be displayed when the course is clicked on
                 'Apply the Constant Rule, Power Rule, Constant Multiple Rule, and Sum/Difference Rule for differentiation.',
                 'Find the derivative of functions involving polynomials, radicals, and negative exponents.',
                 'Use derivatives to find equations of tangent lines and solve problems involving rates of change.'

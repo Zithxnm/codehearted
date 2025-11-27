@@ -29,22 +29,22 @@
 
 
         <!-- DEBUG DATA START -->
-        <div style="background: #333; color: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; font-family: monospace;">
-            <h3>Debugging Data</h3>
-            <p><strong>Current Section:</strong> {{ $section }}</p>
-            <p><strong>Module ID:</strong> {{ $module->id }}</p>
+{{--        <div style="background: #333; color: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; font-family: monospace;">--}}
+{{--            <h3>Debugging Data</h3>--}}
+{{--            <p><strong>Current Section:</strong> {{ $section }}</p>--}}
+{{--            <p><strong>Module ID:</strong> {{ $module->id }}</p>--}}
 
-            @if($module->practice)
-                <p><strong>Practice Container:</strong> Found (ID: {{ $module->practice->id }})</p>
-                <p><strong>Practice Question Count (Database):</strong> {{ \App\Models\PracticeQuestion::where('practice_id', $module->practice->id)->count() }}</p>
-                <p><strong>Practice Question Count (Relation):</strong> {{ $module->practice->questions->count() }}</p>
-                <p><strong>Quiz Question Count (Database):</strong> {{ \App\Models\Question::where('quiz_id', $module->quiz->id)->count() }}</p>
-                <p><strong>Quiz Question Count (Relation):</strong> {{ $module->quiz->questions->count() }}</p>
+{{--            @if($module->practice)--}}
+{{--                <p><strong>Practice Container:</strong> Found (ID: {{ $module->practice->id }})</p>--}}
+{{--                <p><strong>Practice Question Count (Database):</strong> {{ \App\Models\PracticeQuestion::where('practice_id', $module->practice->id)->count() }}</p>--}}
+{{--                <p><strong>Practice Question Count (Relation):</strong> {{ $module->practice->questions->count() }}</p>--}}
+{{--                <p><strong>Quiz Question Count (Database):</strong> {{ \App\Models\Question::where('quiz_id', $module->quiz->id)->count() }}</p>--}}
+{{--                <p><strong>Quiz Question Count (Relation):</strong> {{ $module->quiz->questions->count() }}</p>--}}
 
-            @else
-                <p style="color: red;"><strong>Practice Container:</strong> NOT FOUND (This is the problem)</p>
-            @endif
-        </div>
+{{--            @else--}}
+{{--                <p style="color: red;"><strong>Practice Container:</strong> NOT FOUND (This is the problem)</p>--}}
+{{--            @endif--}}
+{{--        </div>--}}
 {{--        <!-- DEBUG DATA END -->--}}
 
 
