@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\QuizController;
 
 Route::get('/', function () {
     return view('php.Landing_Page');
@@ -220,3 +221,12 @@ Route::get('/about', function () {
 Route::get('/community', function () {
     return view('php.Community');
 })->name('show.community');
+
+Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit'])
+    ->name('quizzes.submit')
+    ->middleware('auth');
+
+// Show Result
+Route::get('/quizzes/{quiz}/result', [QuizController::class, 'result'])
+    ->name('quizzes.result')
+    ->middleware('auth');

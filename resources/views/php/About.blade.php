@@ -113,5 +113,4 @@
     <?php $jsVersion = file_exists(__DIR__ . '/../js/About_Scripts.js') ? filemtime(__DIR__ . '/../js/About_Scripts.js') : time(); ?>
     @vite('resources/js/About_Scripts.js')
 </body>
-
 </html>

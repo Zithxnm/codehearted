@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\PracticeOption;
+use App\Models\PracticeQuestion;
 use Illuminate\Database\Seeder;
 use App\Models\Course;
 use App\Models\Module;
@@ -134,19 +136,39 @@ class CourseSeeder extends Seeder
                 'content' => "<p>Welcome to the review section for $title. Read this carefully before taking the quiz.</p>",
             ]);
 
-            Practice::create([
+            // Practice Content Creation Template
+            $practice = Practice::create([
                 'module_id' => $module->id,
                 'title' => 'Practice Exercises',
                 'content' => "<p>Here are some practice problems for $title...</p>",
             ]);
 
-            // 3. Create a Quiz
+            $pq1 = PracticeQuestion::create([
+                'practice_id' => $practice->id,
+                'question_text' => "What is 2 + 2?",
+                'type' => 'multiple_choice',
+            ]);
+            //  Choices
+            PracticeOption::create(['practice_question_id' => $pq1->id, 'option_text' => '4', 'is_correct' => true]);
+            PracticeOption::create(['practice_question_id' => $pq1->id, 'option_text' => '5', 'is_correct' => false]);
+            PracticeOption::create(['practice_question_id' => $pq1->id, 'option_text' => '10', 'is_correct' => false]);
+            PracticeOption::create(['practice_question_id' => $pq1->id, 'option_text' => '3', 'is_correct' => false]);
+
+            $pq2 = PracticeQuestion::create([
+                'practice_id' => $practice->id,
+                'question_text' => "Who are you?",
+                'type' => 'identification',
+            ]);
+            //  Identification Answer
+            PracticeOption::create(['practice_question_id' => $pq2->id, 'option_text' => 'Foxycode', 'is_correct' => true]);
+
+            // Quiz Content Creation Template
             $quiz = Quiz::create([
                 'module_id' => $module->id,
                 'title' => "Quiz: $title",
             ]);
 
-            // 4. Add a Sample Question to the Quiz
+            // Add a Sample Question to the Quiz
             $q1 = Question::create([
                 'quiz_id' => $quiz->id,
                 'question_text' => "What is 2 + 2?",
@@ -170,6 +192,7 @@ class CourseSeeder extends Seeder
                 'option_text' => 'Alan Turing',
                 'is_correct' => true
             ]);
+
         }
     }
 }

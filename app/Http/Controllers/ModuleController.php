@@ -11,11 +11,11 @@ class ModuleController extends Controller
     {
         $section = $request->query('section', 'review');
 
-        $module = Module::with(['course', 'review', 'practice', 'quiz.questions.options'])
+        $module = Module::with(['course', 'review', 'practice.questions.options', 'quiz.questions.options'])
             ->where('course_id', $courseId)
             ->findOrFail($moduleId);
 
-        // --- 1. Map Course Title to Folder Name ---
+        // Map Course Title to Folder Name
         $courseFolders = [
             'Differential Calculus' => 'diffcalc',
             'Digital Logic' => 'digilogic',
@@ -25,18 +25,16 @@ class ModuleController extends Controller
 
         $folder = $courseFolders[$module->course->title] ?? 'default';
 
-        // --- 2. Build the Dynamic CSS Path ---
-        // Structure: resources/css/modules/{course}/mod{N}/{section}{N}.css
-        // Example: resources/css/modules/compfund/mod1/practice1.css
         $cssPath = "resources/css/modules/{$folder}/mod{$module->order}/{$section}{$module->order}.css";
 
-        // --- 3. Determine Content ---
+        // Determine Content
         $content = null;
         $quiz = null;
+        $practice = null;
 
         switch ($section) {
             case 'practice':
-                $content = $module->practice->content ?? '<p>No practice content.</p>';
+                $practice = $module->practice;
                 break;
             case 'quiz':
                 $quiz = $module->quiz;
@@ -48,6 +46,6 @@ class ModuleController extends Controller
         }
 
         // Pass $cssPath to the view
-        return view('php.Module_Show', compact('module', 'section', 'content', 'quiz', 'cssPath'));
+        return view('php.Module_Show', compact('module', 'section', 'content', 'quiz', 'practice', 'cssPath'));
     }
 }

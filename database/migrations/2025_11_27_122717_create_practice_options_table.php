@@ -11,20 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('practice_options', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('quiz_id')->constrained()->onDelete('cascade');
-            $table->text('question_text');
-            $table->string('type')->default('multiple_choice'); //type (multiple_choice, identification, true_false)
-            $table->integer('points')->default(1);
+            $table->foreignId('practice_question_id')->constrained()->onDelete('cascade');
+
+            $table->string('option_text');
+            $table->boolean('is_correct')->default(false);
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('practice_options');
     }
 };
