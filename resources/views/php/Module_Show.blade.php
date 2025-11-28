@@ -195,7 +195,7 @@
                                     @elseif(in_array($question->type, ['essay', 'code_writing']))
                                         <textarea class="answer-area" placeholder="Write your code or explanation here..."></textarea>
                                         <div class="answer-reveal" style="display: none; margin-top: 10px; color: #124559; background: #e0f2f1; padding: 15px; border-radius: 8px;">
-                                            <strong>Model Answer:</strong>
+                                            <strong>Answer:</strong>
                                             <pre style="background: #fff; padding: 10px; border-radius: 5px; margin-top: 5px;">{{ $question->details['model_answer'] ?? '' }}</pre>
                                         </div>
 

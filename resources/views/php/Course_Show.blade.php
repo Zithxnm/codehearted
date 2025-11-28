@@ -26,8 +26,7 @@
             </div>
 
             <div class="burger-menu">
-                <div class="burger-icon">
-                </div>
+                <div class="burger-icon"></div>
                 <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
@@ -35,8 +34,7 @@
                     <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
                     <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
                     <a href="{{ route('about') }}" class="dropdown-link">About</a>
-                    <a href="{{ route('logout') }}"
-                       class="dropdown-link"
+                    <a href="{{ route('logout') }}" class="dropdown-link"
                        onclick="event.preventDefault(); this.closest('form').submit();">
                         Logout
                     </a>
@@ -58,16 +56,44 @@
         </div>
 
         <div class="content-grid">
+
             <div class="module-section">
                 <h2 class="section-title">Course Modules</h2>
 
+                @php $previousModuleCompleted = true; @endphp
+
                 @foreach($course->modules as $index => $module)
-                    <div class="module-item {{ $index === 0 ? 'active' : '' }}"
+                    @php
+                        $isCompleted = Auth::user()->hasCompletedModule($module->id);
+                        $isLocked = ! $previousModuleCompleted;
+
+                        if ($isLocked) {
+                            $statusIcon = '🔒';
+                            $cardClass = 'locked';
+                            $pointerStyle = 'none';
+                            $opacity = '0.6';
+                        } elseif ($isCompleted) {
+                            $statusIcon = '✓';
+                            $cardClass = 'completed';
+                            $pointerStyle = 'auto';
+                            $opacity = '1';
+                        } else {
+                            $statusIcon = '◉';
+                            $cardClass = '';
+                            $pointerStyle = 'auto';
+                            $opacity = '1';
+                        }
+                    @endphp
+
+                    <div class="module-item {{ $index === 0 ? 'active' : '' }} {{ $cardClass }}"
                          data-module="{{ $index }}"
-                         onclick="selectModule(this, {{ $index }})">
+                         onclick="{{ $isLocked ? '' : "selectModule(this, $index)" }}"
+                         style="pointer-events: {{ $pointerStyle }}; opacity: {{ $opacity }};">
                         <span class="module-title">{{ $module->title }}</span>
-                        <span class="module-status">🔒</span>
+                        <span class="module-status">{{ $statusIcon }}</span>
                     </div>
+
+                    @php $previousModuleCompleted = $isCompleted; @endphp
                 @endforeach
             </div>
 
@@ -91,10 +117,12 @@
                 @foreach($course->modules as $index => $module)
                     <div class="lesson-card {{ $index === 0 ? 'active' : '' }}"
                          data-module-index="{{ $index }}"
-                         style="{{ $index === 0 ? 'display:block;' : 'display:none;' }}"> <h3><span class="icon">📖</span> {{ $module->title }}</h3>
+                         style="{{ $index === 0 ? 'display:block;' : 'display:none;' }}">
+
+                        <h3><span class="icon">📖</span> {{ $module->title }}</h3>
 
                         <a href="{{ route('modules.show', ['course' => $course->id, 'module' => $module->id]) }}?section=review"
-                           class="action-button review">Review</a>
+                           class="action-button review" style="margin-left:8px">Review</a>
 
                         <a href="{{ route('modules.show', ['course' => $course->id, 'module' => $module->id]) }}?section=practice"
                            class="action-button" style="margin-left:8px;">Practice</a>
@@ -110,35 +138,22 @@
     </div>
 </div>
 
+<section class="before-footer">
+    <div class="hills"></div>
+</section>
+
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h4 class="footer-title">Quick Links</h4>
                 <ul class="footer-links">
-                    <li>
-                        <a href="{{ route('courses.index') }}" class="footer-link">
-                            <span>➤ Learning Catalog</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('profile') }}" class="footer-link">
-                            <span>➤ Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('dashboard') }}" class="footer-link">
-                            <span>➤ Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('about') }}" class="footer-link">
-                            <span>➤ About Us</span>
-                        </a>
-                    </li>
+                    <li><a href="{{ route('courses.index') }}" class="footer-link"><span>➤ Learning Catalog</span></a></li>
+                    <li><a href="{{ route('profile') }}" class="footer-link"><span>➤ Profile</span></a></li>
+                    <li><a href="{{ route('dashboard') }}" class="footer-link"><span>➤ Dashboard</span></a></li>
+                    <li><a href="{{ route('about') }}" class="footer-link"><span>➤ About Us</span></a></li>
                 </ul>
             </div>
-
             <div class="footer-section">
                 <h4 class="footer-title">Stay sharp as a fox — follow us for news and updates.</h4>
                 <div class="social-links">
@@ -155,8 +170,9 @@
             </div>
         </div>
 
+
         <div class="footer-bottom">
-            <p>© 2025 CodeHearted. All rights reserved. Built with ♥ for clever foxes everywhere.</p>
+            <p>© 2025 CodeHearted. All rights reserved.</p>
         </div>
     </div>
 </footer>

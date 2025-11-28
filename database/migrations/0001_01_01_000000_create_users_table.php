@@ -21,7 +21,7 @@ return new class extends Migration
 
 
             $table->string('role')->default('student');
-            $table->text('bio')->nullable();
+            $table->text('bio')->default('Tell us about yourself.')->nullable();
             $table->string('profile_picture_path')->default('imgs/uploads/1763794838.jpg');
 
 

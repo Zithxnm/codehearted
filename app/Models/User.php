@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -85,5 +86,39 @@ class User extends Authenticatable
     public function auditLogs()
     {
         return $this->hasMany(AuditLog::class, 'Admin_ID');
+    }
+
+    public function quizAttempts()
+    {
+        return $this->hasMany(QuizAttempt::class);
+    }
+
+    public function hasCompletedModule($moduleId)
+    {
+        $quiz = Quiz::where('module_id', $moduleId)->first();
+
+        if (!$quiz) {
+            return false;
+        }
+
+        return $this->quizAttempts()
+            ->where('quiz_id', $quiz->id)
+            // ->where(score', '>=', 5) TBD
+            ->exists();
+    }
+
+    public function hasCompletedCourse($courseId)
+    {
+        $moduleIds = Module::where('course_id', $courseId)->pluck('id');
+
+        // 2. Check each module
+        foreach ($moduleIds as $id) {
+            // Reuse your existing module check
+            if (! $this->hasCompletedModule($id)) {
+                return false; // Found an incomplete module, so course is NOT done
+            }
+        }
+
+        return true; // All modules passed!
     }
 }

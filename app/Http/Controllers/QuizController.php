@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\QuizAttempt;
 use App\Models\Quiz;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class QuizController extends Controller
 {
@@ -13,7 +14,13 @@ class QuizController extends Controller
     {
 
         // get quiz and its questions
-        $quiz =  Quiz::with('questions.options')->findOrFail($quizId);
+        $quiz =  Quiz::with('questions.options', 'module')->findOrFail($quizId);
+        $user = Auth::user();
+
+        $alreadyPassed = $user->quizAttempts()
+            ->where('quiz_id', $quiz->id)
+            ->where('score', '>=', 0) // Or your passing score logic
+            ->exists();
 
         // get user answers
         $answers = $request->input('answers');
@@ -50,6 +57,47 @@ class QuizController extends Controller
             'score' => $score,
             'completed_at' => now(),
         ]);
+
+        if(! $alreadyPassed &&  $score >= 0){
+
+            if ($user->hasCompletedCourse($quiz->module->course_id)) {
+
+                $user->stat()->increment("Achievements");
+
+                session()->flash('achievement', '🏆 Course Completed! You earned an Achievement.');
+            }
+        }
+
+
+
+        $userStat = Auth::user()->stat;
+        if ($userStat) {
+            $today = Carbon::now()->startOfDay();
+            $lastDate = $userStat->last_quiz_date ? $userStat->last_quiz_date->startOfDay() : null;
+
+
+            if (! $alreadyPassed) {
+                $userStat->increment('Quizzes');
+            }
+
+            if ($lastDate) {
+                if ($lastDate->equalTo($today)) {
+                    //Do nothing
+                } elseif ($lastDate->equalTo($today->copy()->subDay())) {
+                    //add streak
+                    $userStat->increment('Daily_Streak');
+                } else {
+                    //reset streak to 1
+                    $userStat->Daily_Streak = 1;
+                }
+            } else {
+                //record first quiz streak
+                $userStat->Daily_Streak = 1;
+            }
+
+            $userStat->last_quiz_date = $today;
+            $userStat->save();
+        }
 
         return redirect()->route('quizzes.result', ['quiz' => $quiz->id, 'score' => $score, 'total' => $totalPoints]);
     }
