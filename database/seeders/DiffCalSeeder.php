@@ -118,6 +118,40 @@ class DiffCalSeeder extends Seeder
             'order' => 2,
         ]);
 
+        $quiz2 = Quiz::create([
+            'module_id' => $mod2->id,
+            'title' => "Basic Quiz Template for $mod2->title",
+        ]);
+
+        $q1 = Question::create([
+            'quiz_id' => $quiz2->id,
+            'question_text' => 'What is the most important question?',
+            'type' => 'multiple_choice',
+            'points' => 1,
+        ]);
+
+        QuizOption::create([
+            'question_id' => $q1->id,
+            'option_text' => 'What',
+            'is_correct' => false,
+        ]);
+        QuizOption::create([
+            'question_id' => $q1->id,
+            'option_text' => 'Why',
+            'is_correct' => false,
+        ]);
+        QuizOption::create([
+            'question_id' => $q1->id,
+            'option_text' => 'When',
+            'is_correct' => false,
+        ]);
+        QuizOption::create([
+            'question_id' => $q1->id,
+            'option_text' => 'All of the above',
+            'is_correct' => true,
+        ]);
+
+
 
 
     }

@@ -19,9 +19,13 @@ class Stat extends Model
         'Quizzes',
         'Course_Badge',
         'Daily_Streak',
+        'last_quiz_date',
     ];
 
-    // 3. Relationship back to User
+    protected $casts = [
+        'last_quiz_date' => 'date',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
