@@ -146,9 +146,8 @@
                                                 <tr>
                                                     <td style="width: 45%; padding: 8px; border: 1px solid #ddd;">{{ $pair['left'] }}</td>
                                                     <td style="width: 10%; text-align: center;">&rarr;</td>
-                                                    <td style="width: 45%;">
+                                                    <td style="width: 45%; padding: 8px; border: 1px solid #ddd;">{{ $pair['right']}}</td>
                                                         <input type="text" class="answer-input wide" placeholder="Match..." readonly>
-                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </table>

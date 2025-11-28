@@ -17,7 +17,7 @@ ast.">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="{{ route('home') }}"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
+                    <a href="/"><img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo"></a>
                 </div>
 
                 <div class="search-container">
@@ -37,18 +37,19 @@ ast.">
                         <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
                         <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
                         <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
+                        <a href="{{ route('about') }}" class="dropdown-link">About</a>
                         <a href="{{ route('logout') }}"
-                            class="dropdown-link"
-                            onclick="event.preventDefault(); this.closest('form').submit();">
+                        class="dropdown-link"
+                        onclick="event.preventDefault(); this.closest('form').submit();">
                             Logout
                         </a>
-                        </form>
+                    </form>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="main-content">
+    <div class="hero">
         <div class="profile-container">
                 @auth
                     <img class="profile-picture" src="{{ Auth::user()->profile_picture_path }}" alt="Profile Picture" id="profile_picture">

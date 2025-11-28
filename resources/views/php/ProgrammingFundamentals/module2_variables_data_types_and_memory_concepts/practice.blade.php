@@ -68,7 +68,7 @@
                 <div class="code-block">
                     <pre><code>2student_name = "John"
 first name = "Alice"
-age = "twenty" # This should be a number</code></pre>
+age = "twenty"</code></pre>
                 </div>
                 <textarea class="answer-area" placeholder="Type your corrected version or explanation here..."></textarea>
             </div>
