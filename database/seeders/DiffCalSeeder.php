@@ -117,8 +117,5 @@ class DiffCalSeeder extends Seeder
             'title' => 'Basic Differentiation',
             'order' => 2,
         ]);
-
-
-
     }
 }
