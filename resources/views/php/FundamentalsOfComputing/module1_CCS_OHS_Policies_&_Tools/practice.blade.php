@@ -59,7 +59,7 @@
                 <h2 class="section-heading">II. Identification</h2>
 
                 <div class="code-block">
-                    <pre><code>What does PPE stand for?</code></pre>
+                    <pre><code>List three reasons why safety rules are important in computer servicing.</code></pre>
                 </div>
                 <textarea class="answer-area" placeholder="Type your answer here..."></textarea>
 
@@ -69,7 +69,7 @@
                 <textarea class="answer-area" placeholder="Type your answer here..."></textarea>
 
                 <div class="code-block">
-                    <pre><code>What does PPE stand for? </code></pre>
+                    <pre><code>Describe the use of a multimeter in servicing. </code></pre>
                 </div>
                 <textarea class="answer-area" placeholder="Type your answer here..."></textarea>
 
