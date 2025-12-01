@@ -16,8 +16,6 @@ use PhpParser\Node\Expr\AssignOp\Mod;
 
 class DigiLogicSeeder extends Seeder
 {
-    ///PAKI PALITAN DIN PO ANG PICTURE NI URIZ SA PROFILE SABI NI IRISH!!!///
-    ///!!!!HINDI NAG UUNLUCK ANG NEXT MODULE AFTER NG QUIZ :c!!!!///
     public function run(): void
     {
         $course = Course::create([
@@ -26,7 +24,7 @@ class DigiLogicSeeder extends Seeder
                               this course helps non-STEM students see how limits and derivatives connect to real-life situations.
                               It`s designed to build intuition, not just memorize formulas or mechanical applications for both.',
             'image_path' => 'imgs/Catalog_Programming.jpg',
-            'objectives' => [  
+            'objectives' => [
                 'Define programming and explain what programmers do.',
                 'Understand key programming terminology.',
                 'Know what Python is and why it’s good for beginners',
@@ -219,7 +217,7 @@ $pq1 = PracticeQuestion::create([
                 </tr>
             </table>
 
-            
+
         '
     ]
             ]);
@@ -236,7 +234,7 @@ $pq2 = PracticeQuestion::create([
             <p><strong>(P → Q) ∧ (Q → R)</strong></p>
             <p class="hint">(Hint: you will need 8 rows since there are 3 variables.)</p>
 
-            
+
         '
     ]
             ]);
@@ -391,7 +389,7 @@ $pq2 = PracticeQuestion::create([
                 'is_correct' => false,
             ]);
 
-            
+
             $mod2 = Module::create([
             'course_id' => $course->id,
             'title' => 'Module 2: Arithmetic Sequences',
@@ -538,16 +536,16 @@ $pq8 = PracticeQuestion::create([
 ]);
 // Quiz 2
         $quiz2 = Quiz::create([
-    'module_id' => $mod2->id,
-    'title' => "Quiz for $mod2->title",
+        'module_id' => $mod2->id,
+        'title' => "Quiz for $mod2->title",
 ]);
 
 // Question 1
 $q6 = Question::create([
     'quiz_id' => $quiz2->id,
-    'question_text' => 'A sequence is 7, 10, 13, 16, … 
+    'question_text' => 'A sequence is 7, 10, 13, 16, …
     Find d, write a_n, and find a_25.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -555,7 +553,7 @@ $q6 = Question::create([
 $q7 = Question::create([
     'quiz_id' => $quiz2->id,
     'question_text' => 'A sequence has a_1 = -8, d = 5. Find a_15.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -563,7 +561,7 @@ $q7 = Question::create([
 $q8 = Question::create([
     'quiz_id' => $quiz2->id,
     'question_text' => 'Which term of the sequence 12, 8, 4, 0, … is a given number?',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -571,7 +569,7 @@ $q8 = Question::create([
 $q9 = Question::create([
     'quiz_id' => $quiz2->id,
     'question_text' => 'Find the sum of the first 30 terms of 5, 10, 15, …',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -579,7 +577,7 @@ $q9 = Question::create([
 $q10 = Question::create([
     'quiz_id' => $quiz2->id,
     'question_text' => 'If a_1 = 100 and a_20 = 10, find d and S_20.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -720,18 +718,18 @@ $quiz3 = Quiz::create([
 // Question 1
 $q11 = Question::create([
     'quiz_id' => $quiz3->id,
-    'question_text' => 'A geometric sequence has a_0 = 7 and r = 5. 
+    'question_text' => 'A geometric sequence has a_0 = 7 and r = 5.
     Write the recursive and closed-form formulas, and find a_4.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
 // Question 2
 $q12 = Question::create([
     'quiz_id' => $quiz3->id,
-    'question_text' => 'The sequence 160, 80, 40, 20, … is geometric. 
+    'question_text' => 'The sequence 160, 80, 40, 20, … is geometric.
     Find r, write the closed-form formula, and find a_6.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -739,16 +737,16 @@ $q12 = Question::create([
 $q13 = Question::create([
     'quiz_id' => $quiz3->id,
     'question_text' => 'Compute the sum of the first 6 terms of a_n = 3 ⋅ (0.5)^n.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
 // Question 4
 $q14 = Question::create([
     'quiz_id' => $quiz3->id,
-    'question_text' => 'A culture of bacteria doubles every hour. 
+    'question_text' => 'A culture of bacteria doubles every hour.
     If it starts with 500 bacteria, how many are there after 8 hours?',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -756,7 +754,7 @@ $q14 = Question::create([
 $q15 = Question::create([
     'quiz_id' => $quiz3->id,
     'question_text' => 'Which formula would you use to compute the sum of a finite geometric sequence? (Write the general form.)',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -785,7 +783,7 @@ Review::create([
 
                 <h3>What is the Binary Number System?</h3>
                 <p>The binary number system is a positional numeral system that uses only two digits: <strong>0</strong> and <strong>1</strong>. It is fundamental to all digital electronics and computing because computers operate using two electrical states—ON and OFF.</p>
-                
+
                 <p>Key concepts:</p>
                 <ul>
                     <li>A <strong>bit</strong> (binary digit) is the smallest unit of data and can be 0 or 1.</li>
@@ -996,7 +994,7 @@ $quiz4 = Quiz::create([
 $q16 = Question::create([
     'quiz_id' => $quiz4->id,
     'question_text' => 'Convert 101101₂ to decimal.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1004,7 +1002,7 @@ $q16 = Question::create([
 $q17 = Question::create([
     'quiz_id' => $quiz4->id,
     'question_text' => 'Convert 45₁₀ to binary.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1012,7 +1010,7 @@ $q17 = Question::create([
 $q18 = Question::create([
     'quiz_id' => $quiz4->id,
     'question_text' => 'Add 1101₂ + 1011₂.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1020,7 +1018,7 @@ $q18 = Question::create([
 $q19 = Question::create([
     'quiz_id' => $quiz4->id,
     'question_text' => 'Why do computers use binary instead of decimal?',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1028,7 +1026,7 @@ $q19 = Question::create([
 $q20 = Question::create([
     'quiz_id' => $quiz4->id,
     'question_text' => 'What is the decimal value of 11111111₂?',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1099,7 +1097,7 @@ Review::create([
             <li>8⁻² = 1/64</li>
         </ul>
         <p>
-            = 128 + 32 + 6 + 0.25 + 0.125  
+            = 128 + 32 + 6 + 0.25 + 0.125
             = <strong>166.375<sub>10</sub></strong>
         </p>
 
@@ -1148,7 +1146,7 @@ Review::create([
         </ul>
     ',
         ]);
-        
+
         // Create Practice container
 $prac5 = Practice::create([
     'module_id' => $mod5->id,
@@ -1249,7 +1247,7 @@ $quiz5 = Quiz::create([
 $q21 = Question::create([
     'quiz_id' => $quiz5->id,
     'question_text' => 'Convert (476)₈ to decimal.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1257,7 +1255,7 @@ $q21 = Question::create([
 $q22 = Question::create([
     'quiz_id' => $quiz5->id,
     'question_text' => 'Convert 200₁₀ to octal.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1265,7 +1263,7 @@ $q22 = Question::create([
 $q23 = Question::create([
     'quiz_id' => $quiz5->id,
     'question_text' => 'Convert (101101)₂ to octal.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1273,7 +1271,7 @@ $q23 = Question::create([
 $q24 = Question::create([
     'quiz_id' => $quiz5->id,
     'question_text' => 'Convert (101101)₂ to octal.', // duplicate, same as Q3
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1281,7 +1279,7 @@ $q24 = Question::create([
 $q25 = Question::create([
     'quiz_id' => $quiz5->id,
     'question_text' => 'Convert (101101)₂ to octal.', // duplicate, same as Q3
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1428,7 +1426,7 @@ $quiz6 = Quiz::create([
 $q26 = Question::create([
     'quiz_id' => $quiz6->id,
     'question_text' => 'Write the expanded form of 6,024.305.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1436,7 +1434,7 @@ $q26 = Question::create([
 $q27 = Question::create([
     'quiz_id' => $quiz6->id,
     'question_text' => 'Which is greater: 14.07 or 14.007?',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1444,7 +1442,7 @@ $q27 = Question::create([
 $q28 = Question::create([
     'quiz_id' => $quiz6->id,
     'question_text' => 'Round 8.3764 to two decimal places.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1452,7 +1450,7 @@ $q28 = Question::create([
 $q29 = Question::create([
     'quiz_id' => $quiz6->id,
     'question_text' => 'Compute: 25.64 + 4.8 − 0.06',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1460,7 +1458,7 @@ $q29 = Question::create([
 $q30 = Question::create([
     'quiz_id' => $quiz6->id,
     'question_text' => 'Compute: 3.6 × 0.25 + 5.4 ÷ 0.9',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1655,7 +1653,7 @@ $pq38 = PracticeQuestion::create([
 $q31 = Question::create([
     'quiz_id' => $quiz7->id,
     'question_text' => 'Write the expanded form of 6,024.305.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1663,7 +1661,7 @@ $q31 = Question::create([
 $q32 = Question::create([
     'quiz_id' => $quiz7->id,
     'question_text' => 'Which is greater: 14.07 or 14.007?',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1671,7 +1669,7 @@ $q32 = Question::create([
 $q33 = Question::create([
     'quiz_id' => $quiz7->id,
     'question_text' => 'Round 8.3764 to two decimal places.',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1679,7 +1677,7 @@ $q33 = Question::create([
 $q34 = Question::create([
     'quiz_id' => $quiz7->id,
     'question_text' => 'Compute: 25.64 + 4.8 − 0.06',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
@@ -1687,7 +1685,7 @@ $q34 = Question::create([
 $q35 = Question::create([
     'quiz_id' => $quiz7->id,
     'question_text' => 'Compute: 3.6 × 0.25 + 5.4 ÷ 0.9',
-    'type' => 'short_answer',
+    'type' => 'identification',
     'points' => 1,
 ]);
 
