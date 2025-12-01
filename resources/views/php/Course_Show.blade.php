@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $course->title }} - CodeHearted</title>
     @vite(['resources/css/' . $assets['css']])
+    <style>
+
+        html { scroll-behavior: smooth; }
+    </style>
 </head>
 
 <body>
@@ -34,7 +38,8 @@
                     <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
                     <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
                     <a href="{{ route('about') }}" class="dropdown-link">About</a>
-                    <a href="{{ route('logout') }}" class="dropdown-link"
+                    <a href="{{ route('logout') }}"
+                       class="dropdown-link"
                        onclick="event.preventDefault(); this.closest('form').submit();">
                         Logout
                     </a>
@@ -72,23 +77,27 @@
                             $cardClass = 'locked';
                             $pointerStyle = 'none';
                             $opacity = '0.6';
+                            $onclick = '';
                         } elseif ($isCompleted) {
                             $statusIcon = '✓';
                             $cardClass = 'completed';
                             $pointerStyle = 'auto';
                             $opacity = '1';
+                            // Scroll to the specific ID
+                            $onclick = "document.getElementById('module-card-$index').scrollIntoView({behavior: 'smooth', block: 'center'});";
                         } else {
                             $statusIcon = '◉';
-                            $cardClass = '';
+                            $cardClass = 'active'; // Current module
                             $pointerStyle = 'auto';
                             $opacity = '1';
+                            $onclick = "document.getElementById('module-card-$index').scrollIntoView({behavior: 'smooth', block: 'center'});";
                         }
                     @endphp
 
-                    <div class="module-item {{ $index === 0 ? 'active' : '' }} {{ $cardClass }}"
-                         data-module="{{ $index }}"
-                         onclick="{{ $isLocked ? '' : "selectModule(this, $index)" }}"
-                         style="pointer-events: {{ $pointerStyle }}; opacity: {{ $opacity }};">
+                    <div class="module-item {{ $cardClass }}"
+                         onclick="{{ $onclick }}"
+                         style="pointer-events: {{ $pointerStyle }}; opacity: {{ $opacity }}; cursor: pointer;">
+
                         <span class="module-title">{{ $module->title }}</span>
                         <span class="module-status">{{ $statusIcon }}</span>
                     </div>
@@ -102,45 +111,50 @@
 
                 <div class="lesson-objectives">
                     <h4>Objectives:</h4>
-                    <p style="margin-bottom: 10px; font-size: 13px; color: #555;">In this module, you will learn:</p>
                     <ul>
                         @if($course->objectives)
                             @foreach($course->objectives as $objective)
                                 <li>{{ $objective }}</li>
                             @endforeach
                         @else
-                            <li>No specific objectives listed for this course.</li>
+                            <li>No specific objectives listed.</li>
                         @endif
                     </ul>
                 </div>
 
+                @php $previousModuleCompleted = true; @endphp
+
                 @foreach($course->modules as $index => $module)
-                    <div class="lesson-card {{ $index === 0 ? 'active' : '' }}"
-                         data-module-index="{{ $index }}"
-                         style="{{ $index === 0 ? 'display:block;' : 'display:none;' }}">
+                    @php
+                        $isCompleted = Auth::user()->hasCompletedModule($module->id);
+                        $isLocked = ! $previousModuleCompleted;
+                    @endphp
 
-                        <h3><span class="icon">📖</span> {{ $module->title }}</h3>
 
-                        <a href="{{ route('modules.show', ['course' => $course->id, 'module' => $module->id]) }}?section=review"
-                           class="action-button review" style="margin-left:8px">Review</a>
+                    @if(! $isLocked)
+                        <div class="lesson-card" id="module-card-{{ $index }}" style="display: block; margin-bottom: 20px;">
+                            <h3><span class="icon">📖</span> {{ $module->title }}</h3>
 
-                        <a href="{{ route('modules.show', ['course' => $course->id, 'module' => $module->id]) }}?section=practice"
-                           class="action-button" style="margin-left:8px;">Practice</a>
+                            <a href="{{ route('modules.show', ['course' => $course->id, 'module' => $module->id]) }}?section=review"
+                               class="action-button review" style="margin-left:8px">Review</a>
 
-                        <a href="{{ route('modules.show', ['course' => $course->id, 'module' => $module->id]) }}?section=quiz"
-                           class="action-button" style="margin-left:8px;">Quiz</a>
+                            <a href="{{ route('modules.show', ['course' => $course->id, 'module' => $module->id]) }}?section=practice"
+                               class="action-button" style="margin-left:8px;">Practice</a>
 
-                        <div style="clear: both;"></div>
-                    </div>
+                            <a href="{{ route('modules.show', ['course' => $course->id, 'module' => $module->id]) }}?section=quiz"
+                               class="action-button" style="margin-left:8px;">Quiz</a>
+
+                            <div style="clear: both;"></div>
+                        </div>
+                    @endif
+
+                    @php $previousModuleCompleted = $isCompleted; @endphp
                 @endforeach
             </div>
+
         </div>
     </div>
 </div>
-
-<section class="before-footer">
-    <div class="hills"></div>
-</section>
 
 <footer class="footer">
     <div class="container">
@@ -154,23 +168,7 @@
                     <li><a href="{{ route('about') }}" class="footer-link"><span>➤ About Us</span></a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h4 class="footer-title">Stay sharp as a fox — follow us for news and updates.</h4>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/PampangaStateU" class="social-link" aria-label="PSU" target="_blank">
-                        <img class="psu" src="{{ asset('imgs/WhiteLogo_PSU.png') }}" alt="PSU">
-                    </a>
-                    <a href="https://www.facebook.com/dhvsu.ccssc" class="social-link" aria-label="CCS" target="_blank">
-                        <img class="ccs" src="{{ asset('imgs/WhiteLogo_CCSSC.png') }}" alt="PSU">
-                    </a>
-                    <a href="https://www.facebook.com/ComPressCCS" class="social-link" aria-label="ComPress" target="_blank">
-                        <img class="compress" src="{{ asset('imgs/WhiteLogo_ComPress.png') }}" alt="PSU">
-                    </a>
-                </div>
-            </div>
         </div>
-
-
         <div class="footer-bottom">
             <p>© 2025 CodeHearted. All rights reserved.</p>
         </div>
