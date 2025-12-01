@@ -176,51 +176,25 @@ $prac1 = Practice::create([
 // Practice 1 – Construct a Truth Table
 $pq1 = PracticeQuestion::create([
     'practice_id' => $prac1->id,
-    'question_text' => "Construct the truth table for the expression: P ∨ ¬Q",
-    'type' => 'identification',
+    'question_text' => "Complete the truth table for the expression: P ∨ ¬Q",
+    'type' => 'truth_table',
     'details' => [
-        'html' => '
-            <h2>Practice 1 – Construct a Truth Table</h2>
-            <p>Complete the truth table for the expression:</p>
-            <p><strong>P ∨ ¬Q</strong></p>
+        'headers' => ['P', 'Q', '¬Q', 'P ∨ ¬Q'],
+        'rows' => [
+            // Row 1: T, T, [Input: F], T
+            ['T', 'T', 'answer:F', 'T'],
 
-            <table>
-                <tr>
-                    <th>P</th>
-                    <th>Q</th>
-                    <th>¬Q</th>
-                    <th>P ∨ ¬Q</th>
-                </tr>
-                <tr>
-                    <td>T</td>
-                    <td>T</td>
-                    <td><input type="text" class="truth-answer"></td>
-                    <td>T</td>
-                </tr>
-                <tr>
-                    <td>T</td>
-                    <td><input type="text" class="truth-answer"></td>
-                    <td>T</td>
-                    <td>T</td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="truth-answer"></td>
-                    <td>T</td>
-                    <td><input type="text" class="truth-answer"></td>
-                    <td>F</td>
-                </tr>
-                <tr>
-                    <td>F</td>
-                    <td><input type="text" class="truth-answer"></td>
-                    <td>T</td>
-                    <td><input type="text" class="truth-answer"></td>
-                </tr>
-            </table>
+            // Row 2: T, [Input: F], T, T
+            ['T', 'answer:F', 'T', 'T'],
 
+            // Row 3: [Input: F], T, [Input: F], F
+            ['answer:F', 'T', 'answer:F', 'F'],
 
-        '
+            // Row 4: F, [Input: F], T, [Input: T]
+            ['F', 'answer:F', 'T', 'answer:T'],
+        ]
     ]
-            ]);
+]);
 
 // Practice 2 – Three Variables Truth Table
 $pq2 = PracticeQuestion::create([

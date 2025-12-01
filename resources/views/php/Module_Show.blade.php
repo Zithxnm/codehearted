@@ -141,24 +141,38 @@
 
                                         {{-- 4. MATCHING TYPE --}}
                                     @elseif($question->type === 'matching')
-                                        <table class="match-table">
-                                            @foreach($question->details['pairs'] as $pair)
-                                                <tr>
-                                                    <td style="width: 45%; padding: 8px; border: 1px solid #ddd;">{{ $pair['left'] }}</td>
-                                                    <td style="width: 10%; text-align: center;">&rarr;</td>
-                                                    <td style="width: 45%;">
-                                                        <input type="text" class="answer-input wide" placeholder="Match..." readonly>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </table>
-                                        <div class="answer-reveal" style="display: none; margin-top: 10px; color: #124559; background: #e0f2f1; padding: 15px; border-radius: 8px;">
-                                            <strong>Matches:</strong>
-                                            <ul style="margin-top: 5px; padding-left: 20px;">
+                                        <div class="lesson-section">
+
+                                            <table class="match-table">
+                                                @php
+                                                    $options = collect($question->details['pairs'])->pluck('right')->shuffle();
+                                                @endphp
+
                                                 @foreach($question->details['pairs'] as $pair)
-                                                    <li>{{ $pair['left'] }} = <strong>{{ $pair['right'] }}</strong></li>
+                                                    <tr class="match-row">
+                                                        <td style="width: 40%; font-weight: bold; color: #124559;">
+                                                            {{ $pair['left'] }}
+                                                        </td>
+
+                                                        <td style="width: 10%; text-align: center; color: #aaa;">&rarr;</td>
+
+                                                        <td style="width: 50%;">
+                                                            <select class="answer-input wide match-select"
+                                                                    data-correct="{{ $pair['right'] }}"
+                                                                    style="padding: 8px; border-radius: 6px; width: 100%;">
+
+                                                                <option value="" selected disabled>Select definition...</option>
+
+                                                                @foreach($options as $option)
+                                                                    <option value="{{ $option }}">{{ $option }}</option>
+                                                                @endforeach
+                                                            </select>
+
+                                                            <span class="feedback-icon" style="display:none; margin-left: 10px; font-size: 1.2rem;"></span>
+                                                        </td>
+                                                    </tr>
                                                 @endforeach
-                                            </ul>
+                                            </table>
                                         </div>
 
                                         {{-- 5. TABLE MAKING --}}
@@ -195,8 +209,48 @@
                                     @elseif(in_array($question->type, ['essay', 'code_writing']))
                                         <textarea class="answer-area" placeholder="Write your code or explanation here..."></textarea>
                                         <div class="answer-reveal" style="display: none; margin-top: 10px; color: #124559; background: #e0f2f1; padding: 15px; border-radius: 8px;">
-                                            <strong>Answer:</strong>
+                                            <strong>Model Answer:</strong>
                                             <pre style="background: #fff; padding: 10px; border-radius: 5px; margin-top: 5px;">{{ $question->details['model_answer'] ?? '' }}</pre>
+                                        </div>
+
+                                        {{-- 7. TRUTH --}}
+                                    @elseif($question->type === 'truth_table')
+                                        <div class="table-responsive" style="overflow-x: auto;">
+                                            <table style="width: 100%; max-width: 400px; border-collapse: collapse; text-align: center; margin: 0 auto;">
+                                                <thead>
+                                                <tr>
+                                                    @foreach($question->details['headers'] as $header)
+                                                        <th style="border: 1px solid #ccc; padding: 8px; background: #f0f9ff;">
+                                                            {!! $header !!}
+                                                        </th>
+                                                    @endforeach
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($question->details['rows'] as $row)
+                                                    <tr>
+                                                        @foreach($row as $cell)
+                                                            <td style="border: 1px solid #ccc; padding: 8px;">
+                                                                @if(str_starts_with($cell, 'answer:'))
+                                                                    <input type="text"
+                                                                           class="truth-answer table-input"
+                                                                           data-correct="{{ substr($cell, 7) }}"
+                                                                           maxlength="1"
+                                                                           style="text-transform: uppercase;">
+                                                                @else
+                                                                    {{ $cell }}
+                                                                @endif
+                                                            </td>
+                                                        @endforeach
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="answer-reveal" style="display: none; margin-top: 10px; text-align: center; color: #124559; background: #e0f2f1; padding: 10px; border-radius: 8px;">
+                                            <strong>Solution:</strong><br>
+                                            Check the rows above. Correct values are highlighted.
                                         </div>
 
                                     @endif
@@ -231,10 +285,57 @@
             el.querySelector('.correct-badge').style.display = 'inline';
         });
 
-        // Fill in Table Inputs
-        // (Optional: You can make this fill in the correct values if stored in details)
 
         document.querySelector('button[onclick="revealAnswers()"]').style.display = 'none';
+        document.getElementById('retryBtn').style.display = 'inline-block';
+
+        document.querySelectorAll('.table-input, .truth-answer').forEach(input => {
+            const correctAnswer = input.getAttribute('data-correct');
+            const userAnswer = input.value.trim().toUpperCase();
+
+            // Reset styles
+            input.style.backgroundColor = '';
+            input.style.borderColor = '#ccc';
+
+            if (userAnswer === correctAnswer) {
+                input.style.backgroundColor = '#d1e7dd'; // Green bg
+                input.style.borderColor = '#198754';
+            } else {
+                input.style.backgroundColor = '#f8d7da'; // Red bg
+                input.style.borderColor = '#dc3545';
+            }
+        });
+
+        // Check matching type
+        document.querySelectorAll('.match-row').forEach(row => {
+            const select = row.querySelector('select');
+            const feedback = row.querySelector('.feedback-icon');
+
+            // Get values
+            const correctAnswer = select.getAttribute('data-correct');
+            const userAnswer = select.value;
+
+            // Reset Styles
+            select.style.borderColor = '#ccc';
+            select.style.backgroundColor = '';
+            feedback.style.display = 'none';
+
+            // Only check if they selected something
+            if (userAnswer && userAnswer !== "") {
+                if (userAnswer === correctAnswer) {
+                    select.style.borderColor = '#198754';
+                    select.style.backgroundColor = '#d1e7dd';
+                    feedback.style.color = '#198754';
+                    feedback.style.display = 'inline';
+                } else {
+                    select.style.borderColor = '#dc3545';
+                    select.style.backgroundColor = '#f8d7da';
+                    feedback.style.color = '#dc3545';
+                    feedback.style.display = 'inline';
+                }
+            }
+        });
+
         document.getElementById('retryBtn').style.display = 'inline-block';
     }
 
@@ -251,6 +352,18 @@
 
         document.querySelector('button[onclick="revealAnswers()"]').style.display = 'inline-block';
         document.getElementById('retryBtn').style.display = 'none';
+
+        document.querySelectorAll('.truth-answer').forEach(i => {
+            i.value = '';
+            i.style.backgroundColor = '';
+            i.style.borderColor = '#ccc';
+        });
+
+        document.querySelectorAll('.match-select').forEach(select => {
+            select.value = "";
+            select.style.borderColor = '#ccc';
+            select.style.backgroundColor = '';
+        });
     }
 </script>
 </body>
