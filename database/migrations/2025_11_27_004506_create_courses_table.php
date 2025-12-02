@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('image_path')->nullable();
+            $table->string('icon_path')->nullable();
             $table->json('objectives')->nullable();
             $table->timestamps();
         });

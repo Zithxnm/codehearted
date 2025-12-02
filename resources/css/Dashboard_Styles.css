@@ -245,21 +245,19 @@ body {
 }
 
 .right-panel h1 {
-    font-size: 30px;
+    font-size: 24px;
     color: #ffffff;
-    text-align: left;
+    margin-bottom: 5px;
+    margin-top: 20px;
 }
 
 .right-panel a {
     font-family: Glacial;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #f97316;
-    text-align: right;
-}
-
-.right-panel img.achievement-badge {
-    width: 150px;
-    height: auto;
+    text-decoration: none;
+    align-self: flex-end;
+    margin-bottom: 15px;
 }
 
 .achievement-card {
@@ -267,19 +265,25 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 20px 20px 30px;
+    padding: 20px;
     border: 2px solid white;
     border-radius: 15px;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
+}
+
+.achievement-badge {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
 }
 
 .achievements {
-    padding: 0 10px;
-    margin-top: 15px;
     font-family: Glacial;
     font-size: 1rem;
     color: #ffffff;
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .view-catalog {
@@ -287,6 +291,8 @@ body {
     --bg-color: #ef8a34;
     padding: 5px 20px;
     margin-top: 30px;
+    margin-bottom: 20px;
+    margin-right: 80%;
     border: 0;
     background-color: var(--bg-color);
     box-shadow:
@@ -341,10 +347,31 @@ body {
 .course-card {
     display: flex;
     align-items: center;
-    margin: 2rem 50% 0.5rem 1.8rem;
+    margin: 0.3rem 50% 0.5rem 1.8rem;
     padding: 0.8rem;
     border: 2px solid #71351a;
     border-radius: 15px;
+    transition: transform 0.2s ease;
+    /*height: 100%;*/
+}
+
+.course-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.course-card-link {
+    text-decoration: none;
+    margin: 0.3rem 5% 0.5rem 1.8rem;
+    color: inherit;
+    display: block;
+}
+
+.course-card-link:hover .course-card {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #ef8a34;
+    cursor: pointer;
 }
 
 .course-image {
@@ -397,10 +424,37 @@ body {
         align-items: center;
     }
 
+    .achievement-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+        border: 2px solid white;
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 30px;
+    }
+
+    .achievement-badge {
+        width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .achievements {
+        font-family: Glacial;
+        font-size: 1rem;
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
     .right-panel .view-catalog {
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
+
 
     .course-card {
         margin-right: 1.8rem;

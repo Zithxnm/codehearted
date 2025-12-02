@@ -25,6 +25,7 @@ class FundCompSeeder extends Seeder
                               It emphasizes problem-solving, logical thinking, and the role of computing in everyday life, helping learners understand not just how to use technology,
                               but how it fundamentally shapes the modern world.',
             'image_path' => 'imgs/Catalog_Computing.jpg',
+            'icon_path' => 'imgs/Icon_Computing.png',
             'objectives' => [
                 'Define programming and explain what programmers do.',
                 'Understand key programming terminology.',

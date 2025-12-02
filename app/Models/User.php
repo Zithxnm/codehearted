@@ -77,6 +77,11 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_enrollments', 'user_id', 'course_id')
+            ->withTimestamps();
+    }
 
     public function dashboardLogs()
     {

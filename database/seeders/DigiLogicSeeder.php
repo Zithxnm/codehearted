@@ -24,6 +24,7 @@ class DigiLogicSeeder extends Seeder
                               this course helps non-STEM students see how limits and derivatives connect to real-life situations.
                               It`s designed to build intuition, not just memorize formulas or mechanical applications for both.',
             'image_path' => 'imgs/Catalog_Logic.jpg',
+            'icon_path' => 'imgs/Icon_Logic.png',
             'objectives' => [
                 'Define programming and explain what programmers do.',
                 'Understand key programming terminology.',
