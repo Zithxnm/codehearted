@@ -30,6 +30,7 @@ class ProgFundSeeder extends Seeder
                             this course helps non-STEM students see how limits and derivatives connect to real-life situations.
                             Its designed to build intuition, not just memorize formulas or mechanical applications for both.',
             'image_path' => 'imgs/Catalog_Programming.jpg',
+            'icon_path' => 'imgs/Icon_Programming.png',
             'objectives' => [
                 'Understand core programming concepts including variables, functions, loops, and data structures.',
                 'Learn how to break problems into smaller parts and design algorithms.',

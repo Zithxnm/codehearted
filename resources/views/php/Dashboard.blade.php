@@ -47,31 +47,89 @@ ast.">
 
     <div class="hero">
         <div class="left-panel">
-            <h1>My Learning</h1>
-            <p>Get college-ready by exploring our courses. Tale the first step today toward building the skills for your dream career.</p>
-            <a href="{{ route('courses.index') }}"><button class="view-catalog"><b>View Catalog</b></button></a>
-            <div class="course-card">
-                <img src="{{ asset('imgs/Icon_Computing.png') }}" alt="Course Image" class="course-image">
-                <div class="course-details">
-                    <h2 class="course-title">Fundamentals of Computing</h2>
-                    <p class="course-description">Lesson 2: Lesson Title</p>
+            <div class="welcome-section">
+                <h1>Welcome back, {{ $user->name }}!</h1>
+                <p>Get college-ready by exploring our courses. Take the first step today toward building the skills for your dream career.</p>
+
+                <a href="{{ route('courses.index') }}">
+                    <button class="view-catalog"><b>View Catalog</b></button>
+                </a>
+            </div>
+            @if($recentCourses->isEmpty())
+                        <p class="course-description">You haven't started any courses yet.</p>
+            @else
+            @foreach($recentCourses as $course)
+                <a href="{{ route('courses.show', $course->id) }}" class="course-card-link">
+                <div class="course-card">
+                    <img src="{{ asset($course->icon_path) }}" alt="{{ $course->title }}" class="course-image">
+
+                    <div class="course-details">
+                        <h2 class="course-title">{{ $course->title }}</h2>
+                        {{-- Logic: Find the first module that is NOT complete --}}
+                        @php
+                            $nextModule = $course->modules->first(function($mod) use ($user) {
+                                return ! $user->hasCompletedModule($mod->id);
+                            });
+                        @endphp
+
+                        <p class="course-description">
+                            @if($nextModule)
+                                <strong>Next Up:</strong> {{ $nextModule->title }}
+                            @else
+                                <strong>Status:</strong> Course Completed! 🎉
+                            @endif
+                        </p>
+
+
+                    </div>
                 </div>
+                </a>
+            @endforeach
+            @endif
+        </div>
+
+        <div class="right-panel">
+            <h1>Achievements</h1>
+            <a href="{{ route('profile') }}">Show All</a>
+
+            <div class="achievement-card">
+                @if($completedCourses->isNotEmpty())
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 10px; padding: 10px; width: 100%;">
+                        @foreach($completedCourses as $course)
+                            <div class="badge-item" style="text-align: center;" title="{{ $course->title }}">
+                                <img src="{{ asset('imgs/5.png') }}" alt="Badge"
+                                     style="width: 50px; height: 50px; display: block; margin: 0 auto;">
+
+                                <span style="font-size: 0.7rem; color: #124559; font-weight: bold; display: block; margin-top: 5px; line-height: 1.1;">
+                            {{ Str::limit($course->title, 5, '..') }}
+                        </span>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <p class="achievements" style="margin-top: 10px;">
+                        You have earned <strong>{{ $completedCourses->count() }}</strong> badge(s)!
+                    </p>
+                @else
+                    <div style="text-align: center; padding: 20px;">
+                        <img src="{{ asset('imgs/5.png') }}" alt="Locked Badge"
+                             style="width: 60px; height: 60px; filter: grayscale(100%); opacity: 0.5; margin-bottom: 10px;">
+                        <p class="achievements">Complete a course to earn your first badge!</p>
+                    </div>
+                @endif
+            </div>
+            <h1>Stats</h1>
+            <a href="{{ route('profile') }}">Show All</a>
+
+            <div style="background: rgba(255,255,255,0.5); padding: 15px; border-radius: 10px; margin-top: 10px;">
+                <p style="color: #71351a; margin-bottom: 5px;"><strong>Daily Streak:</strong> {{ $stats->Daily_Streak ?? 0 }} Days 🔥</p>
+                <p style="color: #71351a;"><strong>Quizzes Taken:</strong> {{ $stats->Quizzes ?? 0 }}</p>
             </div>
         </div>
-        <div class="right-panel">
-            <h1>Achievemets</h1>
-            <a href="{{ route('profile') }}">Show All</a>
-            <div class="achievement-card">
-                <img src="{{ asset('imgs/5.png') }}" alt="Achievement Badge" class="achievement-badge">
-                <p class="achievements">You currently don't have any badges or certificates available to show</p>
-                <a href="{{ route('courses.index') }}"><button class="view-catalog"><b>View Catalog</b></button></a>
-            </div>
-            <h1>Assignments</h1>
-            <a href="{{ route('profile') }}">Show All</a>
+
         </div>
     </div>
 
-    <?php $jsVersion = file_exists(__DIR__ . '/../js/Dashboard_Scripts.js') ? filemtime(__DIR__ . '/../js/Dashboard_Scripts.js') : time(); ?>
     @vite('resources/js/Dashboard_Scripts.js')
 
 </body>

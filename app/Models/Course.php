@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $fillable = [
-                            'title',
-                            'description',
-                            'image_path',
-                            'objectives',
-
+        'title',
+        'description',
+        'image_path',
+        'icon_path',
+        'objectives',
         ];
 
     protected $casts = [

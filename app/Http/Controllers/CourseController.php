@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseEnrollment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -19,6 +21,14 @@ class CourseController extends Controller
         $course = Course::with(['modules' => function($q) {
             $q->orderBy('order');
         }])->findOrFail($id);
+
+        if (Auth::check()) {
+            // firstOrCreate prevents duplicate enrollments
+            CourseEnrollment::firstOrCreate([
+                'user_id' => Auth::id(),
+                'course_id' => $course->id
+            ]);
+        }
 
         // 2. Determine the correct CSS/JS file based on course title/ID
         // (This keeps your existing separate files working)

@@ -24,6 +24,7 @@ class DiffCalSeeder extends Seeder
                               Students will learn to handle derivatives, limits, and functions with applications
                               in motion, optimization, and modeling of real-world phenomena.',
             'image_path' => 'imgs/Catalog_Calculus.jpg', //Path to the course image
+            'icon_path' => 'imgs/Icon_Calculus.png',
             'objectives' => [   // Objectives to be displayed when the course is clicked on
                 'Apply the Constant Rule, Power Rule, Constant Multiple Rule, and Sum/Difference Rule for differentiation.',
                 'Find the derivative of functions involving polynomials, radicals, and negative exponents.',
