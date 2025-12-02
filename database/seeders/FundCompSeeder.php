@@ -24,8 +24,8 @@ class FundCompSeeder extends Seeder
             'description' => 'Fundamentals of Computing introduces students to the essential concepts of how computers work and interact with information.
                               It emphasizes problem-solving, logical thinking, and the role of computing in everyday life, helping learners understand not just how to use technology,
                               but how it fundamentally shapes the modern world.',
-            'image_path' => 'imgs/Catalog_Programming.jpg',
-            'objectuves' => [
+            'image_path' => 'imgs/Catalog_Computing.jpg',
+            'objectives' => [
                 'Define programming and explain what programmers do.',
                 'Understand key programming terminology.',
                 'Know what Python is and why it’s good for beginners.',

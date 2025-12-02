@@ -5,40 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $module->title }} | CodeHearted</title>
     @vite([$cssPath])
-    <style>
-        /*toast css*/
-        #toast-container {
-            position: fixed;
-            bottom: 90%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-        }
-
-        .toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 8px;
-            padding: 16px;
-            font-size: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            opacity: 0;
-            transition: opacity 0.3s, bottom 0.3s;
-        }
-
-        .toast.show {
-            visibility: visible;
-            opacity: 1;
-            bottom: 30px;
-        }
-
-        .toast.error { background-color: #dc3545; } /* Red for errors */
-        .toast.success { background-color: #198754; } /* Green for success */
-        .toast.warning { background-color: #ffc107; color: #333; } /* Yellow for warnings */
-    </style>
+    @vite('resources/css/Module_Show_Toast_Styles.css')
 </head>
 
 <body>

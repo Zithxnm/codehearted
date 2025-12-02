@@ -23,7 +23,7 @@ class DigiLogicSeeder extends Seeder
             'description' => 'Digital Logic is all about learning how change works. Instead of diving deep into technical math,
                               this course helps non-STEM students see how limits and derivatives connect to real-life situations.
                               It`s designed to build intuition, not just memorize formulas or mechanical applications for both.',
-            'image_path' => 'imgs/Catalog_Programming.jpg',
+            'image_path' => 'imgs/Catalog_Logic.jpg',
             'objectives' => [
                 'Define programming and explain what programmers do.',
                 'Understand key programming terminology.',
