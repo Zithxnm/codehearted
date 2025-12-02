@@ -11,6 +11,7 @@ export default defineConfig({
                     'resources/css/app.css',
                     'resources/js/app.js',
 
+
                     'resources/css/About_Styles.css',
                     'resources/css/Admin_Styles.css',
                     'resources/css/CompFund_Styles.css',
@@ -21,6 +22,7 @@ export default defineConfig({
                     'resources/css/Landing_Styles.css',
                     'resources/css/Login_Signup_Styles.css',
                     'resources/css/Login_Styles.css',
+                    'resources/css/Module_Show_Toast_Styles.css',
                     'resources/css/Profile_Styles.css',
                     'resources/css/ProgFund_Styles.css',
                     'resources/css/Register_Styles.css',

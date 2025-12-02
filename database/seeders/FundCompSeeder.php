@@ -16,15 +16,22 @@ use PhpParser\Node\Expr\AssignOp\Mod;
 
 class FundCompSeeder extends Seeder
 {
-  
+
     public function run(): void
     {
         $course = Course::create([
             'title' => 'Fundamentals of Computing',
-            'description' => 'Fundamentals of Computing introduces students to the essential concepts of how computers work and interact with information. 
-                              It emphasizes problem-solving, logical thinking, and the role of computing in everyday life, helping learners understand not just how to use technology, 
+            'description' => 'Fundamentals of Computing introduces students to the essential concepts of how computers work and interact with information.
+                              It emphasizes problem-solving, logical thinking, and the role of computing in everyday life, helping learners understand not just how to use technology,
                               but how it fundamentally shapes the modern world.',
-            'image_path' => 'imgs/Catalog_Programming.jpg',
+            'image_path' => 'imgs/Catalog_Computing.jpg',
+            'objectives' => [
+                'Define programming and explain what programmers do.',
+                'Understand key programming terminology.',
+                'Know what Python is and why it’s good for beginners.',
+                'Create your first program.',
+                'Apply learning strategies that make programming easier.'
+            ]
         ]);
 
         $mod1 = Module::create([
@@ -365,7 +372,7 @@ class FundCompSeeder extends Seeder
             'title' => 'Module 2: Hardware Assembly',
             'order' => 2,
         ]);
-    // Module 2 Review    
+    // Module 2 Review
         Review::create([
     'module_id' => $mod2->id,
     'title' => 'Lesson 2: Hardware Assembly',
@@ -637,7 +644,7 @@ class FundCompSeeder extends Seeder
             'module_id' => $mod2->id,
             'title' => "Quiz for $mod2->title",
              ]);
-        
+
             $q6 = Question::create([
                 'quiz_id' => $quiz2->id,
                 'question_text' => 'Which part is the “brain” of the computer?',
@@ -1730,7 +1737,7 @@ class FundCompSeeder extends Seeder
                 QuizOption::create(['question_id' => $q25->id, 'option_text' => 'Pirated', 'is_correct' => false]);
                 QuizOption::create(['question_id' => $q25->id, 'option_text' => 'Trial with no expiration', 'is_correct' => false]);
 
-    
+
     }
 }
 

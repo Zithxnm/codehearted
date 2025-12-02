@@ -24,7 +24,6 @@ class ProgFundSeeder extends Seeder
 {
     public function run(): void
     {
-        // di nagpapakita pag php artisan migrate:fresh lang siya, pero nag shshow pag php artisan migrate:fresh --seed
         $course = Course::create([
             'title' => 'Programming Fundamentals',
             'description' => 'Programming Fundamentals is all about learning how change works. Instead of diving deep into technical math,
@@ -38,7 +37,6 @@ class ProgFundSeeder extends Seeder
             ]
         ]);
 
-        // modules 1 lang nag shoshow sa lesson details
         $mod1 = Module::create([
             'course_id' => $course->id,
             'title' => 'Module 1: Introduction to Programming & Basic Terminology',
@@ -741,7 +739,6 @@ class ProgFundSeeder extends Seeder
             'content' => '<p>Practice Questions</p>',
         ]);
 
-        // may errors sa module_show nag dagdag lang ako ng few extra codes, i assume na di pa fully running ang matching kaya im leaving it here na, nagshoshow naman so ig oks na.
         $pq1 = PracticeQuestion::create([
             'practice_id' => $prac1->id,
             'question_text' => "Match the term with its definition.",
