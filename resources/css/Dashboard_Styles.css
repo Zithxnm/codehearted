@@ -220,11 +220,10 @@ body {
 
 .right-panel {
     display: flex;
-    flex-basis: 25%;
     flex-direction: row;
+    flex-basis: 25%;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
     background-color: rgba(221, 180, 83, 0.5);
     font-family: Retro;
 }
@@ -247,8 +246,7 @@ body {
 .right-panel h1 {
     font-size: 24px;
     color: #ffffff;
-    margin-bottom: 5px;
-    margin-top: 20px;
+    /*margin-top: 10rem;*/
 }
 
 .right-panel a {
@@ -256,8 +254,7 @@ body {
     font-size: 0.9rem;
     color: #f97316;
     text-decoration: none;
-    align-self: flex-end;
-    margin-bottom: 15px;
+    padding-top: 15px;
 }
 
 .achievement-card {
@@ -265,11 +262,10 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 20px;
     border: 2px solid white;
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.2);
-    margin-bottom: 30px;
+    margin: 0 5px 20px;
 }
 
 .achievement-badge {
@@ -436,11 +432,6 @@ body {
         margin-bottom: 30px;
     }
 
-    .achievement-badge {
-        width: 100px;
-        height: auto;
-        margin-bottom: 10px;
-    }
 
     .achievements {
         font-family: Glacial;
@@ -463,4 +454,27 @@ body {
     .left-panel a {
         margin-left: 1.8rem;
     }
+}
+
+.stat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    border: 2px solid white;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 100%;
+    padding: 10px;
+    margin: 0 5px 15rem;
+}
+
+.stat-container p {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.fa-solid {
+    font-size: 25px;
 }
