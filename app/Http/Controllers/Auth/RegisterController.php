@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\AuditLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,12 @@ class RegisterController extends Controller
         ]);
 
         Auth::login($user);
+
+        // Adds to auditlog
+        AuditLog::create([
+            'Admin_ID' => Auth::id(),
+            'Action' => 'Account Created',
+        ]);
 
         return redirect('/dashboard');
     }

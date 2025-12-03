@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\AuditLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -27,6 +28,11 @@ class LoginController extends Controller
         if (Auth::attempt($validatedData)){
             $request->session()->regenerate();
 
+            AuditLog::create([
+                'Admin_ID' => Auth::id(),
+                'Action' => 'Logged In',
+            ]);
+
             return redirect()->route('dashboard');
         }
 
@@ -38,6 +44,10 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        AuditLog::create([
+            'Admin_ID' => Auth::id(),
+            'Action' => 'Logged Out',
+        ]);
         Auth::logout();
 
         $request->session()->invalidate();

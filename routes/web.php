@@ -8,6 +8,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('php.Landing_Page');
@@ -28,6 +29,10 @@ Route::middleware('guest')->group(function () {
 
 //Authenticated User Pages
 
+Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.index');
+
 Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -41,10 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/courses', function () {
         return view('php.Courses');
     })->name('courses');
-
-    Route::get('/admin', function () {
-        return view('php.Admin');
-    })->name('admin');
 
     //Course Main Pagess
 

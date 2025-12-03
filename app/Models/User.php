@@ -126,4 +126,9 @@ class User extends Authenticatable
 
         return true; // All modules passed!
     }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }

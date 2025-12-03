@@ -32,6 +32,9 @@ ast.">
                     </div>
                     <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
                         @csrf
+                        @if(Auth::user()->isAdmin())
+                            <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
+                        @endif
                         <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
                         <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
                         <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
