@@ -19,23 +19,25 @@ class AdminController extends Controller
         $totalQuizzes = Quiz::count();
 
         // Count rows in sessions table for "Active Sessions"
-        // (Requires the 'database' session driver, which you have set up)
         $activeSessions = DB::table('sessions')->count();
 
         // Fetch Audit Logs
-        // Get the latest 10 logs, including the Admin's name
         $auditLogs = AuditLog::with('admin')
             ->latest()
             ->take(10)
             ->get();
 
-        // 3. Return View with Data
+        // Fetch for user management
+        $allUsers = User::all();
+
+        // Return View with Data
         return view('php.Admin', compact(
             'totalUsers',
             'totalCourses',
             'totalQuizzes',
             'activeSessions',
-            'auditLogs'
+            'auditLogs',
+            'allUsers',
         ));
     }
 }

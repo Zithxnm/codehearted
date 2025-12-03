@@ -40,8 +40,8 @@
     <div class="hero">
         <aside class="sidebar">
             <div class="admin-profile">
-                <div class="admin-avatar">AD</div>
-                <div class="admin-name">Admin</div>
+                <img class="admin-avatar" src="{{ \Illuminate\Support\Facades\Auth::user()->profile_picture_path }}">
+                <div class="admin-name">{{ \Illuminate\Support\Facades\Auth::user()->name }}</div>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
@@ -52,6 +52,11 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="showAuditLog(event)">
                         Audit Log
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showUsers(event)">
+                        User Management
                     </a>
                 </li>
             </ul>
@@ -107,7 +112,7 @@
                 </div>
             </div>
 
-            <div class="audit-log" id="auditLog">
+            <div class="audit-log hidden" id="auditLog">
                 <h2 class="section-title">Audit Log</h2>
                 <table class="log-table">
                     <thead>
@@ -134,8 +139,77 @@
                     </tbody>
                 </table>
             </div>
+
+{{--            User management--}}
+            <div class="user-management hidden" id="userManagement">
+                <h2 class="section-title">User Management</h2>
+
+                <div class="table-container" style="background: #FFF8DC; border: 3px solid #8B4513; border-radius: 12px; padding: 20px;">
+                    <table class="log-table" style="width: 100%;">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($allUsers as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>
+                            <span style="font-weight: bold; color: {{ $user->role === 'admin' ? '#d97706' : '#124559' }};">
+                                {{ ucfirst($user->role) }}
+                            </span>
+                                </td>
+                                <td>
+                                    <form action="{{ route('admin.users.toggle', $user->id) }}" method="POST" style="display:inline;">
+                                        @csrf @method('PATCH')
+                                        <button type="submit" class="btn-small" style="cursor:pointer; padding: 5px 10px; background: #124559; color: white; border: none; border-radius: 4px;" onclick="return validateAdminAction(event, {{ Auth::id() }}, {{ $user->id }}, 'demote/promote')">
+                                            {{ $user->role === 'admin' ? 'Demote' : 'Promote' }}
+                                        </button>
+                                    </form>
+
+                                    <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" style="display:inline;">
+                                        @csrf @method('DELETE')
+                                        <button type="submit" class="btn-small" style="cursor:pointer; padding: 5px 10px; background: #dc2626; color: white; border: none; border-radius: 4px;" onclick="return validateAdminAction(event, {{ Auth::id() }}, {{ $user->id }}, 'delete')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
+        <div id="toast-container">
+            <div id="toast" class="toast"></div>
+        </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkAndShow = (msg, type) => {
+                if (window.showToast) {
+                    window.showToast(msg, type);
+                } else {
+                    // Fallback if script hasn't loaded yet
+                    setTimeout(() => checkAndShow(msg, type), 100);
+                }
+            };
+
+            @if(session('success'))
+            checkAndShow("{{ session('success') }}", 'success');
+            @endif
+
+            @if(session('error'))
+            checkAndShow("{{ session('error') }}", 'error');
+            @endif
+        });
+    </script>
     @vite('resources/js/Admin_Scripts.js')
 </body>
 </html>

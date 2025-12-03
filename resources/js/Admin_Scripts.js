@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
 function showDashboard(e) {
     e.preventDefault();
     document.getElementById('dashboardContent').classList.remove('hidden');
-    document.getElementById('auditLog').classList.remove('active');
+    document.getElementById('auditLog').classList.add('hidden');
+    document.getElementById('userManagement').classList.add('hidden');
 
     // Update active nav link
     document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
@@ -39,7 +40,8 @@ window.showDashboard = showDashboard;
 function showAuditLog(e) {
     e.preventDefault();
     document.getElementById('dashboardContent').classList.add('hidden');
-    document.getElementById('auditLog').classList.add('active');
+    document.getElementById('auditLog').classList.remove('hidden');
+    document.getElementById('userManagement').classList.add('hidden');
 
     // Update active nav link
     document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
@@ -47,6 +49,18 @@ function showAuditLog(e) {
 }
 
 window.showAuditLog = showAuditLog;
+
+function showUsers(e) {
+    e.preventDefault();
+    document.getElementById('dashboardContent').classList.add('hidden');
+    document.getElementById('auditLog').classList.add('hidden');
+    document.getElementById('userManagement').classList.remove('hidden');
+
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+    e.target.classList.add('active');
+}
+
+window.showUsers = showUsers;
 
 // Draw Line Chart
 function drawLineChart() {
@@ -171,3 +185,39 @@ window.onload = function () {
     drawLineChart();
     drawPieChart();
 };
+
+// Validate Admin Actions
+function validateAdminAction(event, currentUserId, targetUserId, actionType) {
+    // 1. Check if targeting self
+    if (currentUserId === targetUserId) {
+        event.preventDefault(); // STOP the form submission
+        showToast(`You cannot ${actionType} yourself.`, 'error');
+        return false;
+    }
+
+    // 2. Confirm action
+    if (!confirm(`Are you sure you want to ${actionType} this user?`)) {
+        event.preventDefault();
+        return false;
+    }
+
+    // 3. Allow submission
+    return true;
+}
+
+window.validateAdminAction = validateAdminAction;
+
+// Toast Notification Logic
+function showToast(message, type = 'success') {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.className = "toast show " + type;
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
+window.showToast = showToast;
+
