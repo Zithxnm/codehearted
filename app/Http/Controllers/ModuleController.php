@@ -33,7 +33,6 @@ class ModuleController extends Controller
         $practices = $module->practice;
         switch ($section) {
             case 'practice':
-//                $practice = $module->practice;
                 break;
             case 'quiz':
                 $quiz = $module->quiz;

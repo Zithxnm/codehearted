@@ -91,3 +91,27 @@ pre[class*="language-"] {
     background-color: #f9fafb;
     margin-bottom: 15px;
 }
+
+.answer-input {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    padding: 4px;
+    font-size: 1rem;
+    background: transparent;
+    transition: border-color 0.2s ease;
+}
+
+.answer-input.small {
+    width: 40px;
+    text-align: center;
+}
+
+.answer-input.wide {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.answer-input:focus {
+    border-color: #3b82f6;
+}
