@@ -29,10 +29,12 @@ class DatabaseSeeder extends Seeder
             Subject::create(['Subject_name' => $subjectName]);
         }
 
+        // Create the Main Admin
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => '1',
+            'name' => 'Admin',
+            'email' => 'admin@codehearted.com',
+            'role' => 'admin',
+            'password' => bcrypt('1234'),
         ]);
 
         $this->call([
