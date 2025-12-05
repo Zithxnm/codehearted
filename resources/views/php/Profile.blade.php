@@ -51,7 +51,7 @@
     <div class="profile-container">
         @auth
             <img class="profile-picture"
-                 src="{{ asset(Auth::user()->profile_picture_path ?? 'imgs/9.png') }}"
+                 src="{{ asset(Auth::user()->profile_picture_path ?? 'imgs/15.png') }}"
                  alt="Profile Picture"
                  id="profile_picture">
 

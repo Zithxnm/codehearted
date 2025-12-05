@@ -17,9 +17,6 @@ class ProfileController extends Controller
             $lastDate = $stat->last_quiz_date->startOfDay();
             $yesterday = Carbon::yesterday()->startOfDay();
 
-            // Logic: If the last quiz was before yesterday, the streak is broken.
-            // (e.g., Today is Friday. Yesterday was Thursday.
-            // If last quiz was Wednesday or earlier, reset to 0.)
             if ($lastDate->lt($yesterday)) {
                 $stat->Daily_Streak = 0;
                 $stat->save();

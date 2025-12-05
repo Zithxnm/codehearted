@@ -90,8 +90,8 @@
                     <div class="form-bottom-grid">
                         <div class="checkboxes-container">
                             <div class="checkbox-group">
-                                <input type="checkbox" id="terms" name="terms" required>
-                                <label for="terms">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">
                                     Remember me
                                 </label>
                             </div>
