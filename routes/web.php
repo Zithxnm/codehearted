@@ -11,11 +11,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UserController;
 
-Route::get('/', function () {
-    return view('php.Landing_Page');
-})->name('home');
 
 Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('php.Landing_Page');
+    })->name('home');
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('show.login');
     Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('show.register');
     Route::post('/login', [LoginController::class, 'login'])->name('login');
