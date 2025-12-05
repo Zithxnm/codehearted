@@ -32,6 +32,9 @@ ast.">
                     </div>
                     <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
                         @csrf
+                        @if(Auth::user()->isAdmin())
+                            <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
+                        @endif
                         <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
                         <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
                         <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
@@ -121,9 +124,9 @@ ast.">
             <h1>Stats</h1>
             <a href="{{ route('profile') }}">Show All</a>
 
-            <div style="background: rgba(255,255,255,0.5); padding: 15px; border-radius: 10px; margin-top: 10px;">
-                <p style="color: #71351a; margin-bottom: 5px;"><strong>Daily Streak:</strong> {{ $stats->Daily_Streak ?? 0 }} Days 🔥</p>
-                <p style="color: #71351a;"><strong>Quizzes Taken:</strong> {{ $stats->Quizzes ?? 0 }}</p>
+            <div class="stat-container">
+                <p><i class="fa-solid fa-fire"></i> Daily Streak: {{ $stats->Daily_Streak ?? 0 }} Days</p>
+                <p><i class="fa-solid fa-sticky-note"></i> Quizzes Taken: {{ $stats->Quizzes ?? 0 }}</p>
             </div>
         </div>
 

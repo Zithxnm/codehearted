@@ -40,8 +40,8 @@
     <div class="hero">
         <aside class="sidebar">
             <div class="admin-profile">
-                <div class="admin-avatar">AD</div>
-                <div class="admin-name">Admin</div>
+                <img class="admin-avatar" src="{{ \Illuminate\Support\Facades\Auth::user()->profile_picture_path }}">
+                <div class="admin-name">{{ \Illuminate\Support\Facades\Auth::user()->name }}</div>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
@@ -52,6 +52,11 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="showAuditLog(event)">
                         Audit Log
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showUsers(event)">
+                        User Management
                     </a>
                 </li>
             </ul>
@@ -65,24 +70,34 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <h3>{{ $totalUsers }}</h3>
+                            <p>Total Users</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🟢</div>
+                        <div class="stat-info">
+                            <h3>{{ $activeSessions }}</h3>
+                            <p>Active Sessions</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
                         <div class="stat-icon">📚</div>
                         <div class="stat-info">
-                            <h3>4</h3>
+                            <h3>{{ $totalCourses }}</h3>
                             <p>Total Subjects</p>
                         </div>
                     </div>
+
                     <div class="stat-card">
-                        <div class="stat-icon"><i class="fa fa-eye"></i></div>
+                        <div class="stat-icon">📝</div>
                         <div class="stat-info">
-                            <h3>678</h3>
-                            <p>Total Views</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa fa-eye"></i></div>
-                        <div class="stat-info">
-                            <h3>67</h3>
-                            <p>Unique Viewers</p>
+                            <h3>{{ $totalQuizzes }}</h3>
+                            <p>Total Quizzes</p>
                         </div>
                     </div>
                 </div>
@@ -97,53 +112,104 @@
                 </div>
             </div>
 
-            <div class="audit-log" id="auditLog">
+            <div class="audit-log hidden" id="auditLog">
                 <h2 class="section-title">Audit Log</h2>
-                <table class="audit-table">
+                <table class="log-table">
                     <thead>
-                        <tr>
-                            <th>Timestamp</th>
-                            <th>User</th>
-                            <th>Action</th>
-                            <th>Details</th>
-                        </tr>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Timestamp</th>
+                        <th>Action</th>
+                    </tr>
                     </thead>
                     <tbody>
+                    @forelse($auditLogs as $log)
                         <tr>
-                            <td>2025-11-10 14:30:15</td>
-                            <td>john_doe</td>
-                            <td>User Login</td>
-                            <td>Successful login from IP 192.168.1.1</td>
+                            <td>{{ $log->admin->id ?? '0' }}</td>
+                            <td>{{ $log->admin->name ?? '0' }}</td>
+                            <td>{{ $log->updated_at->format('M d, Y h:i A') }}</td>
+                            <td>{{ $log->Action }}</td>
                         </tr>
+                    @empty
                         <tr>
-                            <td>2025-11-10 13:15:42</td>
-                            <td>admin</td>
-                            <td>Subject Created</td>
-                            <td>Created new subject: Algorithms</td>
+                            <td colspan="3" style="text-align: center;">No activity logs found.</td>
                         </tr>
-                        <tr>
-                            <td>2025-11-10 12:45:20</td>
-                            <td>jane_smith</td>
-                            <td>Content Updated</td>
-                            <td>Updated lesson content in Programming Fundamentals</td>
-                        </tr>
-                        <tr>
-                            <td>2025-11-10 11:20:05</td>
-                            <td>new_user_123</td>
-                            <td>User Registration</td>
-                            <td>New user registered successfully</td>
-                        </tr>
-                        <tr>
-                            <td>2025-11-10 10:00:30</td>
-                            <td>admin</td>
-                            <td>Settings Modified</td>
-                            <td>Updated system configuration</td>
-                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>
+
+{{--            User management--}}
+            <div class="user-management hidden" id="userManagement">
+                <h2 class="section-title">User Management</h2>
+
+                <div class="table-container" style="background: #FFF8DC; border: 3px solid #8B4513; border-radius: 12px; padding: 20px;">
+                    <table class="log-table" style="width: 100%;">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($allUsers as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>
+                            <span style="font-weight: bold; color: {{ $user->role === 'admin' ? '#d97706' : '#124559' }};">
+                                {{ ucfirst($user->role) }}
+                            </span>
+                                </td>
+                                <td>
+                                    <form action="{{ route('admin.users.toggle', $user->id) }}" method="POST" style="display:inline;">
+                                        @csrf @method('PATCH')
+                                        <button type="submit" class="btn-small" style="cursor:pointer; padding: 5px 10px; background: #124559; color: white; border: none; border-radius: 4px;" onclick="return validateAdminAction(event, {{ Auth::id() }}, {{ $user->id }}, 'demote/promote')">
+                                            {{ $user->role === 'admin' ? 'Demote' : 'Promote' }}
+                                        </button>
+                                    </form>
+
+                                    <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" style="display:inline;">
+                                        @csrf @method('DELETE')
+                                        <button type="submit" class="btn-small" style="cursor:pointer; padding: 5px 10px; background: #dc2626; color: white; border: none; border-radius: 4px;" onclick="return validateAdminAction(event, {{ Auth::id() }}, {{ $user->id }}, 'delete')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
+        <div id="toast-container">
+            <div id="toast" class="toast"></div>
+        </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkAndShow = (msg, type) => {
+                if (window.showToast) {
+                    window.showToast(msg, type);
+                } else {
+                    // Fallback if script hasn't loaded yet
+                    setTimeout(() => checkAndShow(msg, type), 100);
+                }
+            };
+
+            @if(session('success'))
+            checkAndShow("{{ session('success') }}", 'success');
+            @endif
+
+            @if(session('error'))
+            checkAndShow("{{ session('error') }}", 'error');
+            @endif
+        });
+    </script>
     @vite('resources/js/Admin_Scripts.js')
 </body>
 </html>

@@ -14,14 +14,6 @@ use App\Models\Question;
 use App\Models\QuizOption;
 use PhpParser\Node\Expr\AssignOp\Mod;
 
-
-/* Issues:
-- format ng code questions (gawing parang code style ung text)
-- diko alam san ilalagay ung mga titles like Lesson 1 Practice: II. ...
-- ung styling ng mga review pages neh
-- pede ba edit ung UI ng after mag quiz ung nagshoshow ng score, baka ma flag sa consistency kasi iba style niya with the rest.
-*/
-
 class ProgFundSeeder extends Seeder
 {
     public function run(): void

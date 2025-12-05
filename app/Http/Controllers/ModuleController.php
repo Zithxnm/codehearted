@@ -30,11 +30,9 @@ class ModuleController extends Controller
         // Determine Content
         $content = null;
         $quiz = null;
-        $practice = null;
-
+        $practices = $module->practice;
         switch ($section) {
             case 'practice':
-                $practice = $module->practice;
                 break;
             case 'quiz':
                 $quiz = $module->quiz;
@@ -46,6 +44,6 @@ class ModuleController extends Controller
         }
 
         // Pass $cssPath to the view
-        return view('php.Module_Show', compact('module', 'section', 'content', 'quiz', 'practice', 'cssPath'));
+        return view('php.Module_Show', compact('module', 'section', 'content', 'practices', 'quiz', 'cssPath'));
     }
 }

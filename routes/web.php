@@ -8,6 +8,8 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('php.Landing_Page');
@@ -28,6 +30,17 @@ Route::middleware('guest')->group(function () {
 
 //Authenticated User Pages
 
+Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.index');
+
+Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
+
+    // 1. User Management
+    Route::patch('/users/{id}/role', [UserController::class, 'toggleRole'])->name('users.toggle');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
+});
+
 Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -41,10 +54,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/courses', function () {
         return view('php.Courses');
     })->name('courses');
-
-    Route::get('/admin', function () {
-        return view('php.Admin');
-    })->name('admin');
 
     //Course Main Pagess
 

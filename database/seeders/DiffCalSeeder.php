@@ -24,7 +24,6 @@ class DiffCalSeeder extends Seeder
                               Students will learn to handle derivatives, limits, and functions with applications
                               in motion, optimization, and modeling of real-world phenomena.',
             'image_path' => 'imgs/Catalog_Calculus.jpg', //Path to the course image
-            'icon_path' => 'imgs/Icon_Calculus.png',
             'objectives' => [   // Objectives to be displayed when the course is clicked on
                 'Apply the Constant Rule, Power Rule, Constant Multiple Rule, and Sum/Difference Rule for differentiation.',
                 'Find the derivative of functions involving polynomials, radicals, and negative exponents.',
@@ -118,42 +117,5 @@ class DiffCalSeeder extends Seeder
             'title' => 'Basic Differentiation',
             'order' => 2,
         ]);
-
-        $quiz2 = Quiz::create([
-            'module_id' => $mod2->id,
-            'title' => "Basic Quiz Template for $mod2->title",
-        ]);
-
-        $q1 = Question::create([
-            'quiz_id' => $quiz2->id,
-            'question_text' => 'What is the most important question?',
-            'type' => 'multiple_choice',
-            'points' => 1,
-        ]);
-
-        QuizOption::create([
-            'question_id' => $q1->id,
-            'option_text' => 'What',
-            'is_correct' => false,
-        ]);
-        QuizOption::create([
-            'question_id' => $q1->id,
-            'option_text' => 'Why',
-            'is_correct' => false,
-        ]);
-        QuizOption::create([
-            'question_id' => $q1->id,
-            'option_text' => 'When',
-            'is_correct' => false,
-        ]);
-        QuizOption::create([
-            'question_id' => $q1->id,
-            'option_text' => 'All of the above',
-            'is_correct' => true,
-        ]);
-
-
-
-
     }
 }
