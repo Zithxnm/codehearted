@@ -462,8 +462,96 @@ body {
     }
 }
 
+.thread-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.main-post {
+    background: white;
+    border: 3px solid #5a3100;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 4px 4px 0px rgba(90, 49, 0, 0.1);
+}
+
+.post-title {
+    font-family: Retro;
+    font-size: 2rem;
+    color: #5a3100;
+    margin-bottom: 1rem;
+}
+
+.post-meta {
+    font-family: Glacial;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-content {
+    font-family: Glacial;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #374151;
+    white-space: pre-wrap;
+}
+
+.replies-section {
+    margin-top: 3rem;
+}
+
+.reply-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #ef8a34;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.reply-form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin-top: 2rem;
+    border: 1px solid #e5e7eb;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #5a3100;
+    text-decoration: none;
+    font-family: Glacial;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+.category {
+    background-color: #fff7ed;
+    color: #e95e16;
+    border: 1px solid #fdba74;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Glacial';
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
 .like-btn {
-    border: 1px solid transparent; /* Prevents layout shift on hover */
+    border: 1px solid transparent;
     background: none;
     cursor: pointer;
     font-family: 'Glacial', sans-serif;

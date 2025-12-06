@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php $cssVersion = file_exists(__DIR__ . '/../css/Community_Styles.css') ? filemtime(__DIR__ . '/../css/Community_Styles.css') : time(); ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     @vite('resources/css/Community_Styles.css')
     <title>CodeHearted - Community Forum</title>
 </head>
@@ -54,71 +55,56 @@
         </div>
 
         <!-- Search Bar -->
-        <div class="search-bar">
-            <input type="text" class="search-input" placeholder="Search discussions...">
-            <button class="new-discussion-btn">New Discussion</button>
-        </div>
+        <form action="{{ route('community.index') }}" method="GET" class="search-bar">
+            <input type="text" name="search" class="search-input" placeholder="Search discussions..." value="{{ request('search') }}">
+            <button type="button" onclick="document.getElementById('newPostModal').style.display='block'" class="new-discussion-btn">New Discussion</button>
+        </form>
 
-        <!-- Content Grid -->
         <div class="content-grid">
-            <!-- Discussions Section -->
             <div class="discussions-section">
                 <div class="section-header">
-                    <h2>Recent Discussions</h2>
+                    <h2>{{ request('search') ? 'Search Results' : 'Recent Discussions' }}</h2>
                     <div class="filter-tabs">
-                        <button class="filter-tab active">Latest</button>
-                        <button class="filter-tab">Popular</button>
-                        <button class="filter-tab">Unanswered</button>
+                        <a href="{{ route('community.index') }}" class="filter-tab {{ !request('filter') ? 'active' : '' }}">Latest</a>
+                        <a href="{{ route('community.index', ['filter' => 'popular']) }}" class="filter-tab {{ request('filter') == 'popular' ? 'active' : '' }}">Popular</a>
                     </div>
                 </div>
 
-                <!-- Discussion Cards -->
-                <div class="discussion-card">
-                    <div class="discussion-header">
-                        <div>
-                            <div class="discussion-title">How to approach recursive algorithms?</div>
-                            <div style="color: #6b7280; font-size: 0.875rem;">
-                                By Sarah Chen • 2 hours ago
-                            </div>
-                        </div>
-                        <span class="discussion-badge">Data Structures</span>
-                    </div>
-                    <div class="discussion-meta">
-                        <span class="meta-item">💬 12 replies</span>
-                        <span class="meta-item">👍 24 likes</span>
-                    </div>
-                </div>
+                @foreach($posts as $post)
+                    <div class="discussion-card" onclick="window.location='{{ route('community.show', $post->Community_ID) }}'">
+                        <div class="discussion-header">
+                            <img
+                                src="{{ $post->user->profile_picture_path ? asset($post->user->profile_picture_path) : asset('imgs/15.png') }}"
+                                alt="Profile"
+                                style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px; border: 2px solid #5a3100;"
+                            >
 
-                <div class="discussion-card">
-                    <div class="discussion-header">
-                        <div>
-                            <div class="discussion-title">Best practices for variable naming</div>
-                            <div style="color: #6b7280; font-size: 0.875rem;">
-                                By Mike Johnson • 5 hours ago
+                            <div>
+                                <div class="discussion-title">{{ $post->Title }}</div>
+                                <div style="color: #6b7280; font-size: 0.875rem;">
+                                    By {{ $post->user->name ?? 'Unknown' }} • {{ $post->created_at->diffForHumans() }}
+                                </div>
                             </div>
-                        </div>
-                        <span class="discussion-badge">Programming Fundamentals</span>
-                    </div>
-                    <div class="discussion-meta">
-                        <span class="meta-item">💬 8 replies</span>
-                        <span class="meta-item">👍 15 likes</span>
-                    </div>
-                </div>
 
-                <div class="discussion-card">
-                    <div class="discussion-header">
-                        <div>
-                            <div class="discussion-title">Understanding network protocols - TCP vs UDP</div>
-                            <div style="color: #6b7280; font-size: 0.875rem;">
-                                By Emily Davis • 1 day ago
-                            </div>
+                            <span class="discussion-badge" style="margin-left: auto;">{{ $post->Category }}</span>
                         </div>
-                        <span class="discussion-badge">Networks</span>
+                        <div class="discussion-meta">
+                            <span class="meta-item">💬 {{ $post->replies_count }} replies</span>
+                            <button
+                                class="like-btn"
+                                data-id="{{ $post->Community_ID }}"
+                                style="color: {{ $post->is_liked ? '#e95e16' : '#9ca3af' }};">
+                                <i class="{{ $post->is_liked ? 'fa-solid' : 'fa-regular' }} fa-thumbs-up"></i>
+
+                                <span class="like-text">
+                                <span class="like-count">{{ $post->Likes }}
+                            </button>
+                        </div>
                     </div>
-                    <div class="discussion-meta">
-                        <span class="meta-item">💬 20 replies</span>
-                        <span class="meta-item">👍 35 likes</span>
-                    </div>
+                @endforeach
+
+                <div style="margin-top: 2rem;">
+                    {{ $posts->links() }}
                 </div>
             </div>
 
@@ -129,16 +115,19 @@
                     <div class="card-title">
                         👥 Community Stats
                     </div>
+
                     <div class="stat-item">
-                        <span class="stat-value">2,500+</span>
+                        <span class="stat-value">{{ number_format($totalUsers) }}</span>
                         <span class="stat-label">Active Students</span>
                     </div>
+
                     <div class="stat-item">
-                        <span class="stat-value">850+</span>
+                        <span class="stat-value">{{ number_format($totalDiscussions) }}</span>
                         <span class="stat-label">Discussions</span>
                     </div>
+
                     <div class="stat-item">
-                        <span class="stat-value">12k+</span>
+                        <span class="stat-value">{{ number_format($totalReplies) }}</span>
                         <span class="stat-label">Helpful Answers</span>
                     </div>
                 </div>
@@ -157,10 +146,39 @@
                     </ul>
                 </div>
             </aside>
+
+            <div id="newPostModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2000;">
+                <div style="background:white; width:90%; max-width:500px; margin:100px auto; padding:2rem; border-radius:10px;">
+                    <h2 style="margin-bottom:1rem; font-family:Retro; color:#5a3100;">Start a Discussion</h2>
+                    <form action="{{ route('community.store') }}" method="POST">
+                        @csrf
+                        <div style="margin-bottom:1rem;">
+                            <label style="display:block; margin-bottom:0.5rem;">Title</label>
+                            <input type="text" name="Title" required style="width:100%; padding:0.5rem; border:1px solid #ddd; border-radius:5px;">
+                        </div>
+                        <div style="margin-bottom:1rem;">
+                            <label style="display:block; margin-bottom:0.5rem;">Category</label>
+                            <select name="Category" style="width:100%; padding:0.5rem; border:1px solid #ddd; border-radius:5px;">
+                                <option>General</option>
+                                <option>Programming</option>
+                                <option>Design</option>
+                                <option>Networks</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom:1rem;">
+                            <label style="display:block; margin-bottom:0.5rem;">Content</label>
+                            <textarea name="Content" rows="4" required style="width:100%; padding:0.5rem; border:1px solid #ddd; border-radius:5px;"></textarea>
+                        </div>
+                        <div style="display:flex; justify-content:flex-end; gap:1rem;">
+                            <button type="button" onclick="document.getElementById('newPostModal').style.display='none'" class="new-discussion-btn" ">Cancel</button>
+                            <button type="submit" class="new-discussion-btn">Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
-    <?php $jsVersion = file_exists(__DIR__ . '/../js/Community_Scripts.js') ? filemtime(__DIR__ . '/../js/Community_Scripts.js') : time(); ?>
     @vite('resources/js/Community_Scripts.js')
 </body>
 </html>

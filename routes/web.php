@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CommunityController;
 
 
 Route::middleware('guest')->group(function () {
@@ -71,10 +72,6 @@ Route::middleware('auth')->group(function () {
         ->name('modules.show')
         ->middleware(['auth', 'module.access']);
 
-    Route::get('/community', function () {
-        return view('php.Community');
-    })->name('show.community');
-
     Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit'])
         ->name('quizzes.submit')
         ->middleware('auth');
@@ -84,6 +81,14 @@ Route::middleware('auth')->group(function () {
 
 
 
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/community', [CommunityController::class, 'index'])->name('community.index');
+    Route::post('/community', [CommunityController::class, 'store'])->name('community.store');
+    Route::get('/community/{id}', [CommunityController::class, 'show'])->name('community.show');
+    Route::post('/community/{id}/reply', [CommunityController::class, 'reply'])->name('community.reply');
+    Route::post('/community/{id}/like', [CommunityController::class, 'like'])->name('community.like');
 });
 
 Route::get('/about', function () {
