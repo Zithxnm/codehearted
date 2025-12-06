@@ -35,8 +35,12 @@ ast.">
                         @if(Auth::user()->isAdmin())
                             <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
                         @endif
+<<<<<<< HEAD
                         <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
+=======
+>>>>>>> 2a31622f58bc3724daafc65d84e0535ada9a1a2d
                         <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
+                        <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
                         <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
                         <a href="{{ route('about') }}" class="dropdown-link">About</a>
                         <a href="{{ route('logout') }}" class="dropdown-link"

@@ -14,11 +14,16 @@ use App\Models\Question;
 use App\Models\QuizOption;
 use PhpParser\Node\Expr\AssignOp\Mod;
 
+
+/* Errors:
+-   if using the web.php from the main branch, the profile throws an error when logging in, so i edited it.
+-   courses not updating when finishing quiz
+*/
+
 class ProgFundSeeder extends Seeder
 {
     public function run(): void
     {
-        
         $course = Course::create([
             'title' => 'Programming Fundamentals',
             'description' => 'Programming Fundamentals is all about learning how change works. Instead of diving deep into technical math, 
@@ -135,16 +140,22 @@ class ProgFundSeeder extends Seeder
             'type' => 'matching',
             'details' => [
                 'pairs' => [
-                    ['left' => 'Algorithm', 'right' => '1. An error in code'],
-                    ['left' => 'Bug', 'right' => '2. Step-by-step solution to a problem'],
-                    ['left' => 'Debugging', 'right' => '3. Finding and fixing errors'],
-                    ['left' => 'Syntax', 'right' => '4. Rules for writing code correctly'],
+                    ['left' => 'Algorithm', 'right' => 'Step-by-step solution to a problem'],
+                    ['left' => 'Bug', 'right' => 'An error in code '],
+                    ['left' => 'Debugging', 'right' => 'Finding and fixing errors'],
+                    ['left' => 'Syntax', 'right' => 'Rules for writing code correctly'],
                 ]
             ]
         ]);
 
+        $prac2 = Practice::create([
+            'module_id' => $mod1->id,
+            'title' => 'Lesson 1 Practice: II. Your First Program',
+            'content' => '<p>Write a Program that Displays:</p>',
+        ]);
+
         $pq2 = PracticeQuestion::create([
-            'practice_id' => $prac1->id,
+            'practice_id' => $prac2->id,
             'question_text' => "Your Name:",
             'type' => 'code_writing',
             'details' => [
@@ -153,7 +164,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq3 = PracticeQuestion::create([
-            'practice_id' => $prac1->id,
+            'practice_id' => $prac2->id,
             'question_text' => "Your Favorite Hobby:",
             'type' => 'code_writing',
             'details' => [
@@ -162,30 +173,48 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq4 = PracticeQuestion::create([
-            'practice_id' => $prac1->id,
+            'practice_id' => $prac2->id,
             'question_text' => "Programming Is Fun!",
             'type' => 'code_writing',
             'details' => [
                 'model_answer' => 'print("Programming Is Fun!")',
             ]
         ]);
-        
+
+        $prac3 = Practice::create([
+            'module_id' => $mod1->id,
+            'title' => 'Lesson 1 Practice: III. Code Reading',
+            'content' => '<p>What Will Each Program Output?</p>',
+        ]);
+
         $pq5 = PracticeQuestion::create([
-            'practice_id' => $prac1->id,
-            'question_text' => 'print("Welcome to Coding!")',
+            'practice_id' => $prac3->id,
+            'question_text' => 'What will this code display?',
             'type' => 'trace_output',
             'details' => [
-                'code_snippet' => 'Welcome to Coding!',
+                'code_snippet' => 'print("Welcome to Coding!")',
             ]
         ]);
-        
+
+        PracticeOption::create([
+            'practice_question_id'=> $pq5->id,
+            'option_text' => "Welcome to Coding!",
+            'is_correct' => true,
+        ]);
+
         $pq6 = PracticeQuestion::create([
-            'practice_id' => $prac1->id,
-            'question_text' => 'print("Let`s Learn Together!")',
+            'practice_id' => $prac3->id,
+            'question_text' => 'What will this code display?',
             'type' => 'trace_output',
             'details' => [
-                'code_snippet' => 'Let`s Learn Together!',
+                'code_snippet' => 'print("Let`s Learn Together!")',
             ]
+        ]);
+
+        PracticeOption::create([
+            'practice_question_id'=> $pq6->id,
+            'option_text' => "Let`s Learn Together!",
+            'is_correct' => true,
         ]);
 
         // Lesson 1 Quiz
@@ -228,7 +257,6 @@ class ProgFundSeeder extends Seeder
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q2->id,
             'option_text' => 'Adding bugs to code',
@@ -249,15 +277,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'Running a program',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q3 = Question::create([
             'quiz_id' => $quiz1->id,
             'question_text' => 'What will this code display? print("Learning Python")',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q3->id,
             'option_text' => 'Learning Python',
@@ -278,15 +305,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'Nothing',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q4 = Question::create([
             'quiz_id' => $quiz1->id,
             'question_text' => 'Why is Python good for beginners?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q4->id,
             'option_text' => 'It’s the fastest language',
@@ -307,15 +333,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'It only works on one type of computer',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q5 = Question::create([
             'quiz_id' => $quiz1->id,
             'question_text' => 'Fill in the blank: A ___________ is a complete set of instructions that performs a specific task.',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q5->id,
             'option_text' => 'Bug',
@@ -485,14 +510,14 @@ class ProgFundSeeder extends Seeder
         ]);
 
         // Lesson 2 Practice
-        $prac2 = Practice::create([
+        $prac4 = Practice::create([
             'module_id' => $mod2->id,
             'title' => 'Lesson 2 Practice: I. Variable Creation',
             'content' => '<p>Create Variables for a Student Record</p>',
         ]);
 
         $pq7 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac4->id,
             'question_text' => "First Name: (String)",
             'type' => 'code_writing',
             'details' => [
@@ -501,7 +526,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq8 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac4->id,
             'question_text' => "Last name (String):",
             'type' => 'code_writing',
             'details' => [
@@ -510,7 +535,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq9 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac4->id,
             'question_text' => "Grade level (integer):",
             'type' => 'code_writing',
             'details' => [
@@ -519,7 +544,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq10 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac4->id,
             'question_text' => "GWA (float):",
             'type' => 'code_writing',
             'details' => [
@@ -528,7 +553,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq11 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac4->id,
             'question_text' => "Is enrolled (boolean):",
             'type' => 'code_writing',
             'details' => [
@@ -536,8 +561,14 @@ class ProgFundSeeder extends Seeder
             ]
         ]);
 
+        $prac5 = Practice::create([
+            'module_id' => $mod2->id,
+            'title' => 'Lesson 2 Practice: II. Identifying Data Types',
+            'content' => '<p>What Data Type is Each Literal</p>',
+        ]);
+
         $pq12 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac5->id,
             'question_text' => '42',
             'type' => 'identification',
         ]);
@@ -549,55 +580,61 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq13 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac5->id,
             'question_text' => '“Python”',
             'type' => 'identification',
         ]);
-        
+
         PracticeOption::create([
             'practice_question_id' => $pq13->id,
             'option_text' => 'String',
             'is_correct' => true,
         ]);
-        
+
         $pq14 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac5->id,
             'question_text' => '3.14159',
             'type' => 'identification',
         ]);
-        
+
         PracticeOption::create([
             'practice_question_id' => $pq14->id,
             'option_text' => 'Float',
             'is_correct' => true,
         ]);
-        
+
         $pq15 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac5->id,
             'question_text' => 'False',
             'type' => 'identification',
         ]);
-        
+
         PracticeOption::create([
             'practice_question_id' => $pq15->id,
             'option_text' => 'Boolean',
             'is_correct' => true,
         ]);
-        
+
         $pq16 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac5->id,
             'question_text' => '‘A’',
             'type' => 'identification',
         ]);
-        
+
         PracticeOption::create([
             'practice_question_id' => $pq16->id,
             'option_text' => 'Character',
             'is_correct' => true,
         ]);
 
+        $prac6 = Practice::create([
+            'module_id' => $mod2->id,
+            'title' => 'Lesson 2 Practice: III. Debugging Code',
+            'content' => '<p>Find the bugs in this code:</p>',
+        ]);
+
         $pq17 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac6->id,
             'question_text' => '2student_name = "John"',
             'type' => 'find_bug',
         ]);
@@ -609,7 +646,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq18 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac6->id,
             'question_text' => 'first name = "Alice"',
             'type' => 'find_bug',
         ]);
@@ -621,7 +658,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq19 = PracticeQuestion::create([
-            'practice_id' => $prac2->id,
+            'practice_id' => $prac6->id,
             'question_text' => 'age = "twenty"',
             'type' => 'find_bug',
         ]);
@@ -632,7 +669,140 @@ class ProgFundSeeder extends Seeder
             'is_correct' => true,
         ]);
 
-        // Lesson 2 Quiz
+        //Module 3
+        $mod3 = Module::create([
+            'course_id' => $course->id,
+            'title' => 'Module 3: Input, Output, and User Interaction',
+            'order' => 3,
+        ]);
+
+        // Module 3 Review
+        Review::create([
+            'module_id' => $mod3->id,
+            'title' => 'Lesson 3: Input, Output, and User Interaction',
+            'content' => '<h2>🎯 Learning Objectives</h2>
+                        <p>By the end of this lesson, you will be able to:</p>
+                        <ul>
+                            <li>Define Input and Output (I/O) in programming.</li>
+                            <li>Use the <code>print()</code> and <code>input()</code> functions in Python.</li>
+                            <li>Understand the concept of type conversion (casting).</li>
+                            <li>Apply string concatenation and formatted strings (f-strings).</li>
+                            <li>Recognize key terms related to user interaction and error handling.</li>
+                        </ul>
+
+                        <h2>📘 Learning Materials & Core Lesson</h2>
+
+                        <h3>Input/Output (I/O) Fundamentals</h3>
+                        <p><strong>Input/Output (I/O)</strong> refers to the communication between a program and the outside world. This is fundamental to interactive programming.</p>
+
+                        <ul>
+                            <li><strong>Input:</strong> Data that flows into a program (keyboard, files, sensors, etc.)</li>
+                            <li><strong>Output:</strong> Data that flows out of a program (screen, files, speakers, etc.)</li>
+                        </ul>
+
+                        <p>Python provides two standard channels:</p>
+                        <ul>
+                            <li><strong>Standard Input (stdin):</strong> Default input source, usually the keyboard.</li>
+                            <li><strong>Standard Output (stdout):</strong> Default output destination, usually the screen.</li>
+                        </ul>
+
+                        <h3>The <code>print()</code> Function — Understanding Output</h3>
+                        <p>The <code>print()</code> function is a built-in Python function that sends data to standard output.</p>
+
+                        <div class="code-snippet">
+                            <pre><code>print("Hello, World!")        # Basic output
+            print("Value:", 42)           # Multiple items
+            print("Line 1\nLine 2")       # Newline character
+            print("Text", end=" ")        # Custom ending
+            print("continues on same line")</code></pre>
+                        </div>
+
+                        <h3>Important Terms</h3>
+                        <ul>
+                            <li><strong>Function:</strong> A reusable block of code that performs a specific task.</li>
+                            <li><strong>Argument:</strong> Data passed to a function.</li>
+                            <li><strong>Parameter:</strong> Variable that receives an argument.</li>
+                            <li><strong>Built-in Function:</strong> A function provided by Python (like <code>print()</code> or <code>input()</code>).</li>
+                        </ul>
+
+                        <h3>Professional Programming Terms</h3>
+                        <ul>
+                            <li><strong>User Interface (UI):</strong> How users interact with a program.</li>
+                            <li><strong>User Experience (UX):</strong> How easy and pleasant the program is to use.</li>
+                            <li><strong>Prompt:</strong> Text that asks the user for input.</li>
+                            <li><strong>Validation:</strong> Checking if user input is correct or acceptable.</li>
+                            <li><strong>Exception:</strong> An error that occurs during program execution.</li>
+                            <li><strong>Exception Handling:</strong> Code that deals with errors gracefully.</li>
+                        </ul>
+
+                        <h3>The <code>input()</code> Function — Getting User Data</h3>
+                        <p>The <code>input()</code> function reads data from standard input and always returns a <strong>string</strong>.</p>
+
+                        <div class="code-snippet">
+                            <pre><code>name = input("Enter your name: ")
+            print("Hello, " + name)</code></pre>
+                        </div>
+
+                        <p><strong>Critical Concept:</strong> The <code>input()</code> function <em>always</em> returns text — even if the user types a number!</p>
+
+                        <div class="code-snippet">
+                            <pre><code>age = input("Enter your age: ")
+            print(type(age))   # &lt;class ’str’&gt; — it’s text, not a number!</code></pre>
+                        </div>
+
+                        <h3>Type Conversion (Casting)</h3>
+                        <p>Sometimes you need to convert between data types. This is called <strong>type conversion</strong> or <strong>casting</strong>.</p>
+
+                        <div class="code-snippet">
+                            <pre><code># Converting string to integer
+            age_str = input("Enter your age: ")
+            age_int = int(age_str)
+
+            # Converting string to float
+            price_str = input("Enter price: ")
+            price_float = float(price_str)
+
+            # Converting number to string
+            number = 42
+            number_str = str(number)</code></pre>
+                        </div>
+
+                        <h3>String Concatenation and Formatting</h3>
+                        <p><strong>Concatenation</strong> means joining strings together:</p>
+
+                        <div class="code-snippet">
+                            <pre><code>first_name = "Alice"
+            last_name = "Johnson"
+            full_name = first_name + " " + last_name</code></pre>
+                        </div>
+
+                        <p><strong>f-strings</strong> provide a modern way to format output:</p>
+
+                        <div class="code-snippet">
+                            <pre><code>name = "Bob"
+            age = 25
+            print(f"My name is {name} and I am {age} years old.")</code></pre>
+                        </div>
+
+                        <h3>Error Handling for Input</h3>
+                        <ul>
+                            <li><strong>Branch:</strong> A path of execution in conditional code.</li>
+                            <li><strong>Boolean Expression:</strong> An expression that evaluates to True or False.</li>
+                            <li><strong>Short-circuit Evaluation:</strong> Logical operators stop evaluating once the result is determined.</li>
+                            <li><strong>Truthy/Falsy:</strong> Values that behave like True or False in Boolean contexts.</li>
+                            <li><strong>Code Path:</strong> A possible route through the program.</li>
+                            <li><strong>Edge Case:</strong> Unusual input that might cause unexpected behavior.</li>
+                        </ul>
+
+                        <h2>📚 References</h2>
+                        <ul>
+                            <li>Lutz, M. (2013). <em>Learning Python</em> (5th ed.). O\'Reilly Media.</li>
+                            <li>Matthes, E. (2019). <em>Python Crash Course</em> (2nd ed.). No Starch Press.</li>
+                            <li>PEP 8 – Style Guide for Python Code. Python Software Foundation. https://pep8.org/</li>
+                            <li>Wilson, G., et al. (2014). <em>Best Practices for Scientific Computing.</em> PLoS Biology, 12(1), e1001745.</li>
+                        </ul>',
+        ]);
+
         $quiz2 = Quiz::create([
             'module_id' => $mod2->id,
             'title' => "Quiz for $mod2->title",
@@ -672,7 +842,6 @@ class ProgFundSeeder extends Seeder
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q7->id,
             'option_text' => 'String',
@@ -693,15 +862,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'Float',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q8 = Question::create([
             'quiz_id' => $quiz2->id,
             'question_text' => 'What is "snake_case"?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q8->id,
             'option_text' => 'A type of error',
@@ -722,15 +890,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'A debugging technique',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q9 = Question::create([
             'quiz_id' => $quiz2->id,
             'question_text' => 'What does "dynamically typed" mean?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q9->id,
             'option_text' => 'Variables must declare their type',
@@ -751,15 +918,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'Variables don\'t have types',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q10 = Question::create([
             'quiz_id' => $quiz2->id,
             'question_text' => 'Which of these follows Python naming conventions?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q10->id,
             'option_text' => 'studentName',
@@ -780,15 +946,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => '2student_name',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q11 = Question::create([
             'quiz_id' => $quiz2->id,
             'question_text' => 'What is "garbage collection"?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q11->id,
             'option_text' => 'Deleting old programs',
@@ -810,149 +975,15 @@ class ProgFundSeeder extends Seeder
             'is_correct' => false,
         ]);
 
-        //Module 3
-        $mod3 = Module::create([
-            'course_id' => $course->id,
-            'title' => 'Module 3: Input, Output, and User Interaction',
-            'order' => 3,
-        ]);
-
-        // Module 3 Review
-        Review::create([
-            'module_id' => $mod3->id,
-            'title' => 'Lesson 3: Input, Output, and User Interaction',
-            'content' => '<h2>🎯 Learning Objectives</h2>
-                        <p>By the end of this lesson, you will be able to:</p>
-                        <ul>
-                            <li>Define Input and Output (I/O) in programming.</li>
-                            <li>Use the <code>print()</code> and <code>input()</code> functions in Python.</li>
-                            <li>Understand the concept of type conversion (casting).</li>
-                            <li>Apply string concatenation and formatted strings (f-strings).</li>
-                            <li>Recognize key terms related to user interaction and error handling.</li>
-                        </ul>
-                        
-                        <h2>📘 Learning Materials & Core Lesson</h2>
-                        
-                        <h3>Input/Output (I/O) Fundamentals</h3>
-                        <p><strong>Input/Output (I/O)</strong> refers to the communication between a program and the outside world. This is fundamental to interactive programming.</p>
-                        
-                        <ul>
-                            <li><strong>Input:</strong> Data that flows into a program (keyboard, files, sensors, etc.)</li>
-                            <li><strong>Output:</strong> Data that flows out of a program (screen, files, speakers, etc.)</li>
-                        </ul>
-                        
-                        <p>Python provides two standard channels:</p>
-                        <ul>
-                            <li><strong>Standard Input (stdin):</strong> Default input source, usually the keyboard.</li>
-                            <li><strong>Standard Output (stdout):</strong> Default output destination, usually the screen.</li>
-                        </ul>
-                        
-                        <h3>The <code>print()</code> Function — Understanding Output</h3>
-                        <p>The <code>print()</code> function is a built-in Python function that sends data to standard output.</p>
-                        
-                        <div class="code-snippet">
-                            <pre><code>print("Hello, World!")        # Basic output
-            print("Value:", 42)           # Multiple items
-            print("Line 1\nLine 2")       # Newline character
-            print("Text", end=" ")        # Custom ending
-            print("continues on same line")</code></pre>
-                        </div>
-                        
-                        <h3>Important Terms</h3>
-                        <ul>
-                            <li><strong>Function:</strong> A reusable block of code that performs a specific task.</li>
-                            <li><strong>Argument:</strong> Data passed to a function.</li>
-                            <li><strong>Parameter:</strong> Variable that receives an argument.</li>
-                            <li><strong>Built-in Function:</strong> A function provided by Python (like <code>print()</code> or <code>input()</code>).</li>
-                        </ul>
-                        
-                        <h3>Professional Programming Terms</h3>
-                        <ul>
-                            <li><strong>User Interface (UI):</strong> How users interact with a program.</li>
-                            <li><strong>User Experience (UX):</strong> How easy and pleasant the program is to use.</li>
-                            <li><strong>Prompt:</strong> Text that asks the user for input.</li>
-                            <li><strong>Validation:</strong> Checking if user input is correct or acceptable.</li>
-                            <li><strong>Exception:</strong> An error that occurs during program execution.</li>
-                            <li><strong>Exception Handling:</strong> Code that deals with errors gracefully.</li>
-                        </ul>
-                        
-                        <h3>The <code>input()</code> Function — Getting User Data</h3>
-                        <p>The <code>input()</code> function reads data from standard input and always returns a <strong>string</strong>.</p>
-                        
-                        <div class="code-snippet">
-                            <pre><code>name = input("Enter your name: ")
-            print("Hello, " + name)</code></pre>
-                        </div>
-                        
-                        <p><strong>Critical Concept:</strong> The <code>input()</code> function <em>always</em> returns text — even if the user types a number!</p>
-                        
-                        <div class="code-snippet">
-                            <pre><code>age = input("Enter your age: ")
-            print(type(age))   # &lt;class ’str’&gt; — it’s text, not a number!</code></pre>
-                        </div>
-                        
-                        <h3>Type Conversion (Casting)</h3>
-                        <p>Sometimes you need to convert between data types. This is called <strong>type conversion</strong> or <strong>casting</strong>.</p>
-                        
-                        <div class="code-snippet">
-                            <pre><code># Converting string to integer
-            age_str = input("Enter your age: ")
-            age_int = int(age_str)
-
-            # Converting string to float
-            price_str = input("Enter price: ")
-            price_float = float(price_str)
-
-            # Converting number to string
-            number = 42
-            number_str = str(number)</code></pre>
-                        </div>
-                        
-                        <h3>String Concatenation and Formatting</h3>
-                        <p><strong>Concatenation</strong> means joining strings together:</p>
-                        
-                        <div class="code-snippet">
-                            <pre><code>first_name = "Alice"
-            last_name = "Johnson"
-            full_name = first_name + " " + last_name</code></pre>
-                        </div>
-                        
-                        <p><strong>f-strings</strong> provide a modern way to format output:</p>
-                        
-                        <div class="code-snippet">
-                            <pre><code>name = "Bob"
-            age = 25
-            print(f"My name is {name} and I am {age} years old.")</code></pre>
-                        </div>
-                        
-                        <h3>Error Handling for Input</h3>
-                        <ul>
-                            <li><strong>Branch:</strong> A path of execution in conditional code.</li>
-                            <li><strong>Boolean Expression:</strong> An expression that evaluates to True or False.</li>
-                            <li><strong>Short-circuit Evaluation:</strong> Logical operators stop evaluating once the result is determined.</li>
-                            <li><strong>Truthy/Falsy:</strong> Values that behave like True or False in Boolean contexts.</li>
-                            <li><strong>Code Path:</strong> A possible route through the program.</li>
-                            <li><strong>Edge Case:</strong> Unusual input that might cause unexpected behavior.</li>
-                        </ul>
-                        
-                        <h2>📚 References</h2>
-                        <ul>
-                            <li>Lutz, M. (2013). <em>Learning Python</em> (5th ed.). O\'Reilly Media.</li>
-                            <li>Matthes, E. (2019). <em>Python Crash Course</em> (2nd ed.). No Starch Press.</li>
-                            <li>PEP 8 – Style Guide for Python Code. Python Software Foundation. https://pep8.org/</li>
-                            <li>Wilson, G., et al. (2014). <em>Best Practices for Scientific Computing.</em> PLoS Biology, 12(1), e1001745.</li>
-                        </ul>',
-        ]);
-
         // Lesson 3 Practices
-        $prac3 = Practice::create([
+        $prac7 = Practice::create([
         'module_id' => $mod3->id,
         'title' => 'Lesson 3 Practice: I. Basic Input and Output',
         'content' => '<p>Create a Program That:</p>',
         ]);
 
         $pq20 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac7->id,
             'question_text' => "Asks for the user's first name",
             'type' => 'code_writing',
             'details' => [
@@ -961,7 +992,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq21 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac7->id,
             'question_text' => "Asks for their favorite color",
             'type' => 'code_writing',
             'details' => [
@@ -970,16 +1001,22 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq22 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac7->id,
             'question_text' => "Displays: “Hi, [name]! [color] is a nice color!”",
             'type' => 'code_writing',
             'details' => [
                 'model_answer' => 'print(f"Hi, {name}! {color} is a nice color!.")',
             ]
         ]);
-        
+
+        $prac8 = Practice::create([
+            'module_id' => $mod3->id,
+            'title' => 'Lesson 3 Practice: II. Type Conversion',
+            'content' => '<p>Write a Program That:</p>',
+        ]);
+
         $pq23 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac8->id,
             'question_text' => "Asks for two numbers",
             'type' => 'code_writing',
             'details' => [
@@ -989,7 +1026,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq24 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac8->id,
             'question_text' => "Converts them to integers",
             'type' => 'code_writing',
             'details' => [
@@ -999,7 +1036,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq25 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac8->id,
             'question_text' => "Display their sum",
             'type' => 'code_writing',
             'details' => [
@@ -1008,8 +1045,14 @@ class ProgFundSeeder extends Seeder
             ]
         ]);
 
+        $prac9 = Practice::create([
+            'module_id' => $mod3->id,
+            'title' => 'Lesson 3 Practice: III. String Formatting',
+            'content' => '<p>Create a program that asks for:</p>',
+        ]);
+
         $pq26 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac9->id,
             'question_text' => "Product Name
                                 Price (Integer)
                                 Quantity (Integer)",
@@ -1022,7 +1065,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq27 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac9->id,
             'question_text' => "Then displays: “You want [quantity] [product] at ₱[price] each.",
             'type' => 'code_writing',
             'details' => [
@@ -1030,8 +1073,14 @@ class ProgFundSeeder extends Seeder
             ]
         ]);
 
+        $prac10 = Practice::create([
+            'module_id' => $mod3->id,
+            'title' => 'Lesson 3 Practice: IV. Terminology',
+            'content' => '<p>Explain what each term means in your own words.</p>',
+        ]);
+
         $pq28 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac10->id,
             'question_text' => "Standard Input",
             'type' => 'code_writing',
             'details' => [
@@ -1040,7 +1089,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq29 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac10->id,
             'question_text' => "Type Conversion",
             'type' => 'code_writing',
             'details' => [
@@ -1049,7 +1098,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq30 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac10->id,
             'question_text' => "String Concatenation",
             'type' => 'code_writing',
             'details' => [
@@ -1058,7 +1107,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq31 = PracticeQuestion::create([
-            'practice_id' => $prac3->id,
+            'practice_id' => $prac10->id,
             'question_text' => "Exception Handling",
             'type' => 'code_writing',
             'details' => [
@@ -1066,19 +1115,16 @@ class ProgFundSeeder extends Seeder
             ]
         ]);
 
-        // Lesson 3 Quiz
         $quiz3 = Quiz::create([
             'module_id' => $mod3->id,
             'title' => "Quiz for $mod3->title",
         ]);
-        
         $q12 = Question::create([
             'quiz_id' => $quiz3->id,
             'question_text' => 'What does I/O stand for?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q12->id,
             'option_text' => 'Internet Operations',
@@ -1099,15 +1145,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'Interface Options',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q13 = Question::create([
             'quiz_id' => $quiz3->id,
             'question_text' => 'What data type does input() always return?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q13->id,
             'option_text' => 'Integer',
@@ -1128,15 +1173,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'Boolean',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q14 = Question::create([
             'quiz_id' => $quiz3->id,
             'question_text' => 'What is "type conversion"?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q14->id,
             'option_text' => 'Changing variable names',
@@ -1157,15 +1201,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'Converting files to different formats',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q15 = Question::create([
             'quiz_id' => $quiz3->id,
             'question_text' => 'What will this code display if the user types "25"?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q15->id,
             'option_text' => "<class 'int'>",
@@ -1186,15 +1229,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'age',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q16 = Question::create([
             'quiz_id' => $quiz3->id,
             'question_text' => 'What is string concatenation?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q16->id,
             'option_text' => 'Making strings shorter',
@@ -1215,15 +1257,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'Repeating strings',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q17 = Question::create([
             'quiz_id' => $quiz3->id,
             'question_text' => 'Which is the modern way to format strings in Python?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q17->id,
             'option_text' => '"Hello " + name',
@@ -1244,15 +1285,14 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'print("Hello", name)',
             'is_correct' => false,
         ]);
-        
-        
+
+
         $q18 = Question::create([
             'quiz_id' => $quiz3->id,
             'question_text' => 'What is a "prompt" in programming?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q18->id,
             'option_text' => 'A fast response',
@@ -1294,29 +1334,28 @@ class ProgFundSeeder extends Seeder
                             <li>Recognize common logical errors and how to debug them.</li>
                             <li>Apply nested conditionals and error handling in real-world scenarios.</li>
                         </ul>
-                        
+
                         <h2>📘 Learning Materials & Core Lesson</h2>
-        
+
                         <h3>Control Flow and Conditional Logic</h3>
                         <p><strong>Control flow</strong> refers to the order in which program instructions are executed. Conditional statements allow programs to make decisions and choose different paths based on conditions.</p>
-        
+
                         <h3>The Boolean Data Type — Foundation of Logic</h3>
                         <p>Named after mathematician <strong>George Boole</strong> (1815–1864), Boolean logic uses only two values:</p>
-        
+
                         <ul>
                             <li><strong>True</strong> — equivalent to 1</li>
                             <li><strong>False</strong> — equivalent to 0</li>
                         </ul>
-        
                         <div class="code-snippet">
                             <pre><code>is_sunny = True
         is_raining = False
         print(type(is_sunny))  # &lt;class \'bool\'&gt;</code></pre>
                         </div>
-        
+
                         <h3>Comparison Operators</h3>
                         <p>Comparison (relational) operators compare values and return Boolean results:</p>
-        
+
                         <ul>
                             <li><code>==</code> — Equal to</li>
                             <li><code>!=</code> — Not equal to</li>
@@ -1325,7 +1364,6 @@ class ProgFundSeeder extends Seeder
                             <li><code>&gt;=</code> — Greater than or equal to</li>
                             <li><code>&lt;=</code> — Less than or equal to</li>
                         </ul>
-        
                         <div class="code-snippet">
                             <pre><code>5 == 5      # True
         5 != 3      # True
@@ -1333,31 +1371,28 @@ class ProgFundSeeder extends Seeder
         3 &lt; 7       # True
         5 &gt;= 5      # True</code></pre>
                         </div>
-        
+
                         <h3>Logical Operators</h3>
                         <p>Logical operators combine Boolean values:</p>
-        
+
                         <h4>AND (<code>and</code>)</h4>
                         <p>Both conditions must be True.</p>
                         <div class="code-snippet">
                             <pre><code>True and True   # True
         True and False  # False</code></pre>
                         </div>
-        
                         <h4>OR (<code>or</code>)</h4>
                         <p>At least one condition must be True.</p>
                         <div class="code-snippet">
                             <pre><code>True or False   # True
         False or False  # False</code></pre>
                         </div>
-        
                         <h4>NOT (<code>not</code>)</h4>
                         <p>Reverses the Boolean value.</p>
                         <div class="code-snippet">
                             <pre><code>not True    # False
         not False   # True</code></pre>
                         </div>
-        
                         <h3>The <code>if</code> Statement — Basic Decision Making</h3>
                         <p><strong>Syntax:</strong></p>
                         <div class="code-snippet">
@@ -1366,7 +1401,6 @@ class ProgFundSeeder extends Seeder
             statement1
             statement2</code></pre>
                         </div>
-        
                         <p><strong>Example:</strong></p>
                         <div class="code-snippet">
                             <pre><code>age = int(input("Enter your age: "))
@@ -1374,21 +1408,21 @@ class ProgFundSeeder extends Seeder
             print("You are an adult.")
             print("You can vote.")</code></pre>
                         </div>
-        
+
                         <h3>If–Else Statements — Two-way Decisions</h3>
                         <div class="code-snippet">
                             <pre><code>weather = input("Is it sunny or rainy? ")
-        
+
         if weather == "sunny":
             print("Perfect day for a picnic!")
         else:
             print("Good day to stay inside!")</code></pre>
                         </div>
-        
+
                         <h3><code>elif</code> (Else If) — Multiple Conditions</h3>
                         <div class="code-snippet">
                             <pre><code>grade = int(input("Enter your grade (0–100): "))
-        
+
         if grade &gt;= 90:
             letter = "A"
         elif grade &gt;= 80:
@@ -1399,15 +1433,14 @@ class ProgFundSeeder extends Seeder
             letter = "D"
         else:
             letter = "F"
-        
+
         print(f"Your letter grade is: {letter}")</code></pre>
                         </div>
-        
+
                         <h3>Nested Conditionals</h3>
                         <p>You can place one conditional inside another for more specific logic.</p>
                         <div class="code-snippet">
                             <pre><code>weather = input("What\'s the weather? ")
-        
         if weather == "sunny":
             temperature = int(input("What\'s the temperature? "))
             if temperature &gt; 75:
@@ -1417,34 +1450,31 @@ class ProgFundSeeder extends Seeder
         else:
             print("Maybe stay inside today.")</code></pre>
                         </div>
-        
                         <h3>Common Logical Errors and Debugging</h3>
                         <ul>
                             <li><strong>Assignment vs Comparison:</strong> Using <code>=</code> instead of <code>==</code>.</li>
                         </ul>
-        
+
                         <div class="code-snippet">
                             <pre><code># Wrong
         if age = 18:  # SyntaxError!
-        
+
         # Correct
         if age == 18:</code></pre>
                         </div>
-        
+
                         <ul>
                             <li><strong>String vs Number Comparison:</strong> Remember, <code>input()</code> returns a string.</li>
                         </ul>
-        
+
                         <div class="code-snippet">
                             <pre><code># Wrong
         age = input("Age: ")
         if age &gt; 18:  # Error
-        
         # Correct
         age = int(input("Age: "))
         if age &gt; 18:</code></pre>
                         </div>
-        
                         <h3>Professional Programming Terms</h3>
                         <ul>
                             <li><strong>Branch:</strong> A path of execution in conditional code.</li>
@@ -1454,7 +1484,6 @@ class ProgFundSeeder extends Seeder
                             <li><strong>Code Path:</strong> A possible route through the program.</li>
                             <li><strong>Edge Case:</strong> Unusual input that might cause unexpected behavior.</li>
                         </ul>
-        
                         <h3>Error Handling for Input</h3>
                         <p>Users don’t always enter valid data. Here’s a simple way to prevent errors:</p>
                         <div class="code-snippet">
@@ -1464,7 +1493,6 @@ class ProgFundSeeder extends Seeder
         except ValueError:
             print("Please enter a valid number.")</code></pre>
                         </div>
-        
                         <h2>📚 References</h2>
                         <ul>
                             <li>Lutz, M. (2013). <em>Learning Python</em> (5th ed.). O\'Reilly Media.</li>
@@ -1476,14 +1504,14 @@ class ProgFundSeeder extends Seeder
         ]);
 
         // Lesson 4 Practices
-        $prac4 = Practice::create([
+        $prac11 = Practice::create([
             'module_id' => $mod4->id,
             'title' => 'Lesson 4 Practice: I. I. Basic Conditionals',
             'content' => '<p>Create a Program For:</p>',
         ]);
 
         $pq32 = PracticeQuestion::create([
-            'practice_id' => $prac4->id,
+            'practice_id' => $prac11->id,
             'question_text' => "Write a program that asks for a number and tells the user if it’s positive, negative, or zero.",
             'type' => 'code_writing',
             'details' => [
@@ -1497,8 +1525,14 @@ class ProgFundSeeder extends Seeder
             ]
         ]);
 
+        $prac12 = Practice::create([
+            'module_id' => $mod4->id,
+            'title' => 'Lesson 4 Practice: II. Logical Operators Practice',
+            'content' => '<p>Create a program for a movie theater that checks the following conditions:</p>',
+        ]);
+
         $pq33 = PracticeQuestion::create([
-            'practice_id' => $prac4->id,
+            'practice_id' => $prac12->id,
             'question_text' => "Create a program that checks: age must be 13 or older, and has_ticket must be True. If both are met, print 'Enjoy the movie'. Otherwise, print 'Access denied.'",
             'type' => 'code_writing',
             'details' => [
@@ -1510,9 +1544,15 @@ class ProgFundSeeder extends Seeder
                                         print("Access denied.")',
             ]
         ]);
-        
+
+        $prac13 = Practice::create([
+            'module_id' => $mod4->id,
+            'title' => 'Lesson 4 Practice: III. Multiple Conditions',
+            'content' => '<p>Write a program that determines what to wear based on temperature:</p>',
+        ]);
+
         $pq35 = PracticeQuestion::create([
-            'practice_id' => $prac4->id,
+            'practice_id' => $prac13->id,
             'question_text' => "Write a program that checks the temperature and prints the correct clothing recommendation.",
             'type' => 'code_writing',
             'details' => [
@@ -1527,21 +1567,27 @@ class ProgFundSeeder extends Seeder
                                         print("Bundle up!")',
             ]
         ]);
-        
-        $pq36 = PracticeQuestion::create([
-            'practice_id' => $prac4->id,
-            'question_text' => 'Find and fix the errors in the code below:
-                            temperature = input("Enter temperature: ")
-        
+
+        $prac14 = Practice::create([
+            'module_id' => $mod4->id,
+            'title' => 'Lesson 4 Practice: IV. Debugging Challenge',
+            'content' => '<p>Find and fix the errors in the code below:</p>
+                            <pre><code>temperature = input("Enter temperature: ")
+
                             if temperature = 32:
                                 print("Water freezes")
-                            
+
                             elif temperature >= 100
                                 print("Water boils")
-                            
+
                             else
-                                print("Water is liquid")
-                            Correct the code above and write your fixed version here:',
+                                print("Water is liquid")</code></pre>
+                            <p>Correct the code above and write your fixed version here:</p>',
+        ]);
+
+        $pq36 = PracticeQuestion::create([
+            'practice_id' => $prac14->id,
+            'question_text' => "Fix the errors in the given code and write the corrected version.",
             'type' => 'code_writing',
             'details' => [
                 'model_answer' => 'temperature = int(input("Enter temperature: "))
@@ -1558,14 +1604,12 @@ class ProgFundSeeder extends Seeder
             'module_id' => $mod4->id,
             'title' => "Quiz for $mod4->title",
         ]);
-        
         $q19 = Question::create([
             'quiz_id' => $quiz4->id,
             'question_text' => ' What is control flow?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q19->id,
             'option_text' => 'The speed of program execution',
@@ -1586,14 +1630,12 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'The network connection speed',
             'is_correct' => false,
         ]);
-        
         $q20 = Question::create([
             'quiz_id' => $quiz4->id,
             'question_text' => 'What does the == operator do?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q20->id,
             'option_text' => 'Assigns a value to a variable',
@@ -1614,14 +1656,12 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'Compares which value is larger',
             'is_correct' => false,
         ]);
-        
         $q21 = Question::create([
             'quiz_id' => $quiz4->id,
             'question_text' => 'What will this expression evaluate to: True and False?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q21->id,
             'option_text' => 'True',
@@ -1642,14 +1682,12 @@ class ProgFundSeeder extends Seeder
             'option_text' => '1',
             'is_correct' => false,
         ]);
-        
         $q22 = Question::create([
             'quiz_id' => $quiz4->id,
             'question_text' => 'How many spaces should you use for indentation in Python?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q22->id,
             'option_text' => '2',
@@ -1670,14 +1708,12 @@ class ProgFundSeeder extends Seeder
             'option_text' => '8',
             'is_correct' => false,
         ]);
-        
         $q23 = Question::create([
             'quiz_id' => $quiz4->id,
             'question_text' => 'What is the difference between if and elif?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q23->id,
             'option_text' => 'There is no difference',
@@ -1698,14 +1734,12 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'elif is only used with loops',
             'is_correct' => false,
         ]);
-        
         $q24 = Question::create([
             'quiz_id' => $quiz4->id,
             'question_text' => 'What happens in short-circuit evaluation with False and something?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q24->id,
             'option_text' => 'Both conditions are always checked',
@@ -1726,14 +1760,12 @@ class ProgFundSeeder extends Seeder
             'option_text' => 'The result is always True',
             'is_correct' => false,
         ]);
-        
         $q25 = Question::create([
             'quiz_id' => $quiz4->id,
             'question_text' => 'Which values are “falsy” in Python?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);
-        
         QuizOption::create([
             'question_id' => $q25->id,
             'option_text' => 'Only False',
@@ -1761,7 +1793,6 @@ class ProgFundSeeder extends Seeder
             'title' => 'Module 5: Loops and Iterations',
             'order' => 5,
         ]);
-        
         // Module 5 Review
         Review::create([
             'module_id' => $mod5->id,
@@ -1879,16 +1910,16 @@ class ProgFundSeeder extends Seeder
                             <li>Wilson, G., et al. (2014). <em>Best Practices for Scientific Computing.</em> PLoS Biology, 12(1), e1001745.</li>
                         </ul>',
         ]);
-        
+
         // Lesson 5 Practice
-        $prac5 = Practice::create([
+        $prac15 = Practice::create([
             'module_id' => $mod5->id,
             'title' => 'Lesson 5 Practice: I. Loop Basics',
             'content' => '<p>Create a Program That:</p>',
         ]);
 
         $pq37 = PracticeQuestion::create([
-            'practice_id' => $prac5->id,
+            'practice_id' => $prac15->id,
             'question_text' => "Asks the user for a number:",
             'type' => 'code_writing',
             'details' => [
@@ -1897,7 +1928,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq38 = PracticeQuestion::create([
-            'practice_id' => $prac5->id,
+            'practice_id' => $prac15->id,
             'question_text' => "Prints all numbers from 1 to that number",
             'type' => 'code_writing',
             'details' => [
@@ -1907,7 +1938,7 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq39 = PracticeQuestion::create([
-            'practice_id' => $prac5->id,
+            'practice_id' => $prac15->id,
             'question_text' => "Calculates and displays the sum",
             'type' => 'code_writing',
             'details' => [
@@ -1918,19 +1949,24 @@ class ProgFundSeeder extends Seeder
             ]
         ]);
 
+        $prac16 = Practice::create([
+            'module_id' => $mod5->id,
+            'title' => 'Lesson 5 Practice: II. While Loop',
+            'content' => '<p>Create a Number Guessing Game:</p>',
+        ]);
+
         $pq40 = PracticeQuestion::create([
-            'practice_id' => $prac5->id,
-            'question_text' => "Create a Number Guessing Game:
-                                Computer picks a random number from 1–10",
+            'practice_id' => $prac16->id,
+            'question_text' => "Computer picks a random number from 1–10",
             'type' => 'code_writing',
             'details' => [
                 'model_answer' => 'import random
                                     number_to_guess = random.randint(1, 10)',
             ]
         ]);
-        
+
         $pq41 = PracticeQuestion::create([
-            'practice_id' => $prac5->id,
+            'practice_id' => $prac16->id,
             'question_text' => "User keeps guessing until correct",
             'type' => 'code_writing',
             'details' => [
@@ -1941,8 +1977,8 @@ class ProgFundSeeder extends Seeder
         ]);
 
         $pq42 = PracticeQuestion::create([
-            'practice_id' => $prac5->id,
-            'question_text' => " Display “Too high”, “Too low” or “Correct!”",
+            'practice_id' => $prac16->id,
+            'question_text' => " Display <strong>“Too high”</strong>, <strong>“Too low”</strong>, or <strong>“Correct!”</strong></li>",
             'type' => 'code_writing',
             'details' => [
                 'model_answer' => 'if guess < number_to_guess:
@@ -1951,11 +1987,11 @@ class ProgFundSeeder extends Seeder
                                         print("Too high")
                                     else:
                                         print("Correct!")',
-            ] 
+            ]
         ]);
 
         $pq43 = PracticeQuestion::create([
-            'practice_id' => $prac5->id,
+            'practice_id' => $prac16->id,
             'question_text' => "Count and display the number of guesses",
             'type' => 'code_writing',
             'details' => [
@@ -1967,15 +2003,20 @@ class ProgFundSeeder extends Seeder
             ]
         ]);
 
-        $pq44 = PracticeQuestion::create([
-            'practice_id' => $prac5->id,
-            'question_text' => "Write a program that prints this pattern:
-                                        *
+        $prac17 = Practice::create([
+            'module_id' => $mod5->id,
+            'title' => 'Lesson 5 Practice: III. Nested Loops',
+            'content' => 'Write a program that prints this pattern:
+                             <pre><code>*
                                         **
                                         ***
                                         ****
-                                        *****
-                                Use nested loops to print the pattern.",
+                                        *****</code></pre>'
+        ]);
+
+        $pq44 = PracticeQuestion::create([
+            'practice_id' => $prac17->id,
+            'question_text' => "Use nested loops to print the pattern.",
             'type' => 'code_writing',
             'details' => [
                 'model_answer' => 'for i in range(1, 6):
@@ -1984,17 +2025,22 @@ class ProgFundSeeder extends Seeder
                                         print()',
             ]
         ]);
-        
-        $pq45 = PracticeQuestion::create([
-            'practice_id' => $prac5->id,
-            'question_text' => "Write a program that:
+
+        $prac18 = Practice::create([
+            'module_id' => $mod5->id,
+            'title' => 'Lesson 5 Practice: IV. Loop Control',
+            'content' => '<p>Write a program that:</p>
                             <ul>
                                 <li>Asks for numbers until the user enters 0</li>
                                 <li>Skips negative numbers using <code>continue</code></li>
                                 <li>Stops if the user enters 999 using <code>break</code></li>
                                 <li>Displays the sum of positive numbers</li>
-                            </ul>
-                            Write a program that follows the loop control rules shown above.",
+                            </ul>',
+        ]);
+
+        $pq45 = PracticeQuestion::create([
+            'practice_id' => $prac18->id,
+            'question_text' => "Write a program that follows the loop control rules shown above.",
             'type' => 'code_writing',
             'details' => [
                 'model_answer' => 'total = 0
@@ -2010,7 +2056,6 @@ class ProgFundSeeder extends Seeder
                                     print("Sum of positive numbers:", total)',
             ]
         ]);
-        
         $quiz5 = Quiz::create([
             'module_id' => $mod5->id,
             'title' => "Quiz for $mod5->title",

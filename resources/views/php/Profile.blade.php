@@ -40,6 +40,26 @@
                     </form>
                 </div>
             </div>
+<<<<<<< HEAD
+=======
+
+            <div class="burger-menu">
+                <div class="burger-icon"></div>
+                <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    @if(Auth::user()->isAdmin())
+                        <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
+                    @endif
+                    <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
+                    <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
+                    <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
+                    <a href="{{ route('about') }}" class="dropdown-link">About</a>
+                    <a href="{{ route('logout') }}" class="dropdown-link"
+                       onclick="event.preventDefault(); this.closest('form').submit();">
+                        Logout</a>
+                </form>
+            </div>
+>>>>>>> 2a31622f58bc3724daafc65d84e0535ada9a1a2d
         </div>
     </header>
 
@@ -47,9 +67,15 @@
         <div class="profile-container">
             @auth
             <img class="profile-picture"
+<<<<<<< HEAD
                 src="{{ asset(Auth::user()->profile_picture_path ?? 'imgs/9.png') }}"
                 alt="Profile Picture"
                 id="profile_picture">
+=======
+                 src="{{ asset(Auth::user()->profile_picture_path ?? 'imgs/15.png') }}"
+                 alt="Profile Picture"
+                 id="profile_picture">
+>>>>>>> 2a31622f58bc3724daafc65d84e0535ada9a1a2d
 
             <div class="profile-details">
                 <h1 class="display-name">{{ Auth::user()->name }}</h1>

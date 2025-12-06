@@ -19,7 +19,7 @@ class QuizController extends Controller
 
         $alreadyPassed = $user->quizAttempts()
             ->where('quiz_id', $quiz->id)
-            ->where('score', '>=', 0) // Or your passing score logic
+            ->where('score', '>=', 0)
             ->exists();
 
         // get user answers
@@ -31,7 +31,6 @@ class QuizController extends Controller
         foreach ($quiz->questions as $question) {
             $totalPoints += $question->points;
 
-            // skips if user didnt answer the question
             if (!isset($answers[$question->id])) continue;
 
             $userAnswer = $answers[$question->id];
@@ -99,7 +98,11 @@ class QuizController extends Controller
             $userStat->save();
         }
 
-        return redirect()->route('quizzes.result', ['quiz' => $quiz->id, 'score' => $score, 'total' => $totalPoints]);
+        return redirect()->route('quizzes.result', [
+            'quiz' => $quiz->id,
+            'score' => $score,
+            'total' => $totalPoints
+        ])->with('userAnswers', $answers);
     }
 
     public function result(Request $request, $quizId)
@@ -108,6 +111,8 @@ class QuizController extends Controller
         $score = $request->query('score');
         $total = $request->query('total');
 
-        return view('php.Quiz_result', compact('quiz', 'score', 'total'));
+        $userAnswers = session('userAnswers', []);
+
+        return view('php.Quiz_result', compact('quiz', 'score', 'total', 'userAnswers'));
     }
 }

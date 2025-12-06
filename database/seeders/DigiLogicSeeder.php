@@ -12,7 +12,6 @@ use App\Models\PracticeOption;
 use App\Models\Quiz;
 use App\Models\Question;
 use App\Models\QuizOption;
-use PhpParser\Node\Expr\AssignOp\Mod;
 
 class DigiLogicSeeder extends Seeder
 {
@@ -199,14 +198,36 @@ class DigiLogicSeeder extends Seeder
 
         // Practice 2 – Three Variables Truth Table
         $pq2 = PracticeQuestion::create([
-            'practice_id' => $prac1->id,
-            'question_text' => "Create the full truth table for: (P → Q) ∧ (Q → R)",
-            'type' => 'identification',
+            'practice_id' => $prac1->id, // Ensure this matches your variable ($prac1, $practice, etc.)
+            'question_text' => "Complete the truth table for: (P → Q) ∧ (Q → R)",
+            'type' => 'table_making',
             'details' => [
-                'html' => 'h2>Practice 2 – Three Variables</h2>
-                            <p>Create a full truth table for:</p>
-                            <p><strong>(P → Q) ∧ (Q → R)</strong></p>
-                            <p class="hint">(Hint: you will need 8 rows since there are 3 variables.)</p>'
+                'headers' => ['P', 'Q', 'R', 'P → Q', 'Q → R', 'Result'],
+                'rows' => [
+                    // Row 1: T, T, T -> T, T, T
+                    ['T', 'T', 'T', 'T', 'T', 'answer:T'],
+
+                    // Row 2: T, T, F -> T, F, F
+                    ['T', 'T', 'F', 'T', 'answer:F', 'F'],
+
+                    // Row 3: T, F, T -> F, T, F
+                    ['T', 'F', 'T', 'answer:F', 'T', 'F'],
+
+                    // Row 4: T, F, F -> F, T, F
+                    ['T', 'F', 'F', 'F', 'T', 'answer:F'],
+
+                    // Row 5: F, T, T -> T, T, T
+                    ['F', 'T', 'T', 'T', 'T', 'answer:T'],
+
+                    // Row 6: F, T, F -> T, F, F
+                    ['F', 'T', 'F', 'T', 'answer:F', 'F'],
+
+                    // Row 7: F, F, T -> T, T, T
+                    ['F', 'F', 'T', 'T', 'T', 'answer:T'],
+
+                    // Row 8: F, F, F -> T, T, T
+                    ['F', 'F', 'F', 'T', 'T', 'answer:T'],
+                ]
             ]
         ]);
 
@@ -527,8 +548,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q6->id,
+        QuizOption::create([
+            'question_id' => $q6->id,
             'option_text' => "d=3; a_n=7+(n-1)3; a_25=79",
             'is_correct' => true,
         ]);
@@ -541,8 +562,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q7->id,
+        QuizOption::create([
+            'question_id' => $q7->id,
             'option_text' => "a_15 = -8 + (15-1)5 = 62",
             'is_correct' => true,
         ]);
@@ -555,8 +576,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q8->id,
+        QuizOption::create([
+            'question_id' => $q8->id,
             'option_text' => "n = (given number - 12)/(-4) + 1",
             'is_correct' => true,
         ]);
@@ -569,8 +590,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q9->id,
+        QuizOption::create([
+            'question_id' => $q9->id,
             'option_text' => "S_30 = 30/2 [2(5) + (30-1)5] = 2325",
             'is_correct' => true,
         ]);
@@ -583,8 +604,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q10->id,
+        QuizOption::create([
+            'question_id' => $q10->id,
             'option_text' => "d = (10 - 100)/(20-1) = -90/19; S_20 = 20/2 (100 + 10) = 1100",
             'is_correct' => true,
         ]);
@@ -729,8 +750,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q11->id,
+        QuizOption::create([
+            'question_id' => $q11->id,
             'option_text' => "Recursive: a_n = 5 ⋅ a_(n-1); Closed-form: a_n = 7 ⋅ 5^n; a_4 = 875",
             'is_correct' => true,
         ]);
@@ -744,8 +765,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q12->id,
+        QuizOption::create([
+            'question_id' => $q12->id,
             'option_text' => "r = 0.5; Closed-form: a_n = 160 ⋅ (0.5)^(n-1); a_6 = 5",
             'is_correct' => true,
         ]);
@@ -758,8 +779,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q13->id,
+        QuizOption::create([
+            'question_id' => $q13->id,
             'option_text' => "S_6 = 3 ⋅ (1 - (0.5)^6) / (1 - 0.5) = 5.90625",
             'is_correct' => true,
         ]);
@@ -773,8 +794,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q14->id,
+        QuizOption::create([
+            'question_id' => $q14->id,
             'option_text' => "a_8 = 500 ⋅ 2^8 = 128000",
             'is_correct' => true,
         ]);
@@ -787,8 +808,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q15->id,
+        QuizOption::create([
+            'question_id' => $q15->id,
             'option_text' => "S_n = a_1 ⋅ (r^n - 1) / (r - 1), r ≠ 1",
             'is_correct' => true,
         ]);
@@ -1030,8 +1051,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q16->id,
+        QuizOption::create([
+            'question_id' => $q16->id,
             'option_text' => "45(10)",
             'is_correct' => true,
         ]);
@@ -1044,8 +1065,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q17->id,
+        QuizOption::create([
+            'question_id' => $q17->id,
             'option_text' => "101101₂",
             'is_correct' => true,
         ]);
@@ -1058,8 +1079,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q18->id,
+        QuizOption::create([
+            'question_id' => $q18->id,
             'option_text' => "11000₂",
             'is_correct' => true,
         ]);
@@ -1072,8 +1093,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q19->id,
+        QuizOption::create([
+            'question_id' => $q19->id,
             'option_text' => "Binary is easier for computers to process because it uses two states (ON/OFF) that align with digital circuits.",
             'is_correct' => true,
         ]);
@@ -1086,8 +1107,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q20->id,
+        QuizOption::create([
+            'question_id' => $q20->id,
             'option_text' => "255₁₀",
             'is_correct' => true,
         ]);
@@ -1312,8 +1333,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q21->id,
+        QuizOption::create([
+            'question_id' => $q21->id,
             'option_text' => "318₁₀",
             'is_correct' => true,
         ]);
@@ -1326,8 +1347,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q22->id,
+        QuizOption::create([
+            'question_id' => $q22->id,
             'option_text' => "310₈",
             'is_correct' => true,
         ]);
@@ -1340,8 +1361,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q23->id,
+        QuizOption::create([
+            'question_id' => $q23->id,
             'option_text' => "55₈",
             'is_correct' => true,
         ]);
@@ -1354,8 +1375,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q24->id,
+        QuizOption::create([
+            'question_id' => $q24->id,
             'option_text' => "55₈",
             'is_correct' => true,
         ]);
@@ -1368,8 +1389,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q25->id,
+        QuizOption::create([
+            'question_id' => $q25->id,
             'option_text' => "55₈",
             'is_correct' => true,
         ]);
@@ -1519,8 +1540,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q26->id,
+        QuizOption::create([
+            'question_id' => $q26->id,
             'option_text' => "6000 + 0 + 20 + 4 + 0.3 + 0.005",
             'is_correct' => true,
         ]);
@@ -1533,8 +1554,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q27->id,
+        QuizOption::create([
+            'question_id' => $q27->id,
             'option_text' => "14.07",
             'is_correct' => true,
         ]);
@@ -1547,8 +1568,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q28->id,
+        QuizOption::create([
+            'question_id' => $q28->id,
             'option_text' => "8.38",
             'is_correct' => true,
         ]);
@@ -1561,8 +1582,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q29->id,
+        QuizOption::create([
+            'question_id' => $q29->id,
             'option_text' => "30.38",
             'is_correct' => true,
         ]);
@@ -1575,8 +1596,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q30->id,
+        QuizOption::create([
+            'question_id' => $q30->id,
             'option_text' => "9.0",
             'is_correct' => true,
         ]);
@@ -1777,8 +1798,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q31->id,
+        QuizOption::create([
+            'question_id' => $q31->id,
             'option_text' => "6000 + 0 + 20 + 4 + 0.3 + 0.005",
             'is_correct' => true,
         ]);
@@ -1791,8 +1812,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q32->id,
+        QuizOption::create([
+            'question_id' => $q32->id,
             'option_text' => "14.07",
             'is_correct' => true,
         ]);
@@ -1805,8 +1826,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q33->id,
+        QuizOption::create([
+            'question_id' => $q33->id,
             'option_text' => "8.38",
             'is_correct' => true,
         ]);
@@ -1819,8 +1840,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q34->id,
+        QuizOption::create([
+            'question_id' => $q34->id,
             'option_text' => "30.38",
             'is_correct' => true,
         ]);
@@ -1833,8 +1854,8 @@ class DigiLogicSeeder extends Seeder
             'points' => 1,
         ]);
 
-        PracticeOption::create([
-            'practice_question_id' => $q35->id,
+        QuizOption::create([
+            'question_id' => $q35->id,
             'option_text' => "9.0",
             'is_correct' => true,
         ]);

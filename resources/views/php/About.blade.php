@@ -29,9 +29,24 @@
                 <div class="burger-menu">
                     <div class="burger-icon">
                     </div>
-                    <form class="burger-dropdown">
-                        <a href="{{ route('home') }}" class="dropdown-link">Home</a>
+                    <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        @guest
+                            <a href="{{ route('home') }}" class="dropdown-link">Home</a>
+                            <a href="{{ route('show.login') }}" class="dropdown-link">Login</a>
+                            <a href="{{ route('show.register') }}" class="dropdown-link">Signup</a>
+                        @endguest
+                        @auth
+                            @if(Auth::user()->isAdmin())
+                            <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
+                        @endif
                         <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
+                        <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
+                        <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
+                        <a href="{{ route('logout') }}" class="dropdown-link"
+                           onclick="event.preventDefault(); this.closest('form').submit();">
+                            Logout</a>
+                        @endauth
                     </form>
                 </div>
             </div>
