@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-//            DiffCalSeeder::class,
+            DiffCalSeeder::class,
             DigiLogicSeeder::class,
             FundCompSeeder::class,
             ProgFundSeeder::class,
