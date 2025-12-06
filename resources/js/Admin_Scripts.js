@@ -65,22 +65,28 @@ window.showUsers = showUsers;
 // Draw Line Chart
 function drawLineChart() {
     const canvas = document.getElementById('lineChart');
-    const ctx = canvas.getContext('2d');
+    if (!canvas) return;
 
+    const ctx = canvas.getContext('2d');
     canvas.width = 500;
     canvas.height = 300;
 
-    const data = [120, 180, 150, 220, 280, 320, 380];
-    const data2 = [80, 120, 100, 150, 190, 220, 250];
-    const data3 = [45, 65, 55, 75, 85, 95, 105];
-    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+    // 1. GET DYNAMIC DATA
+    const labels = window.trendData ? window.trendData.labels : ['No Data'];
+    const usersData = window.trendData ? window.trendData.users : [0];
+    const activityData = window.trendData ? window.trendData.activity : [0];
 
+    // Config
     const padding = 40;
     const chartWidth = canvas.width - padding * 2;
     const chartHeight = canvas.height - padding * 2;
-    const max = 400;
 
-    // Draw axes
+    // Calculate Max Value to scale the chart dynamically
+    const allValues = [...usersData, ...activityData];
+    const maxVal = Math.max(...allValues, 10); // Minimum scale of 10
+    const scale = maxVal > 0 ? maxVal : 10;
+
+    // 2. DRAW AXES
     ctx.strokeStyle = '#8B4513';
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -89,73 +95,81 @@ function drawLineChart() {
     ctx.lineTo(canvas.width - padding, canvas.height - padding);
     ctx.stroke();
 
-    // Draw lines
+    // Helper Function to Draw a Line
     function drawLine(data, color) {
         ctx.strokeStyle = color;
         ctx.lineWidth = 3;
         ctx.beginPath();
 
         data.forEach((value, index) => {
-            const x = padding + (chartWidth / (data.length - 1)) * index;
-            const y = canvas.height - padding - (value / max) * chartHeight;
+            const x = padding + (chartWidth / (labels.length - 1)) * index;
+            // Invert Y because canvas 0,0 is top-left
+            const y = canvas.height - padding - (value / scale) * chartHeight;
 
-            if (index === 0) {
-                ctx.moveTo(x, y);
-            } else {
-                ctx.lineTo(x, y);
-            }
+            if (index === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+
+            // Draw Dots
+            ctx.fillStyle = color;
+            ctx.fillRect(x - 3, y - 3, 6, 6);
         });
-
         ctx.stroke();
     }
 
-    drawLine(data, '#FF6B35');
-    drawLine(data2, '#87CEEB');
-    drawLine(data3, '#FFD166');
+    // 3. DRAW LINES
+    drawLine(usersData, '#e95e16'); // Orange: New Users
+    drawLine(activityData, '#124559'); // Blue: Activity
 
-    // Draw labels
+    // 4. DRAW LABELS
     ctx.fillStyle = '#8B4513';
     ctx.font = '12px Courier New';
     ctx.textAlign = 'center';
+
     labels.forEach((label, index) => {
         const x = padding + (chartWidth / (labels.length - 1)) * index;
         ctx.fillText(label, x, canvas.height - padding + 20);
     });
+
+    ctx.font = 'bold 12px Courier New';
+    ctx.textAlign = 'end';
+
+    ctx.fillStyle = '#e95e16';
+    ctx.fillText("■ New  Users      ", canvas.width - 20, 30);
+
+    ctx.fillStyle = '#124559';
+    ctx.fillText("■ Audit Logs      ", canvas.width - 20, 50);
 }
 
-// Draw Pie Chart
 function drawPieChart() {
     const canvas = document.getElementById('pieChart');
-    const ctx = canvas.getContext('2d');
+    if (!canvas) return;
 
+    const ctx = canvas.getContext('2d');
     canvas.width = 500;
     canvas.height = 300;
 
-    const data = [
-        { value: 35, color: '#87CEEB', label: 'JavaScript' },
-        { value: 25, color: '#FF8C42', label: 'Python' },
-        { value: 20, color: '#FFD166', label: 'HTML/CSS' },
-        { value: 20, color: '#8B4513', label: 'Java' }
-    ];
+    const labels = window.enrollmentData?.labels.length ? window.enrollmentData.labels : ['No Data'];
+    const dataValues = window.enrollmentData?.counts.length ? window.enrollmentData.counts : [1];
 
-    const centerX = canvas.width / 2 - 50;
+    const colors = ['#87CEEB', '#FF8C42', '#FFD166', '#8B4513', '#6A0572'];
+
+    const total = dataValues.reduce((a, b) => a + b, 0);
+    const centerX = canvas.width / 2 - 80;
     const centerY = canvas.height / 2;
     const radius = 100;
 
     let currentAngle = -Math.PI / 2;
 
-    data.forEach((item, index) => {
-        const sliceAngle = (item.value / 100) * 2 * Math.PI;
+    dataValues.forEach((value, index) => {
+        const sliceAngle = total > 0 ? (value / total) * 2 * Math.PI : 2 * Math.PI;
 
-        // Draw slice
-        ctx.fillStyle = item.color;
+        ctx.fillStyle = colors[index % colors.length];
         ctx.beginPath();
         ctx.moveTo(centerX, centerY);
         ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
         ctx.closePath();
         ctx.fill();
 
-        // Draw border
         ctx.strokeStyle = '#8B4513';
         ctx.lineWidth = 2;
         ctx.stroke();
@@ -163,20 +177,28 @@ function drawPieChart() {
         currentAngle += sliceAngle;
     });
 
-    // Draw legend
-    const legendX = canvas.width - 150;
-    let legendY = 80;
+    const legendX = canvas.width - 220;
+    let legendY = 60;
 
-    data.forEach(item => {
-        ctx.fillStyle = item.color;
-        ctx.fillRect(legendX, legendY, 20, 20);
+    ctx.fillStyle = '#8B4513';
+    ctx.font = 'bold 14px Courier New';
+    ctx.fillText("Enrolled Students:", legendX, legendY - 25);
+
+    labels.forEach((label, index) => {
+        const color = colors[index % colors.length];
+        const count = dataValues[index];
+
+        ctx.fillStyle = color;
+        ctx.fillRect(legendX, legendY, 15, 15);
+        ctx.strokeRect(legendX, legendY, 15, 15);
 
         ctx.fillStyle = '#8B4513';
-        ctx.font = '14px Courier New';
+        ctx.font = '12px Courier New';
         ctx.textAlign = 'left';
-        ctx.fillText(item.label, legendX + 30, legendY + 15);
+        const shortLabel = label.length > 15 ? label.substring(0, 15) + '...' : label;
+        ctx.fillText(`${shortLabel} (${count})`, legendX + 25, legendY + 12);
 
-        legendY += 35;
+        legendY += 30;
     });
 }
 

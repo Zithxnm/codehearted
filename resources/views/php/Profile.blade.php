@@ -49,22 +49,24 @@
 
 <div class="main-content">
     <div class="profile-container">
-        @auth
-            <img class="profile-picture"
-                 src="{{ asset(Auth::user()->profile_picture_path ?? 'imgs/15.png') }}"
-                 alt="Profile Picture"
-                 id="profile_picture">
+        <img class="profile-picture"
+             src="{{ asset($user->profile_picture_path ?? 'imgs/15.png') }}"
+             alt="Profile Picture"
+             id="profile_picture">
 
-            <div class="profile-details">
-                <h1 class="display-name">{{ Auth::user()->name }}</h1>
-                <p class="username">{{ '@' . (Auth::user()->username ?? Str::slug(Auth::user()->name)) }}</p>
-                <p class="user-bio">{{ Auth::user()->bio ?? 'Ready to learn!' }}</p>
+        <div class="profile-details">
+            <h1 class="display-name">{{ $user->name }}</h1>
+            <p class="username">{{ '@' . ($user->username ?? Str::slug($user->name)) }}</p>
+            <p class="user-bio">{{ $user->bio ?? 'Ready to learn!' }}</p>
 
+            @if(Auth::id() === $user->id)
                 <button onclick="openEditModal()" class="edit-profile-btn">
                     <i class="fa-solid fa-pen"></i> Edit Profile
                 </button>
-            </div>
+            @endif
+        </div>
 
+        @if(Auth::id() === $user->id)
             <div id="editProfileModal" class="modal-overlay" style="display: none;">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -103,31 +105,48 @@
                     </form>
                 </div>
             </div>
-        @endauth
-    </div>
-
-    <div class="stats-header">
-        <hr class="stats-separator">
-        <h2 class="stats-title">STATS</h2>
-        <hr class="stats-separator">
+        @endif
     </div>
 
     <div class="stats-container">
         <div class="perStat-container">
             <h3 class="stat-name">Achievements</h3>
-            <p class="stat-value">{{ Auth::user()->stat->Achievements ?? 0 }}</p>
+            <p class="stat-value">{{ $user->stat->Achievements ?? 0 }}</p>
         </div>
 
         <div class="perStat-container">
             <h3 class="stat-name">Quizzes Finished</h3>
-            <p class="stat-value">{{ Auth::user()->stat->Quizzes ?? 0 }}</p>
+            <p class="stat-value">{{ $user->stat->Quizzes ?? 0 }}</p>
         </div>
 
         <div class="perStat-container">
             <h3 class="stat-name">Daily Streak</h3>
-            <p class="stat-value">{{ Auth::user()->stat->Daily_Streak ?? 0 }}</p>
+            <p class="stat-value">{{ $user->stat->Daily_Streak ?? 0 }}</p>
         </div>
     </div>
+
+    @if(isset($recentPosts) && $recentPosts->count() > 0)
+        <div style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div class="stats-header">
+                <hr class="stats-separator">
+                <h2 class="stats-title">RECENT ACTIVITY</h2>
+                <hr class="stats-separator">
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 1rem; padding: 0 1rem;">
+                @foreach($recentPosts as $post)
+                    <div style="background: white; border: 2px solid #71351a; border-radius: 10px; padding: 1rem; text-align: left;">
+                        <a href="{{ route('community.show', $post->Community_ID) }}" style="text-decoration: none; color: inherit;">
+                            <h4 style="font-family: Retro; color: #5a3100; margin: 0;">{{ $post->Title }}</h4>
+                            <p style="font-family: Glacial; color: #6b7280; margin: 5px 0 0 0; font-size: 0.9rem;">
+                                Posted {{ $post->created_at->diffForHumans() }} in {{ $post->Category }}
+                            </p>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
 </div>
 
 <footer class="footer">

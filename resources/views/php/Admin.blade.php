@@ -203,6 +203,19 @@
         </div>
     </div>
     <script>
+        //Passses chart data to js
+        window.enrollmentData = {
+            labels: @json($chartLabels),
+            counts: @json($chartData)
+        };
+
+        //Passes line chart data to js
+        window.trendData = {
+            labels: @json($months),
+            users: @json($userGrowth),
+            activity: @json($activityLog)
+        };
+
         document.addEventListener('DOMContentLoaded', function() {
             const checkAndShow = (msg, type) => {
                 if (window.showToast) {
