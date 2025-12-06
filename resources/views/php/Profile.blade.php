@@ -57,10 +57,51 @@
 
             <div class="profile-details">
                 <h1 class="display-name">{{ Auth::user()->name }}</h1>
-
                 <p class="username">{{ '@' . (Auth::user()->username ?? Str::slug(Auth::user()->name)) }}</p>
-
                 <p class="user-bio">{{ Auth::user()->bio ?? 'Ready to learn!' }}</p>
+
+                <button onclick="openEditModal()" class="edit-profile-btn">
+                    <i class="fa-solid fa-pen"></i> Edit Profile
+                </button>
+            </div>
+
+            <div id="editProfileModal" class="modal-overlay" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Edit Profile</h2>
+                        <span class="close-btn" onclick="closeEditModal()">&times;</span>
+                    </div>
+
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
+
+                        <div class="form-group">
+                            <label for="profile_picture">Profile Picture</label>
+                            <input type="file" id="profile-picture-input" name="profile_picture" accept="image/*">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Display Name</label>
+                            <input type="text" name="name" value="{{ Auth::user()->name }}" required class="modal-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" value="{{ Auth::user()->username }}" required class="modal-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea name="bio" rows="3" class="modal-input">{{ Auth::user()->bio }}</textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" onclick="closeEditModal()" class="btn-cancel">Cancel</button>
+                            <button type="submit" class="btn-save">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         @endauth
     </div>
@@ -92,6 +133,31 @@
 <footer class="footer">
     <div class="bg-hill"></div>
 </footer>
+
+<div id="toast-container">
+    <div id="toast" class="toast"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkAndShow = (msg, type) => {
+            if (window.showToast) {
+                window.showToast(msg, type);
+            } else {
+                // Fallback if script hasn't loaded yet
+                setTimeout(() => checkAndShow(msg, type), 100);
+            }
+        };
+
+        @if(Session::has('success'))
+        checkAndShow("{{ Session::get('success') }}");
+        @endif
+
+        @if(Session::has('error'))
+        checkAndShow("{{ Session::get('error') }}");
+        @endif
+    });
+</script>
 </body>
 
 </html>

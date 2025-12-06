@@ -43,19 +43,22 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
 
 Route::middleware('auth')->group(function () {
 
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'show'])
         ->name('profile');
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
 
     Route::get('/courses', function () {
         return view('php.Courses');
     })->name('courses');
 
-    //Course Main Pagess
+    //Course Main Pages
 
 
     // The Main List
@@ -68,6 +71,16 @@ Route::middleware('auth')->group(function () {
         ->name('modules.show')
         ->middleware(['auth', 'module.access']);
 
+    Route::get('/community', function () {
+        return view('php.Community');
+    })->name('show.community');
+
+    Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit'])
+        ->name('quizzes.submit')
+        ->middleware('auth');
+    Route::get('/quizzes/{quiz}/result', [QuizController::class, 'result'])
+        ->name('quizzes.result')
+        ->middleware('auth');
 
 
 
@@ -76,20 +89,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/about', function () {
     return view('php.About');
 })->name('about');
-
-
-Route::get('/community', function () {
-    return view('php.Community');
-})->name('show.community');
-
-Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit'])
-    ->name('quizzes.submit')
-    ->middleware('auth');
-
-// Show Result
-Route::get('/quizzes/{quiz}/result', [QuizController::class, 'result'])
-    ->name('quizzes.result')
-    ->middleware('auth');
 
 Route::get('/debug-progress', function () {
     $user = Illuminate\Support\Facades\Auth::user();

@@ -376,6 +376,226 @@ body {
 
 }
 
+.edit-profile-btn {
+    background: transparent;
+    border: 2px solid #71351a;
+    color: #71351a;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: Glacial;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.2s;
+}
+
+.edit-profile-btn:hover {
+    background: #71351a;
+    color: white;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    border: 3px solid #71351a;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.modal-header h2 {
+    font-family: Retro;
+    color: #124559;
+    margin: 0;
+}
+
+.close-btn {
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #888;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-family: Glacial;
+    font-weight: bold;
+    color: #124559;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: Glacial;
+    font-size: 16px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-save {
+    background: #198754;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Retro;
+}
+
+.btn-cancel {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Retro;
+}
+
+#toast-container {
+    position: fixed;
+    bottom: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20000;
+}
+
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0;
+    transition: opacity 0.3s, bottom 0.3s;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+}
+
+.hidden-file-input {
+    /*opacity: 0;*/
+    position: absolute;
+    overflow: hidden;
+}
+
+.custom-file-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ef8a34;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Retro;
+}
+
+.custom-file-button:hover {
+    background-color: hsl(18, 89%, 55%);
+}
+
+.file-name {
+    margin-left: 10px;
+    font-family: Retro;
+}
+
+.view-catalog {
+    --color: #ffffff;
+    --bg-color: #ef8a34;
+    padding: 5px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /*margin-right: 80%;*/
+    border: 0;
+    background-color: var(--bg-color);
+    box-shadow:
+        0px 5px #e95e16,
+        0px -5px #e95e16,
+        5px 0px #e95e16,
+        -5px 0px #e95e16,
+        0px 10px #00000038,
+        5px 5px #00000038,
+        -5px 5px #00000038,
+        inset 0px 5px #ffffff36;
+    font-family: Retro;
+    font-size: 15px;
+    color: var(--color);
+    shape-rendering: crispEdges;
+    cursor: pointer;
+}
+
+.view-catalog:active {
+    transform: translateY(5px);
+    box-shadow:
+        0px 5px black,
+        0px -5px black,
+        5px 0px black,
+        -5px 0px black,
+        inset 0px 5px #00000038;
+}
+
+.view-catalog:hover {
+    background: hsl(18, 89%, 55%);
+    transform: translateY(-1px);
+    box-shadow:
+        0px 5px #e95e16,
+        0px -5px #e95e16,
+        5px 0px #e95e16,
+        -5px 0px #e95e16,
+        0px 10px #00000038,
+        5px 5px #00000038,
+        -5px 5px #00000038,
+        inset 0px 5px #ffffff36;
+}
+
+.toast.error { background-color: #dc3545; } /* Red for errors */
+.toast.success { background-color: #198754; } /* Green for success */
+.toast.warning { background-color: #ffc107; color: #333; } /* Yellow for warnings */
+
+
 @media (min-width: 768px) {
     .search-container {
         display: block;

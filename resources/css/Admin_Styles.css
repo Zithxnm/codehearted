@@ -400,7 +400,7 @@ body {
 /*toast css*/
 #toast-container {
     position: fixed;
-    bottom: 10px;
+    bottom: 90%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 20000;

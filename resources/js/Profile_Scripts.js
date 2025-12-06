@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     const profilePictureInput = document.getElementById('profile_picture');
     const profilePicture = document.getElementById('profilePicture');
-    
+
     if (profilePictureInput && profilePicture) {
         profilePictureInput.addEventListener('change', function (e) {
             const file = e.target.files[0];
@@ -38,10 +38,39 @@ document.addEventListener('DOMContentLoaded', function () {
                     profilePicture.src = event.target.result;
                 };
                 reader.readAsDataURL(file);
-                
+
                 // Auto-submit the form
                 this.closest('form').submit();
             }
         });
     }
 });
+
+window.openEditModal = function() {
+    document.getElementById('editProfileModal').style.display = 'flex';
+}
+
+window.closeEditModal = function() {
+    document.getElementById('editProfileModal').style.display = 'none';
+}
+
+// Close modal if clicking outside content
+window.onclick = function(event) {
+    const modal = document.getElementById('editProfileModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function showToast(message, type = 'success') {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.className = "toast show " + type;
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
+window.showToast = showToast;

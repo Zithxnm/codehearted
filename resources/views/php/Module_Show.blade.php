@@ -295,6 +295,7 @@
         if (!allAnswered) {
             event.preventDefault();
             showToast("Please answer all questions before submitting!", "error");
+
             return false;
         }
         return true;
