@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use App\Models\Community;
 
 class ProfileController extends Controller
 {
-    public function show()
+    public function myProfile()
     {
         $user = Auth::user();
         $stat = $user->stat;
@@ -25,8 +27,22 @@ class ProfileController extends Controller
             }
         }
 
-        return view('php.Profile');
+        return view('php.Profile', compact('user'));
     }
+
+    public function publicProfile($id)
+    {
+        $user = User::with('stat')->findOrFail($id);
+
+        $recentPosts = Community::where('user_id', $id)
+            ->whereNull('Parent_ID')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('php.Profile', compact('user', 'recentPosts'));
+    }
+
 
     public function update(Request $request)
     {

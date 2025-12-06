@@ -28,6 +28,7 @@ export default defineConfig({
                     'resources/css/Register_Styles.css',
                     'resources/css/Community_Styles.css',
                     'resources/css/Community_Show_Styles.css',
+                    'resources/css/Community_Edit_Styles.css',
                     'resources/css/Quiz_Result_Styles.css',
 
                     'resources/css/modules/compfund/mod1/practice1.css',
@@ -131,4 +132,11 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+
+    server: {
+        host: '0.0.0.0',
+        hmr: {
+            host: '192.168.1.192'
+        },
+    },
 });

@@ -50,10 +50,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
-    Route::get('/profile', [ProfileController::class, 'show'])
-        ->name('profile');
-    Route::patch('/profile', [ProfileController::class, 'update'])
-        ->name('profile.update');
+    Route::get('/profile', [ProfileController::class, 'myProfile'])->name('profile');
+    Route::get('/user/{id}', [ProfileController::class, 'publicProfile'])->name('profile.show');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');;
 
     Route::get('/courses', function () {
         return view('php.Courses');
@@ -89,6 +88,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/community/{id}', [CommunityController::class, 'show'])->name('community.show');
     Route::post('/community/{id}/reply', [CommunityController::class, 'reply'])->name('community.reply');
     Route::post('/community/{id}/like', [CommunityController::class, 'like'])->name('community.like');
+    Route::delete('/community/{id}', [CommunityController::class, 'destroy'])->name('community.destroy');
+    Route::get('/community/{id}/edit', [CommunityController::class, 'edit'])->name('community.edit');
+    Route::put('/community/{id}', [CommunityController::class, 'update'])->name('community.update');
+    Route::post('/community/{id}/{reply_id}/solve', [CommunityController::class, 'markAsSolution'])->name('community.solve');
 });
 
 Route::get('/about', function () {

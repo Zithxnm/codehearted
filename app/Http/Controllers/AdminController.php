@@ -13,31 +13,42 @@ class AdminController extends Controller
 {
     public function index()
     {
-        // Calculate Stats
         $totalUsers = User::count();
         $totalCourses = Course::count();
         $totalQuizzes = Quiz::count();
-
-        // Count rows in sessions table for "Active Sessions"
         $activeSessions = DB::table('sessions')->count();
-
-        // Fetch Audit Logs
-        $auditLogs = AuditLog::with('admin')
-            ->latest()
-            ->take(10)
-            ->get();
-
-        // Fetch for user management
+        $auditLogs = AuditLog::with('admin')->latest()->take(10)->get();
         $allUsers = User::all();
 
-        // Return View with Data
+        $coursesWithCount = Course::withCount('users')->get();
+
+
+        $chartLabels = $coursesWithCount->pluck('title');
+        $chartData = $coursesWithCount->pluck('users_count');
+
+        $months = collect([]);
+        $userGrowth = collect([]);
+        $activityLog = collect([]);
+
+        for ($i = 5; $i >= 0; $i--) {
+            $date = \Carbon\Carbon::now()->subMonths($i);
+
+            $months->push($date->format('M'));
+
+            $userGrowth->push(User::whereYear('created_at', $date->year)
+                ->whereMonth('created_at', $date->month)
+                ->count());
+
+            $activityLog->push(AuditLog::whereYear('created_at', $date->year)
+                ->whereMonth('created_at', $date->month)
+                ->count());
+        }
+
         return view('php.Admin', compact(
-            'totalUsers',
-            'totalCourses',
-            'totalQuizzes',
-            'activeSessions',
-            'auditLogs',
-            'allUsers',
+            'totalUsers', 'totalCourses', 'totalQuizzes', 'activeSessions',
+            'auditLogs', 'allUsers',
+            'chartLabels', 'chartData',
+            'months', 'userGrowth', 'activityLog'
         ));
     }
 }
