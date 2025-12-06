@@ -1,22 +1,3 @@
-// Filter tabs functionality
-const filterTabs = document.querySelectorAll('.filter-tab');
-filterTabs.forEach(tab => {
-    tab.addEventListener('click', function () {
-        filterTabs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
-
-// Discussion card click
-const discussionCards = document.querySelectorAll('.discussion-card');
-
-// Search functionality
-document.querySelector('.search-input').addEventListener('keyup', function (e) {
-    if (e.key === 'Enter') {
-        alert('Searching for: ' + this.value);
-    }
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     var searchBtn = document.querySelector('.search-icon-btn');
     var searchInput = document.querySelector('.search-input');

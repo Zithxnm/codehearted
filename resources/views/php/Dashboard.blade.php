@@ -37,7 +37,7 @@ ast.">
                         @endif
                         <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
                         <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
-                        <a href="{{ route('show.community') }}" class="dropdown-link">Community</a>
+                        <a href="{{ route('community.index') }}" class="dropdown-link">Community</a>
                         <a href="{{ route('about') }}" class="dropdown-link">About</a>
                         <a href="{{ route('logout') }}" class="dropdown-link"
                            onclick="event.preventDefault(); this.closest('form').submit();">
