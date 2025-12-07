@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
@@ -39,14 +40,12 @@ class RegisterController extends Controller
             'role' => 'student',
         ]);
 
-       // Create Profile for User
         $user->profile()->create([
-            'Display_Name' => $user->name, // Default to their name
-            'Theme' => 'light',            // Default theme
-            'Join_Date' => now(),          // Set join date
+            'Display_Name' => $user->name,
+            'Theme' => 'light',
+            'Join_Date' => now(),
         ]);
 
-        // 3. Create Empty Stats
         $user->stat()->create([
             'Achievements' => 0,
             'Quizzes' => 0,
@@ -54,9 +53,10 @@ class RegisterController extends Controller
             'Course_Badge' => 0,
         ]);
 
+        event(new Registered($user));
+
         Auth::login($user);
 
-        // Adds to auditlog
         AuditLog::create([
             'Admin_ID' => Auth::id(),
             'Action' => 'Account Created',

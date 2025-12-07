@@ -11,6 +11,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CommunityController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 
 Route::middleware('guest')->group(function () {
@@ -28,24 +30,42 @@ Route::middleware('guest')->group(function () {
 
 });
 
+//notice page(shown to unverified users)
+Route::get('/email/verify', function () {
+    return view('auth.Email');
+})->middleware('auth')->name('verification.notice');
+
+//verification handler (when they click the email link)
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/dashboard')->with('success', 'Email verified successfully!');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+//resend verification link (If they lost it)
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('success', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 
 //Authenticated User Pages
 
 Route::get('/admin', [AdminController::class, 'index'])
-    ->middleware(['auth', 'admin'])
+    ->middleware(['auth', 'admin', 'verified'])
     ->name('admin.index');
 
-Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'verified'])->name('admin.')->group(function () {
 
     // 1. User Management
     Route::patch('/users/{id}/role', [UserController::class, 'toggleRole'])->name('users.toggle');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
 });
 
-Route::middleware('auth')->group(function () {
+Route::post('/logout', [LoginController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
 
-    Route::post('/logout', [LoginController::class, 'logout'])
-        ->name('logout');
+Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
@@ -82,7 +102,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/community', [CommunityController::class, 'index'])->name('community.index');
     Route::post('/community', [CommunityController::class, 'store'])->name('community.store');
     Route::get('/community/{id}', [CommunityController::class, 'show'])->name('community.show');
