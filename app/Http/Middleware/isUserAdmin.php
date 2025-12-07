@@ -21,8 +21,7 @@ class isUserAdmin
             return $next($request); // Continue to the page.
         }
 
-        // If not an admin, block them
-//        abort(403, 'Unauthorized action. Admins only.');
+        // If not an admin, redirect them
         return redirect()->route('dashboard');
     }
 }

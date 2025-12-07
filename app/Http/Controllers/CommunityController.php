@@ -172,7 +172,6 @@ class CommunityController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        //  If it's a main thread, validate Title/Category. If reply, just Content.
         $rules = [
             'Content' => 'required|string',
         ];
@@ -191,7 +190,6 @@ class CommunityController extends Controller
             'Admin_ID' => auth()->id(),
             'Action' => "Edited $isPostOrReply # $post->Community_ID",
         ]);
-        // If it's a reply, go back to the parent thread.
         $redirectId = $post->Parent_ID ? $post->Parent_ID : $post->Community_ID;
 
         return redirect()->route('community.show', $redirectId)->with('success', 'Post updated successfully!');
@@ -201,7 +199,6 @@ class CommunityController extends Controller
     {
         $post = Community::findOrFail($id);
 
-        // Only the thread author can mark a solution
         if (auth()->id() !== $post->user_id) {
             abort(403);
         }

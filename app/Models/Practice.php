@@ -7,7 +7,7 @@ use App\Models\PracticeQuestion;
 
 class Practice extends Model
 {
-    protected $fillable = ['module_id', 'title', 'content']; // 'content' is now optional instructions
+    protected $fillable = ['module_id', 'title', 'content'];
 
     public function module() {
         return $this->belongsTo(Module::class);

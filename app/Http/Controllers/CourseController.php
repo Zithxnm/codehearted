@@ -17,21 +17,17 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        // 1. Fetch the course with modules
         $course = Course::with(['modules' => function($q) {
             $q->orderBy('order');
         }])->findOrFail($id);
 
         if (Auth::check()) {
-            // firstOrCreate prevents duplicate enrollments
             CourseEnrollment::firstOrCreate([
                 'user_id' => Auth::id(),
                 'course_id' => $course->id
             ]);
         }
 
-        // 2. Determine the correct CSS/JS file based on course title/ID
-        // (This keeps your existing separate files working)
         $styleMap = [
             'Differential Calculus' => ['css' => 'DiffCall_Styles.css', 'js' => 'DiffCall_Scripts.js'],
             'Digital Logic' => ['css' => 'DigiLogic_Styles.css', 'js' => 'DigiLogic_Scripts.js'],
@@ -39,10 +35,8 @@ class CourseController extends Controller
             'Programming Fundamentals' => ['css' => 'ProgFund_Styles.css', 'js' => 'ProgFund_Scripts.js'],
         ];
 
-        // Default fallback if course name doesn't match
         $assets = $styleMap[$course->title] ?? ['css' => 'Courses_Styles.css', 'js' => 'Courses_Scripts.js'];
 
-        // 3. Return the generic view
         return view('php.Course_Show', compact('course', 'assets'));
     }
 }

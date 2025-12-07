@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     @vite(['resources/css/Dashboard_Styles.css'])
     @vite(['resources/css/Quiz_Result_Styles.css'])
-
 </head>
 
 <body>
@@ -84,9 +83,22 @@
         <h1 style="font-family: 'Retro'; color: #71351a; margin-bottom: 10px;">Quiz Results</h1>
         <p style="font-family: 'Glacial'; color: #555;">{{ $quiz->title }}</p>
 
-        <div class="score-circle">
+        <div class="score-circle" style="border: 5px solid {{ $passed ? '#22c55e' : '#ef4444' }};">
             <span class="score-big">{{ $score }}</span>
             <span class="score-label">out of {{ $total }}</span>
+        </div>
+
+        <div style="margin-top: 15px; margin-bottom: 25px;">
+            @if($passed)
+                <span style="background-color: #dcfce7; color: #166534; padding: 10px 20px; border-radius: 20px; font-weight: bold; border: 2px solid #22c55e; font-family: 'Retro'; font-size: 1.2rem;">
+                    <i class="fa-solid fa-check-circle"></i> PASSED
+                </span>
+            @else
+                <span style="background-color: #fee2e2; color: #991b1b; padding: 10px 20px; border-radius: 20px; font-weight: bold; border: 2px solid #ef4444; font-family: 'Retro'; font-size: 1.2rem;">
+                    <i class="fa-solid fa-circle-xmark"></i> FAILED
+                </span>
+                <p style="margin-top: 10px; color: #ef4444; font-family: 'Glacial';">You need 65% to pass.</p>
+            @endif
         </div>
 
         <div class="review-list">
@@ -138,19 +150,19 @@
             @endforeach
         </div>
 
-        <a href="{{ route('courses.show', $quiz->module->course_id) }}" class="action-btn">
-            Return to Course
-        </a>
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+            <a href="{{ route('courses.show', $quiz->module->course_id) }}" class="action-btn">
+                Return to Course
+            </a>
+
+{{--            @if(!$passed)--}}
+{{--                <a href="{{ route('modules.show', ['course' => $quiz->module->course_id, 'module' => $quiz->module->id]) }}?section=quiz" class="action-btn">--}}
+{{--                    Retake Quiz--}}
+{{--                </a>--}}
+{{--            @endif--}}
+        </div>
     </div>
 </div>
-
-{{--<footer class="footer">--}}
-{{--    <div class="container">--}}
-{{--        <div class="footer-bottom">--}}
-{{--            <p>© 2025 CodeHearted. All rights reserved.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</footer>--}}
 @vite(['resources/js/Quiz_Result_Scripts.js'])
 </body>
 </html>

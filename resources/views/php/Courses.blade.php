@@ -109,7 +109,6 @@
         </div>
     </div>
 
-    <?php $jsVersion = file_exists(__DIR__ . '/../js/Courses_Scripts.js') ? filemtime(__DIR__ . '/../js/Courses_Scripts.js') : time(); ?>
     @vite('resources/js/Courses_Scripts.js')
 </body>
 

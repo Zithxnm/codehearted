@@ -100,31 +100,40 @@ class User extends Authenticatable
 
     public function hasCompletedModule($moduleId)
     {
-        $quiz = Quiz::where('module_id', $moduleId)->first();
+        $quiz = Quiz::with('questions')->where('module_id', $moduleId)->first();
 
         if (!$quiz) {
             return false;
         }
 
-        return $this->quizAttempts()
+        $totalPoints = $quiz->questions->sum('points');
+
+        if ($totalPoints == 0) return false;
+
+        $bestScore = $this->quizAttempts()
             ->where('quiz_id', $quiz->id)
-            // ->where(score', '>=', 5) TBD
-            ->exists();
+            ->max('score');
+
+        if (is_null($bestScore)) {
+            return false;
+        }
+
+        $percentage = ($bestScore / $totalPoints) * 100;
+
+        return $percentage >= 65;
     }
 
     public function hasCompletedCourse($courseId)
     {
         $moduleIds = Module::where('course_id', $courseId)->pluck('id');
 
-        // 2. Check each module
         foreach ($moduleIds as $id) {
-            // Reuse your existing module check
             if (! $this->hasCompletedModule($id)) {
-                return false; // Found an incomplete module, so course is NOT done
+                return false;
             }
         }
 
-        return true; // All modules passed!
+        return true;
     }
 
     public function isAdmin()

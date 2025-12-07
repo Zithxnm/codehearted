@@ -9,10 +9,8 @@ class Stat extends Model
 {
     use HasFactory;
 
-    // 1. Custom Primary Key
     protected $primaryKey = 'Stats_ID';
 
-    // 2. Allow Mass Assignment
     protected $fillable = [
         'user_id',
         'Achievements',
