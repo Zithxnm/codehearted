@@ -60,3 +60,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function toggleNotifications(e) {
+    e.stopPropagation();
+    const list = document.getElementById('notif-list');
+    list.classList.toggle('show');
+}
+
+// Close when clicking outside
+document.addEventListener('click', function(e) {
+    const wrapper = document.querySelector('.notification-wrapper');
+    const list = document.getElementById('notif-list');
+    if (wrapper && !wrapper.contains(e.target)) {
+        list.classList.remove('show');
+    }
+});
+
+window.toggleNotifications = toggleNotifications;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/Admin_Styles.css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>CodeHearted - Admin Page</title>
 </head>
 <body>
@@ -24,26 +24,50 @@
                     </div>
                 </div>
 
-                <div class="burger-menu">
-                    <div class="burger-icon">
+                <div class="header-actions">
+
+                    <div class="notification-wrapper">
+                        <button class="notif-btn" onclick="toggleNotifications(event)">
+                            <i class="fa-solid fa-bell"></i>
+                            @if(auth()->user()->unreadNotifications->count() > 0)
+                                <span class="notif-badge">
+                        {{ auth()->user()->unreadNotifications->count() }}
+                    </span>
+                            @endif
+                        </button>
+
+                        <div id="notif-list" class="notif-dropdown">
+                            <div class="notif-header">Notifications</div>
+                            <div class="notif-items">
+                                @forelse(auth()->user()->notifications->take(5) as $notification)
+                                    <a href="{{ $notification->data['link'] }}" class="notif-item {{ $notification->read_at ? 'read' : 'unread' }}">
+                                        <span class="notif-message">{{ $notification->data['message'] }}</span>
+                                        <span class="notif-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                    </a>
+                                    {{ $notification->markAsRead() }}
+                                @empty
+                                    <div class="notif-empty">No new notifications</div>
+                                @endforelse
+                            </div>
+                        </div>
                     </div>
-                    <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        @guest
-                            <a href="{{ route('home') }}" class="dropdown-link">Home</a>
-                            <a href="{{ route('show.login') }}" class="dropdown-link">Login</a>
-                            <a href="{{ route('show.register') }}" class="dropdown-link">Signup</a>
-                        @endguest
-                        @auth
-                            <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
-                            <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
-                            <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
-                            <a href="{{ route('community.index') }}" class="dropdown-link">Community</a>
-                            <a href="{{ route('logout') }}" class="dropdown-link"
-                               onclick="event.preventDefault(); this.closest('form').submit();">
-                                Logout</a>
-                        @endauth
-                    </form>
+
+                    <div class="burger-menu">
+                        <div class="burger-icon"></div>
+                        <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            @auth
+                                <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
+                                <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
+                                <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
+                                <a href="{{ route('community.index') }}" class="dropdown-link">Community</a>
+                                <a href="{{ route('about') }}" class="dropdown-link">About</a>
+                                <a href="{{ route('logout') }}" class="dropdown-link"
+                                   onclick="event.preventDefault(); this.closest('form').submit();">
+                                    Logout</a>
+                            @endauth
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

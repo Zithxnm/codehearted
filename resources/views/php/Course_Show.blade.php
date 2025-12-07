@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $course->title }} - CodeHearted</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     @vite(['resources/css/' . $assets['css']])
+    @vite('resources/css/Module_Show_Toast_Styles.css')
     <style>
 
         html { scroll-behavior: smooth; }
@@ -29,22 +31,53 @@
                 </div>
             </div>
 
-            <div class="burger-menu">
-                <div class="burger-icon"></div>
-                <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    @if(Auth::user()->isAdmin())
-                        <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
-                    @endif
-                    <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
-                    <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
-                    <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
-                    <a href="{{ route('community.index') }}" class="dropdown-link">Community</a>
-                    <a href="{{ route('about') }}" class="dropdown-link">About</a>
-                    <a href="{{ route('logout') }}" class="dropdown-link"
-                       onclick="event.preventDefault(); this.closest('form').submit();">
-                        Logout</a>
-                </form>
+            <div class="header-actions">
+
+                <div class="notification-wrapper">
+                    <button class="notif-btn" onclick="toggleNotifications(event)">
+                        <i class="fa-solid fa-bell"></i>
+                        @if(auth()->user()->unreadNotifications->count() > 0)
+                            <span class="notif-badge">
+                        {{ auth()->user()->unreadNotifications->count() }}
+                    </span>
+                        @endif
+                    </button>
+
+                    <div id="notif-list" class="notif-dropdown">
+                        <div class="notif-header">Notifications</div>
+                        <div class="notif-items">
+                            @forelse(auth()->user()->notifications->take(5) as $notification)
+                                <a href="{{ $notification->data['link'] }}" class="notif-item {{ $notification->read_at ? 'read' : 'unread' }}">
+                                    <span class="notif-message">{{ $notification->data['message'] }}</span>
+                                    <span class="notif-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                </a>
+                                {{ $notification->markAsRead() }}
+                            @empty
+                                <div class="notif-empty">No new notifications</div>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+
+                <div class="burger-menu">
+                    <div class="burger-icon"></div>
+                    <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        @auth
+                            @if(Auth::user()->isAdmin())
+                                <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
+                            @endif
+                                <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
+                                <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
+                                <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
+                                <a href="{{ route('community.index') }}" class="dropdown-link">Community</a>
+                                <a href="{{ route('about') }}" class="dropdown-link">About</a>
+                                <a href="{{ route('logout') }}" class="dropdown-link"
+                                   onclick="event.preventDefault(); this.closest('form').submit();">
+                                    Logout</a>
+                        @endauth
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -192,7 +225,24 @@
         </div>
     </div>
 </footer>
+<script>
+    function toggleNotifications(e) {
+        e.stopPropagation();
+        const list = document.getElementById('notif-list');
+        list.classList.toggle('show');
+    }
 
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+        const wrapper = document.querySelector('.notification-wrapper');
+        const list = document.getElementById('notif-list');
+        if (wrapper && !wrapper.contains(e.target)) {
+            list.classList.remove('show');
+        }
+    });
+
+    window.toggleNotifications = toggleNotifications;
+</script>
 @vite(['resources/js/' . $assets['js']])
 </body>
 </html>
