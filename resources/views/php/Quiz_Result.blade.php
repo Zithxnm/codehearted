@@ -97,7 +97,7 @@
                 <span style="background-color: #fee2e2; color: #991b1b; padding: 10px 20px; border-radius: 20px; font-weight: bold; border: 2px solid #ef4444; font-family: 'Retro'; font-size: 1.2rem;">
                     <i class="fa-solid fa-circle-xmark"></i> FAILED
                 </span>
-                <p style="margin-top: 10px; color: #ef4444; font-family: 'Glacial';">You need 65% to pass.</p>
+                <p style="margin-top: 10px; color: #ef4444; font-family: 'Glacial';">You need atleast 60% score to pass.</p>
             @endif
         </div>
 

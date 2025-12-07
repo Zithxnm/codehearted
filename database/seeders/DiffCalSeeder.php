@@ -162,7 +162,7 @@ class DiffCalSeeder extends Seeder
 
         $pq2 = PracticeQuestion::create([
             'practice_id' => $prac1->id,
-            'question_text' => "Find the domain and range of the following functions. 
+            'question_text' => "Find the domain and range of the following functions.
                                 1. f(x)=x−2
                                 2. f(x)=1x+3",
             'type' => 'code_writing',
@@ -377,23 +377,23 @@ class DiffCalSeeder extends Seeder
 
                             <h3>4. Basic Differentiation Rules</h3>
                             <ul>
-                                <li><strong>Constant Rule:</strong>  
+                                <li><strong>Constant Rule:</strong>
                                     <code> \(\frac{d}{dx}[c] = 0\) </code>
                                 </li>
 
-                                <li><strong>Power Rule:</strong>  
+                                <li><strong>Power Rule:</strong>
                                     <code> \(\frac{d}{dx}[x^n] = n x^{n-1}, \; n \in \mathbb{R}\) </code>
                                 </li>
 
-                                <li><strong>Constant Multiple Rule:</strong>  
+                                <li><strong>Constant Multiple Rule:</strong>
                                     <code> \(\frac{d}{dx}[c \cdot f(x)] = c \cdot f\'(x)\) </code>
                                 </li>
 
-                                <li><strong>Sum Rule:</strong>  
+                                <li><strong>Sum Rule:</strong>
                                     <code> \(\frac{d}{dx}[f(x) + g(x)] = f\'(x) + g\'(x)\) </code>
                                 </li>
 
-                                <li><strong>Difference Rule:</strong>  
+                                <li><strong>Difference Rule:</strong>
                                     <code> \(\frac{d}{dx}[f(x) - g(x)] = f\'(x) - g\'(x)\) </code>
                                 </li>
                             </ul>
@@ -687,7 +687,7 @@ class DiffCalSeeder extends Seeder
             'type' => 'code_writing',
             'details' => [
                 'model_answers' => [ '11,
-                                        0, 
+                                        0,
                                         5'
                 ]
             ]
@@ -877,7 +877,7 @@ class DiffCalSeeder extends Seeder
 
                     <h3>1. Increasing and Decreasing Functions</h3>
                     <p>
-                        A function is <strong>increasing</strong> if <code>f\'(x) > 0</code>  
+                        A function is <strong>increasing</strong> if <code>f\'(x) > 0</code>
                         and <strong>decreasing</strong> if <code>f\'(x) &lt; 0</code>.
                     </p>
 
@@ -1202,7 +1202,7 @@ class DiffCalSeeder extends Seeder
 
             $pq15 = PracticeQuestion::create([
             'practice_id' => $prac5->id,
-            'question_text' => "Find the angle of rotation for the following shapes. 
+            'question_text' => "Find the angle of rotation for the following shapes.
                                 <p>1. Square</p>
                                 <p>2. Regular Hexagon</p>
                                 <p>3. Rhombus</p>",
@@ -1642,7 +1642,7 @@ class DiffCalSeeder extends Seeder
             'title' => 'Module 7: The Fibonacci Sequence',
             'order' => 7,
         ]);
-    
+
         Review::create([
                 'module_id' => $mod7->id,
                 'title' => 'Lesson 7 - The Fibonacci Sequence',

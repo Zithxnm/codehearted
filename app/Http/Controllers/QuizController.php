@@ -19,7 +19,7 @@ class QuizController extends Controller
 
         $alreadyPassed = $user->quizAttempts()
             ->where('quiz_id', $quiz->id)
-            ->where('score', '>=', 0) // You might want to update this to check for actual passing scores later
+            ->where('score', '>=', 0)
             ->exists();
 
         // Get user answers
@@ -52,7 +52,7 @@ class QuizController extends Controller
         }
 
         $percentage = ($totalPoints > 0) ? ($score / $totalPoints) * 100 : 0;
-        $isPassed = $percentage >= 65;
+        $isPassed = $percentage >= 60;
 
         // Save quiz attempt
         QuizAttempt::create([
