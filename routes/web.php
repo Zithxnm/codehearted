@@ -135,18 +135,20 @@ Route::get('/about', function () {
     return view('php.About');
 })->name('about');
 
-Route::get('/debug-progress', function () {
-    $user = Illuminate\Support\Facades\Auth::user();
-    // Replace '1' with the ID of the module you just finished
-    $moduleId = 1;
+Route::get('/test-toast', function () {
+    // Flash the achievement message
+    session()->flash('achievement', '🏆 Course Completed! You earned an Achievement.');
 
-    $result = $user->hasCompletedModule($moduleId);
-
-    dd([
-        'User ID' => $user->id,
-        'Checking Module ID' => $moduleId,
-        'Has Completed?' => $result ? 'YES' : 'NO',
-        'Quiz Attempts Count' => $user->quizAttempts()->count(),
-        'All Attempts' => $user->quizAttempts()->get()->toArray()
+    // Return the view with COMPLETE dummy data
+    return view('php.Quiz_result', [
+        'quiz' => (object)[
+            'title' => 'Test Quiz',
+            'module' => (object)['course_id' => 1],
+            'questions' => [] // <--- ADD THIS LINE (Empty array prevents the crash)
+        ],
+        'score' => 10,
+        'total' => 10,
+        'passed' => true,
+        'userAnswers' => []
     ]);
 });

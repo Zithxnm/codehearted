@@ -154,12 +154,6 @@
             <a href="{{ route('courses.show', $quiz->module->course_id) }}" class="action-btn">
                 Return to Course
             </a>
-
-{{--            @if(!$passed)--}}
-{{--                <a href="{{ route('modules.show', ['course' => $quiz->module->course_id, 'module' => $quiz->module->id]) }}?section=quiz" class="action-btn">--}}
-{{--                    Retake Quiz--}}
-{{--                </a>--}}
-{{--            @endif--}}
         </div>
     </div>
 </div>

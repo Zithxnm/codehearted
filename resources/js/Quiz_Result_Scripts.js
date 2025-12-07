@@ -30,7 +30,6 @@ function toggleNotifications(e) {
     list.classList.toggle('show');
 }
 
-// Close when clicking outside
 document.addEventListener('click', function(e) {
     const wrapper = document.querySelector('.notification-wrapper');
     const list = document.getElementById('notif-list');

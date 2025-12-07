@@ -12,22 +12,15 @@ class QuizController extends Controller
 {
     public function submit(Request $request, $quizId)
     {
-        // Get quiz and its questions
         $quiz = Quiz::with('questions.options', 'module')->findOrFail($quizId);
         $user = Auth::user();
 
+        $wasPreviouslyPassed = $user->hasCompletedModule($quiz->module_id);
 
-        $alreadyPassed = $user->quizAttempts()
-            ->where('quiz_id', $quiz->id)
-            ->where('score', '>=', 0)
-            ->exists();
-
-        // Get user answers
         $answers = $request->input('answers');
         $score = 0;
         $totalPoints = 0;
 
-        // Calculate score
         foreach ($quiz->questions as $question) {
             $totalPoints += $question->points;
 
@@ -35,14 +28,12 @@ class QuizController extends Controller
 
             $userAnswer = $answers[$question->id];
 
-            // Multiple Choice
             if ($question->type == 'multiple_choice') {
                 $correctOption = $question->options->where('is_correct', true)->first();
                 if ($correctOption && $correctOption->id == $userAnswer) {
                     $score += $question->points;
                 }
             }
-            // Identification
             else if ($question->type == 'identification') {
                 $correctOption = $question->options->where('is_correct', true)->first();
                 if ($correctOption && strcasecmp(trim($userAnswer), trim($correctOption->option_text)) === 0) {
@@ -62,8 +53,9 @@ class QuizController extends Controller
             'completed_at' => now(),
         ]);
 
-        // Only check for Course Completion/Achievements if they PASSED (>= 65%)
-        if (!$alreadyPassed && $isPassed) {
+        if ($isPassed && !$wasPreviouslyPassed) {
+
+            $user->stat()->increment('Quizzes');
 
             if ($user->hasCompletedCourse($quiz->module->course_id)) {
                 $user->stat()->increment("Achievements");
@@ -71,25 +63,22 @@ class QuizController extends Controller
             }
         }
 
+        // Streak Logic
         $userStat = Auth::user()->stat;
         if ($userStat) {
             $today = Carbon::now()->startOfDay();
             $lastDate = $userStat->last_quiz_date ? $userStat->last_quiz_date->startOfDay() : null;
 
-            if (!$alreadyPassed && $isPassed) {
-                $userStat->increment('Quizzes');
-            }
-
             if ($lastDate) {
                 if ($lastDate->equalTo($today)) {
-                    // Do nothing
+                    // do nothing
                 } elseif ($lastDate->equalTo($today->copy()->subDay())) {
                     $userStat->increment('Daily_Streak');
                 } else {
-                    $userStat->Daily_Streak = 1;
+                    $userStat->Daily_Streak = 1; // Streak breaks
                 }
             } else {
-                $userStat->Daily_Streak = 1;
+                $userStat->Daily_Streak = 1; // First ever quiz
             }
 
             $userStat->last_quiz_date = $today;

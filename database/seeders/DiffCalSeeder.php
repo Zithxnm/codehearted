@@ -1756,7 +1756,7 @@ class DiffCalSeeder extends Seeder
         ]);
 
         QuizOption::create(['question_id' => $q25->id, 'option_text' => '13', 'is_correct' => false]);
-        QuizOption::create(['question_id' => $q25->id, 'option_text' => '21', 'is_correct' => false]);
+        QuizOption::create(['question_id' => $q25->id, 'option_text' => '21', 'is_correct' => true]);
         QuizOption::create(['question_id' => $q25->id, 'option_text' => '34', 'is_correct' => false]);
         QuizOption::create(['question_id' => $q25->id, 'option_text' => '55', 'is_correct' => false]);
 
@@ -1769,7 +1769,7 @@ class DiffCalSeeder extends Seeder
         ]);
 
         QuizOption::create(['question_id' => $q26->id, 'option_text' => 'Fn = Fn−1 ⋅ Fn−2', 'is_correct' => false]);
-        QuizOption::create(['question_id' => $q26->id, 'option_text' => 'Fn = Fn−1 + Fn−2', 'is_correct' => false]);
+        QuizOption::create(['question_id' => $q26->id, 'option_text' => 'Fn = Fn−1 + Fn−2', 'is_correct' => true]);
         QuizOption::create(['question_id' => $q26->id, 'option_text' => 'Fn = 2Fn−1', 'is_correct' => false]);
         QuizOption::create(['question_id' => $q26->id, 'option_text' => 'Fn = n²', 'is_correct' => false]);
 
@@ -1782,7 +1782,7 @@ class DiffCalSeeder extends Seeder
         ]);
 
         QuizOption::create(['question_id' => $q27->id, 'option_text' => 'π (3.14)', 'is_correct' => false]);
-        QuizOption::create(['question_id' => $q27->id, 'option_text' => 'Golden Ratio (≈1.618)', 'is_correct' => false]);
+        QuizOption::create(['question_id' => $q27->id, 'option_text' => 'Golden Ratio (≈1.618)', 'is_correct' => true]);
         QuizOption::create(['question_id' => $q27->id, 'option_text' => '√2 (1.41)', 'is_correct' => false]);
         QuizOption::create(['question_id' => $q27->id, 'option_text' => 'e (2.71)', 'is_correct' => false]);
 
