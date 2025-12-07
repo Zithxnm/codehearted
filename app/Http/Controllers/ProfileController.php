@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Community;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
 {
@@ -86,5 +88,36 @@ class ProfileController extends Controller
             return back()->with('success', 'Profile updated successfully!');
         }
         return back()->with('error', 'Failed to update profile. Please try again.');
+    }
+
+    public function updatePassword(Request $request)
+    {
+
+        $validated = $request->validate([
+            'current_password' => 'required|current_password',
+            'password' => [
+                'required',
+                'confirmed',
+                'min:8',
+                'regex:/^.*(?=.{8,30})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).*$/'
+            ],
+        ]);
+
+        $user = Auth::user();
+        $user->update([
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        AuditLog::create([
+            'Admin_ID' => $user->id,
+            'Action' => 'Changed Password',
+        ]);
+
+        return back()->with('success', 'Password changed successfully!');
+    }
+
+    public function editPassword()
+    {
+        return view('php.ChangePassword');
     }
 }

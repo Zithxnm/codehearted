@@ -11,8 +11,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CommunityController;
+use App\Models\AuditLog;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\PasswordResetController;
 
 
 Route::middleware('guest')->group(function () {
@@ -30,6 +32,7 @@ Route::middleware('guest')->group(function () {
 
 });
 
+
 //notice page(shown to unverified users)
 Route::get('/email/verify', function () {
     return view('auth.Email');
@@ -38,6 +41,10 @@ Route::get('/email/verify', function () {
 //verification handler (when they click the email link)
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
+    AuditLog::create([
+        'Admin_ID' => $request->user()->id,
+        'Action'   => 'Email Verified',
+    ]);
     return redirect('/dashboard')->with('success', 'Email verified successfully!');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
@@ -47,6 +54,12 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('success', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+Route::get('/forgot-password', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Reset Password (Enter New Password)
+Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
 
 //Authenticated User Pages
 
@@ -70,9 +83,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
+
     Route::get('/profile', [ProfileController::class, 'myProfile'])->name('profile');
     Route::get('/user/{id}', [ProfileController::class, 'publicProfile'])->name('profile.show');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');;
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/password', [ProfileController::class, 'editPassword'])->name('password.edit');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('password.change');
 
     Route::get('/courses', function () {
         return view('php.Courses');

@@ -153,10 +153,10 @@
                 <table class="log-table">
                     <thead>
                     <tr>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Timestamp</th>
-                        <th>Action</th>
+                        <th style="width: 10%">User ID</th>
+                        <th style="width: 20%">Username</th>
+                        <th style="width: 30%">Timestamp</th>
+                        <th style="width: 40%">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -174,6 +174,9 @@
                     @endforelse
                     </tbody>
                 </table>
+                <div style="margin-top: 20px; text-align: center;">
+                    {{ $auditLogs->links('pagination::simple-bootstrap-5') }}
+                </div>
             </div>
 
 {{--            User management--}}
@@ -184,38 +187,52 @@
                     <table class="log-table" style="width: 100%;">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
+                            <th style="width: 10%">User ID</th>
+                            <th style="width: 15%">Name</th>
+                            <th style="width: 30%">Email</th>
+                            <th style="width: 12%">Status</th>
+                            <th style="width: 10%">Role</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($allUsers as $user)
                             <tr>
+                                <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>
-                            <span style="font-weight: bold; color: {{ $user->role === 'admin' ? '#d97706' : '#124559' }};">
-                                {{ ucfirst($user->role) }}
-                            </span>
-                                </td>
-                                <td>
-                                    <form action="{{ route('admin.users.toggle', $user->id) }}" method="POST" style="display:inline;">
-                                        @csrf @method('PATCH')
-                                        <button type="submit" class="btn-small" style="cursor:pointer; padding: 5px 10px; background: #124559; color: white; border: none; border-radius: 4px;" onclick="return validateAdminAction(event, {{ Auth::id() }}, {{ $user->id }}, 'demote/promote')">
-                                            {{ $user->role === 'admin' ? 'Demote' : 'Promote' }}
-                                        </button>
-                                    </form>
 
-                                    <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" style="display:inline;">
-                                        @csrf @method('DELETE')
-                                        <button type="submit" class="btn-small" style="cursor:pointer; padding: 5px 10px; background: #dc2626; color: white; border: none; border-radius: 4px;" onclick="return validateAdminAction(event, {{ Auth::id() }}, {{ $user->id }}, 'delete')">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                                <td>
+                                    @if($user->email_verified_at)
+                                        <span style="color: #166534; font-weight: bold; background: #dcfce7; padding: 3px 8px; border-radius: 4px; font-size: 0.85em;">
+                                        Verified
+                                        </span>
+                                    @else
+                                       <span style="color: #991b1b; font-weight: bold; background: #fee2e2; padding: 3px 8px; border-radius: 4px; font-size: 0.85em;">
+                                        Unverified
+                                        </span>
+                                     @endif
+                                         </td>
+                                         <td>
+                                        <span style="font-weight: bold; color: {{ $user->role === 'admin' ? '#d97706' : '#124559' }};">
+                                        {{ ucfirst($user->role) }}
+                                        </span>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('admin.users.toggle', $user->id) }}" method="POST" style="display:inline;">
+                                                @csrf @method('PATCH')
+                                                <button type="submit" class="btn-small" style="cursor:pointer; padding: 5px 10px; background: #124559; color: white; border: none; border-radius: 4px;" onclick="return validateAdminAction(event, {{ Auth::id() }}, {{ $user->id }}, 'demote/promote')">
+                                                    {{ $user->role === 'admin' ? 'Demote' : 'Promote' }}
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" style="display:inline;">
+                                                @csrf @method('DELETE')
+                                                <button type="submit" class="btn-small" style="cursor:pointer; padding: 5px 10px; background: #dc2626; color: white; border: none; border-radius: 4px;" onclick="return validateAdminAction(event, {{ Auth::id() }}, {{ $user->id }}, 'delete')">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -239,6 +256,20 @@
             users: @json($userGrowth),
             activity: @json($activityLog)
         };
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if we just clicked a pagination link (URL has ?page=X)
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if (urlParams.has('page')) {
+                // Hide Dashboard
+                document.getElementById('dashboardContent').classList.add('hidden');
+                document.querySelector('a[onclick="showDashboard(event)"]').classList.remove('active');
+
+                // Show Audit Log
+                document.getElementById('auditLog').classList.remove('hidden');
+                document.querySelector('a[onclick="showAuditLog(event)"]').classList.add('active');
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             const checkAndShow = (msg, type) => {

@@ -121,7 +121,8 @@ export default defineConfig({
                     'resources/js/Register_Scripts.js',
                     'resources/js/Community_Scripts.js',
                     'resources/js/About_Scripts.js',
-                    'resources/js/Quiz_Result_Scripts.js'
+                    'resources/js/Quiz_Result_Scripts.js',
+                    'resources/js/ResetPassword_Scripts.js'
 
 
                 ],

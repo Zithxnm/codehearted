@@ -16,8 +16,8 @@ class AdminController extends Controller
         $totalUsers = User::count();
         $totalCourses = Course::count();
         $totalQuizzes = Quiz::count();
-        $activeSessions = DB::table('sessions')->count();
-        $auditLogs = AuditLog::with('admin')->latest()->take(10)->get();
+        $activeSessions = DB::table('sessions')->whereNotNull('user_id')->count();
+        $auditLogs = AuditLog::with('admin')->latest()->paginate(10);
         $allUsers = User::all();
 
         $coursesWithCount = Course::withCount('users')->get();

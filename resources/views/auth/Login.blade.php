@@ -88,6 +88,7 @@
                     </div>
 
                     <div class="form-bottom-grid">
+
                         <div class="checkboxes-container">
                             <div class="checkbox-group">
                                 <input type="checkbox" id="remember" name="remember">
@@ -95,13 +96,15 @@
                                     Remember me
                                 </label>
                             </div>
-                                <label class="no-account">No account yet? <a href="{{ route('show.register') }}">Register here.</a></label>
+                            <label class="no-account">Forgot password? <a href="{{ route('password.request') }}">Reset password here</a></label>
+                            <label class="no-account">No account yet? <a href="{{ route('show.register') }}">Register here.</a></label>
                         </div>
                     </div>
 
                     <div class="button-container">
                         <button type="submit" class="retro-button">Log In</button>
                     </div>
+
                 </form>
             </div>
         </div>

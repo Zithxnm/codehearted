@@ -62,9 +62,15 @@
             <p class="user-bio">{{ $user->bio ?? 'Ready to learn!' }}</p>
 
             @if(Auth::id() === $user->id)
-                <button onclick="openEditModal()" class="edit-profile-btn">
-                    <i class="fa-solid fa-pen"></i> Edit Profile
-                </button>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button onclick="openEditModal()" class="edit-profile-btn">
+                        <i class="fa-solid fa-pen"></i> Edit Profile
+                    </button>
+
+                    <a href="{{ route('password.edit') }}" class="edit-profile-btn" title="Change Password" style="text-decoration: none">
+                        <i class="fa-solid fa-lock"></i> Change Password
+                    </a>
+                </div>
             @endif
         </div>
 
@@ -99,6 +105,7 @@
                             <label for="bio">Bio</label>
                             <textarea name="bio" rows="3" class="modal-input">{{ Auth::user()->bio }}</textarea>
                         </div>
+
 
                         <div class="modal-footer">
                             <button type="button" onclick="closeEditModal()" class="btn-cancel">Cancel</button>
