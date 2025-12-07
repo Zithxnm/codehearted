@@ -15,6 +15,7 @@ use App\Models\AuditLog;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\SearchController;
 
 
 Route::middleware('guest')->group(function () {
@@ -114,7 +115,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('quizzes.result')
         ->middleware('auth');
 
-
+    Route::get('/search', [SearchController::class, 'index'])->name('global.search');
 
 });
 

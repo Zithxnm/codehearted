@@ -15,15 +15,6 @@
                     <img src="{{asset("imgs/CodeHearted_Logo.png") }}" alt="Logo">
                 </div>
 
-                <div class="search-container">
-                    <div class="search-box">
-                        <button class="search-icon-btn" type="button" aria-label="Search">
-                            <img class="search-icon" src="{{asset('imgs/7.jpg')}}" alt="Search Icon">
-                        </button>
-                        <input type="text" placeholder="Search..." class="search-input">
-                    </div>
-                </div>
-
                 <div class="burger-menu">
                     <div class="burger-icon">
                     </div>

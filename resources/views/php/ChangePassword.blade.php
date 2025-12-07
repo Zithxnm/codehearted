@@ -17,13 +17,13 @@
             </div>
 
             <div class="search-container">
-                <div class="search-box">
-                    <button class="search-icon-btn" type="button" aria-label="Search">
-                        <img class="search-icon" src="{{ asset('imgs/7.jpg') }}" alt="Search Icon">
-                    </button>
-                    <input type="text" placeholder="Search..." class="search-input">
+                    <form action="{{ route('global.search') }}" method="GET" class="search-box">
+                        <button class="search-icon-btn" type="submit">
+                            <img class="search-icon" src="{{ asset('imgs/7.jpg') }}" alt="Search">
+                        </button>
+                        <input type="text" name="search" placeholder="Search..." class="search-input" value="{{ request('search') }}">
+                    </form>
                 </div>
-            </div>
 
             <div class="burger-menu">
                 <div class="burger-icon"></div>

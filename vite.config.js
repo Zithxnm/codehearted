@@ -28,6 +28,7 @@ export default defineConfig({
                     'resources/css/Register_Styles.css',
                     'resources/css/Community_Styles.css',
                     'resources/css/Quiz_Result_Styles.css',
+                    'resources/css/Search_Results_Styles.css',
 
                     'resources/css/modules/compfund/mod1/practice1.css',
                     'resources/css/modules/compfund/mod1/quiz1.css',
@@ -122,7 +123,8 @@ export default defineConfig({
                     'resources/js/Community_Scripts.js',
                     'resources/js/About_Scripts.js',
                     'resources/js/Quiz_Result_Scripts.js',
-                    'resources/js/ResetPassword_Scripts.js'
+                    'resources/js/ResetPassword_Scripts.js',
+                    'resources/js/Search_Results_Scripts.js'
 
 
                 ],
