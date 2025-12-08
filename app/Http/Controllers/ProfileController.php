@@ -29,7 +29,13 @@ class ProfileController extends Controller
             }
         }
 
-        return view('php.Profile', compact('user'));
+        $recentPosts = Community::where('user_id', $user->id)
+            ->with('parent')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('php.Profile', compact('user', 'recentPosts'));
     }
 
     public function publicProfile($id)
@@ -37,7 +43,7 @@ class ProfileController extends Controller
         $user = User::with('stat')->findOrFail($id);
 
         $recentPosts = Community::where('user_id', $id)
-            ->whereNull('Parent_ID')
+            ->with('parent')
             ->latest()
             ->take(5)
             ->get();

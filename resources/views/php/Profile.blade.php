@@ -135,20 +135,48 @@
     </div>
 
     @if(isset($recentPosts) && $recentPosts->count() > 0)
-        <div style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <div class="recent-activity-section">
             <div class="stats-header">
                 <hr class="stats-separator">
-                <h2 class="stats-title">RECENT ACTIVITY</h2>
+                <h2 class="stats-title">RECENT COMMUNITY ACTIVITY</h2>
                 <hr class="stats-separator">
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 1rem; padding: 0 1rem;">
+            <div class="activity-list">
                 @foreach($recentPosts as $post)
-                    <div style="background: white; border: 2px solid #71351a; border-radius: 10px; padding: 1rem; text-align: left;">
-                        <a href="{{ route('community.show', $post->Community_ID) }}" style="text-decoration: none; color: inherit;">
-                            <h4 style="font-family: Retro; color: #5a3100; margin: 0;">{{ $post->Title }}</h4>
-                            <p style="font-family: Glacial; color: #6b7280; margin: 5px 0 0 0; font-size: 0.9rem;">
-                                Posted {{ $post->created_at->diffForHumans() }} in {{ $post->Category }}
+                    @php
+                        $isReply = $post->Parent_ID !== null;
+                        $linkId = $isReply ? $post->Parent_ID : $post->Community_ID;
+
+                        $displayTitle = $isReply
+                            ? "Replied to: " . ($post->parent->Title ?? 'Deleted Discussion')
+                            : $post->Title;
+
+                        $category = $isReply
+                            ? ($post->parent->Category ?? 'General')
+                            : $post->Category;
+                    @endphp
+
+                    <div class="activity-card">
+                        <a href="{{ route('community.show', $linkId) }}" class="activity-link">
+
+                            <div class="activity-header">
+                                <h4 class="activity-title">
+                                    {{ $displayTitle }}
+                                </h4>
+                                <span class="activity-badge {{ $isReply ? 'badge-reply' : 'badge-post' }}">
+                                    {{ $isReply ? 'REPLY' : 'POST' }}
+                                </span>
+                            </div>
+
+                            @if($isReply)
+                                <p class="activity-snippet">
+                                    "{{ Str::limit($post->Content, 80) }}"
+                                </p>
+                            @endif
+
+                            <p class="activity-meta">
+                                Posted {{ $post->created_at->diffForHumans() }} in {{ $category }}
                             </p>
                         </a>
                     </div>

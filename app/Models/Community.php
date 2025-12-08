@@ -22,6 +22,11 @@ class Community extends Model
         return $this->hasMany(Community::class, 'Parent_ID', 'Community_ID');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo(Community::class, 'Parent_ID', 'Community_ID');
+    }
+
     public function likedByUsers()
     {
         return $this->belongsToMany(User::class, 'community_likes', 'community_id', 'user_id');

@@ -332,6 +332,87 @@ body {
     color: #e95e16;
 }
 
+.recent-activity-section {
+    margin-top: 3rem;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.activity-card {
+    border: 2px solid #71351a;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.activity-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.activity-title {
+    font-family: Retro;
+    color: #5a3100;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.activity-badge {
+    font-family: Glacial;
+    font-size: 0.75rem;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.badge-reply {
+    background-color: #6b7280;
+}
+
+.badge-post {
+    background-color: #e95e16;
+}
+
+.activity-snippet {
+    font-family: Glacial;
+    color: #374151;
+    font-style: italic;
+    font-size: 0.95rem;
+    margin: 5px 0 10px 0;
+    border-left: 3px solid #ccc;
+    padding-left: 10px;
+}
+
+.activity-meta {
+    font-family: Glacial;
+    color: #6b7280;
+    margin: 0;
+    font-size: 0.85rem;
+}
+
 .footer {
     display: flex;
     flex-direction: column;

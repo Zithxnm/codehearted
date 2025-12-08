@@ -27,6 +27,8 @@ export default defineConfig({
                     'resources/css/ProgFund_Styles.css',
                     'resources/css/Register_Styles.css',
                     'resources/css/Community_Styles.css',
+                    'resources/css/Community_Edit_Styles.css',
+                    'resources/css/Community_Show_Styles.css',
                     'resources/css/Quiz_Result_Styles.css',
                     'resources/css/Search_Results_Styles.css',
 
@@ -121,6 +123,8 @@ export default defineConfig({
                     'resources/js/ProgFund_Scripts.js',
                     'resources/js/Register_Scripts.js',
                     'resources/js/Community_Scripts.js',
+                    'resources/js/Community_Show_Scripts.js',
+                    'resources/js/Community_Edit_Scripts.js',
                     'resources/js/About_Scripts.js',
                     'resources/js/Quiz_Result_Scripts.js',
                     'resources/js/ResetPassword_Scripts.js',

@@ -15,7 +15,7 @@
 }
 
 body {
-    background-color: #fff8f0;
+    background-color: #EFF6E0;
     text-align: center;
 }
 
@@ -642,3 +642,141 @@ body {
 html {
     scroll-behavior: smooth;
 }
+
+.before-footer {
+    margin-top: 2rem;
+    margin-bottom: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.minecraft {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background-image: url("/public/imgs/Blocks.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 7rem;
+}
+
+.footer {
+    background: #b38a6b;
+    color: #fff;
+    padding: 1.5rem 0 1rem 0;
+    font-family: Glacial, Arial, sans-serif;
+    font-size: 1rem;
+    border: none;
+}
+
+.footer-title {
+    text-align: left;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.footer-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: 25px;
+    margin: 0;
+}
+
+.footer-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.footer-link:hover {
+    color: #ffe6c7;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.social-link {
+    width: 2.2rem;
+    height: 2.2rem;
+    background: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.psu:hover {
+    background-image: url("/public/imgs/Logo_PSU.png");
+    background-size: cover;
+}
+
+.ccs:hover {
+    background-image: url("/public/imgs/Logo_CCSSC.png");
+    background-size: cover;
+}
+
+.compress:hover {
+    background-image: url("/public/imgs/Logo_ComPress.png");
+    background-size: cover;
+}
+
+.social-link img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.footer-bottom {
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: rgba(255, 237, 213, 0.8);
+    font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .search-container {
+        display: block;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .courses-list {
+        max-width: 64rem;
+    }
+}
+
