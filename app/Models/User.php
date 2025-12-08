@@ -105,7 +105,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         $percentage = ($bestScore / $totalPoints) * 100;
 
-        return $percentage >= 65;
+        return $percentage >= 60;
     }
 
     public function hasCompletedCourse($courseId)

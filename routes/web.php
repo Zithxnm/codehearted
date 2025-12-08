@@ -134,21 +134,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/about', function () {
     return view('php.About');
 })->name('about');
-
-Route::get('/test-toast', function () {
-    // Flash the achievement message
-    session()->flash('achievement', '🏆 Course Completed! You earned an Achievement.');
-
-    // Return the view with COMPLETE dummy data
-    return view('php.Quiz_result', [
-        'quiz' => (object)[
-            'title' => 'Test Quiz',
-            'module' => (object)['course_id' => 1],
-            'questions' => [] // <--- ADD THIS LINE (Empty array prevents the crash)
-        ],
-        'score' => 10,
-        'total' => 10,
-        'passed' => true,
-        'userAnswers' => []
-    ]);
-});

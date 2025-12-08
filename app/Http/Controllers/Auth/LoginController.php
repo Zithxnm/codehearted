@@ -8,7 +8,6 @@ use App\Models\AuditLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use PhpParser\Node\Expr\Throw_;
 
 class LoginController extends Controller
 {
