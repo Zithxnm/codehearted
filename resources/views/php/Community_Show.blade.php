@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
@@ -12,7 +13,8 @@
 
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script> <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         let contentDivs = document.querySelectorAll('.post-content');
 
@@ -30,20 +32,88 @@
         Prism.highlightAll();
     });
 </script>
+
 <body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="{{ route('dashboard') }}">
+                        <img src="{{ asset('imgs/CodeHearted_Logo.png') }}" alt="Logo">
+                    </a>
+                </div>
 
-<hr> <main>
-    <div style="margin-bottom: 20px;">
-        <a href="{{ route('community.index') }}">&larr; Back to Discussions</a>
-    </div>
+                <div class="search-container">
+                    <div class="search-box">
+                        <button class="search-icon-btn" type="button" aria-label="Search">
+                            <img class="search-icon" src="{{ asset('/imgs/7.jpg') }}" alt="Search Icon">
+                        </button>
+                        <input type="text" placeholder="Search..." class="search-input">
+                    </div>
+                </div>
 
-    <article>
-        @if(Auth::id() === $post->user_id)
+                <div class="header-actions">
+
+                    <div class="notification-wrapper">
+                        <button class="notif-btn" onclick="toggleNotifications(event)">
+                            <i class="fa-solid fa-bell"></i>
+                            @if(auth()->user()->unreadNotifications->count() > 0)
+                            <span class="notif-badge">
+                                {{ auth()->user()->unreadNotifications->count() }}
+                            </span>
+                            @endif
+                        </button>
+
+                        <div id="notif-list" class="notif-dropdown">
+                            <div class="notif-header">Notifications</div>
+                            <div class="notif-items">
+                                @forelse(auth()->user()->notifications->take(5) as $notification)
+                                <a href="{{ $notification->data['link'] }}" class="notif-item {{ $notification->read_at ? 'read' : 'unread' }}">
+                                    <span class="notif-message">{{ $notification->data['message'] }}</span>
+                                    <span class="notif-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                </a>
+                                {{ $notification->markAsRead() }}
+                                @empty
+                                <div class="notif-empty">No new notifications</div>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="burger-menu">
+                        <div class="burger-icon"></div>
+                        <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            @if(Auth::user()->isAdmin())
+                            <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
+                            @endif
+                            <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
+                            <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
+                            <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
+                            <a href="{{ route('about') }}" class="dropdown-link">About</a>
+                            <a href="{{ route('logout') }}" class="dropdown-link"
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                Logout</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <hr>
+    <main>
+        <div style="margin-bottom: 20px;">
+            <a href="{{ route('community.index') }}">&larr; Back to Discussions</a>
+        </div>
+
+        <article>
+            @if(Auth::id() === $post->user_id)
             <a href="{{ route('community.edit', $post->Community_ID) }}" style="font-size: 0.9rem;">
                 <i class="fa-solid fa-pen"></i> Edit
             </a>
-        @endif
-        @if(Auth::check() && Auth::user()->isAdmin())
+            @endif
+            @if(Auth::check() && Auth::user()->isAdmin())
             <div style="margin-top: 10px;">
                 <form action="{{ route('community.destroy', $post->Community_ID) }}" method="POST" onsubmit="return confirm('Delete this entire thread?');">
                     @csrf
@@ -51,61 +121,61 @@
                     <button type="submit" style="color: red;">[Admin] Delete Thread</button>
                 </form>
             </div>
-        @endif
-        <div>
-            <a href="{{ route('profile.show', $post->user_id) }}" style="text-decoration:none; color:inherit; display:flex; align-items:center;">
-                <img
-                    src="{{ $post->user->profile_picture_path ? asset($post->user->profile_picture_path) : asset('imgs/15.png') }}"
-                    alt="User Avatar"
-                    width="50"
-                    height="50">
-                <strong>{{ $post->user->name ?? 'Unkown User'}}</strong>
-            </a>
+            @endif
+            <div>
+                <a href="{{ route('profile.show', $post->user_id) }}" style="text-decoration:none; color:inherit; display:flex; align-items:center;">
+                    <img
+                        src="{{ $post->user->profile_picture_path ? asset($post->user->profile_picture_path) : asset('imgs/15.png') }}"
+                        alt="User Avatar"
+                        width="50"
+                        height="50">
+                    <strong>{{ $post->user->name ?? 'Unkown User'}}</strong>
+                </a>
 
-            <small>{{ $post->created_at->format('M d, Y') }}</small>
-        </div>
+                <small>{{ $post->created_at->format('M d, Y') }}</small>
+            </div>
 
-        <h1>{{ $post->Title }}</h1>
+            <h1>{{ $post->Title }}</h1>
 
-        <div class="post-content">
-            <p>{{ $post->Content }}</p>
-        </div>
+            <div class="post-content">
+                <p>{{ $post->Content }}</p>
+            </div>
 
-        <div>
-            <span>Category: {{ $post->Category }}</span>
+            <div>
+                <span>Category: {{ $post->Category }}</span>
 
-            <button class="like-btn" data-id="{{ $post->Community_ID }}">
-                <i class="{{ $post->is_liked ? 'fa-solid' : 'fa-regular' }} fa-thumbs-up"></i>
+                <button class="like-btn" data-id="{{ $post->Community_ID }}">
+                    <i class="{{ $post->is_liked ? 'fa-solid' : 'fa-regular' }} fa-thumbs-up"></i>
 
-                <span class="like-count">{{ $post->Likes }}</span> Likes
-            </button>
-        </div>
-    </article>
-    <hr>
+                    <span class="like-count">{{ $post->Likes }}</span> Likes
+                </button>
+            </div>
+        </article>
+        <hr>
 
-    <section>
-        <h3>Replies ({{ $post->replies->count() }})</h3>
+        <section>
+            <h3>Replies ({{ $post->replies->count() }})</h3>
 
-        @forelse($post->replies as $reply)
+            @forelse($post->replies as $reply)
             <div class="reply-item">
 
 
                 <div>
-                    <div class="reply-card" style="{{ $post->solved_by_reply_id == $reply->Community_ID ? 'border: 2px solid #22c55e; background: #f0fdf4;' : '' }}">
+                    <div class="reply-card" style="{{ $post->solved_by_reply_id == $reply->Community_ID ? 'border: 2px solid #159142ff; background: #f0fdf4;' : '' }}">
 
                         @if($post->solved_by_reply_id == $reply->Community_ID)
-                            <div style="color: #22c55e; font-weight: bold; margin-bottom: 10px;">
-                                <i class="fa-solid fa-check-circle"></i> Best Answer
-                            </div>
+                        <div style="color: #159142ff; font-weight: bold; margin-bottom: 10px;">
+                            <i class="fa-solid fa-check-circle"></i> Best Answer
+                        </div>
                         @endif
 
                         @if(Auth::id() === $post->user_id)
-                            <form action="{{ route('community.solve', ['id' => $post->Community_ID, 'reply_id' => $reply->Community_ID]) }}" method="POST" style="margin-top: 10px;">
-                                @csrf
-                                <button type="submit" style="cursor: pointer; background: none; border: 1px solid #22c55e; color: #22c55e; padding: 5px 10px; border-radius: 5px;">
-                                    {{ $post->solved_by_reply_id == $reply->Community_ID ? 'Unmark Solution' : '✓ Mark as Solution' }}
-                                </button>
-                            </form>
+                        <form action="{{ route('community.solve', ['id' => $post->Community_ID, 'reply_id' => $reply->Community_ID]) }}" method="POST" style="margin-top: 10px;">
+                            @csrf
+                            <button type="submit" style="cursor: pointer; background: none; border: 1px solid #159142ff; color: #159142ff; padding: 5px 10px; border-radius: 5px;">
+                                {{ $post->solved_by_reply_id == $reply->Community_ID ? 'Unmark Solution' : '✓ Mark as Solution' }}
+                            </button>
+                        </form>
                         @endif
                     </div>
                     <img
@@ -121,16 +191,16 @@
                         <span class="like-count">{{ $reply->Likes }}</span>
                     </button>
                     @if(Auth::id() === $reply->user_id)
-                        <a href="{{ route('community.edit', $reply->Community_ID) }}" style="font-size: 0.85rem;">
-                            <i class="fa-solid fa-pen"></i> Edit
-                        </a>
+                    <a href="{{ route('community.edit', $reply->Community_ID) }}" style="font-size: 0.85rem;">
+                        <i class="fa-solid fa-pen"></i> Edit
+                    </a>
                     @endif
                     @if(Auth::check() && Auth::user()->isAdmin())
-                        <form action="{{ route('community.destroy', $reply->Community_ID) }}" method="POST" onsubmit="return confirm('Delete this reply?');" style="display:inline; margin-left: 10px;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" style="color: red; font-size: 0.8em;">[Delete]</button>
-                        </form>
+                    <form action="{{ route('community.destroy', $reply->Community_ID) }}" method="POST" onsubmit="return confirm('Delete this reply?');" style="display:inline; margin-left: 10px;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" style="color: red; font-size: 0.8em;">[Delete]</button>
+                    </form>
                     @endif
                 </div>
 
@@ -138,35 +208,82 @@
             </div>
             <hr> @empty
             <p>No replies yet. Be the first to share your thoughts!</p>
-        @endforelse
-    </section>
-    <section>
-        <h4>Leave a Reply</h4>
-        <form action="{{ route('community.reply', $post->Community_ID) }}" method="POST">
-            @csrf
+            @endforelse
+        </section>
+        <section>
+            <h4>Leave a Reply</h4>
+            <form action="{{ route('community.reply', $post->Community_ID) }}" method="POST">
+                @csrf
 
-            <div>
-                <textarea name="Content" rows="5" placeholder="Type your response here..." required></textarea>
+                <div>
+                    <textarea name="Content" rows="5" placeholder="Type your response here..." required></textarea>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <button type="submit">Post Reply</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    @vite('resources/js/Community_Show_Scripts.js')
+
+    <script>
+        @if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+        @endif
+    </script>
+
+<div class="grass-background">
+        <div class="grass-layer"></div>
+    </div>
+
+<section class="before-footer">
+        <div class="minecraft">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="/about" class="footer-link">
+                                <span>➤ About Us</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Stay sharp as a fox — follow us for news and updates.</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/PampangaStateU" class="social-link" aria-label="PSU" target="_blank">
+                            <img class="psu" src="{{asset('/imgs/WhiteLogo_PSU.png')}}" alt="PSU">
+                        </a>
+                        <a href="https://www.facebook.com/dhvsu.ccssc" class="social-link" aria-label="CCS" target="_blank">
+                            <img class="ccs" src="{{asset('/imgs/WhiteLogo_CCSSC.png')}}" alt="PSU">
+                        </a>
+                        <a href="https://www.facebook.com/ComPressCCS" class="social-link" aria-label="ComPress" target="_blank">
+                            <img class="compress" src="{{asset('/imgs/WhiteLogo_ComPress.png')}}" alt="PSU">
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div style="margin-top: 10px;">
-                <button type="submit">Post Reply</button>
+            <div class="footer-bottom">
+                <p>© 2025 CodeHearted. All rights reserved. Built with ♥ for clever foxes everywhere.</p>
             </div>
-        </form>
-    </section>
+        </div>
+    </footer>
 
-</main>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-@vite('resources/js/Community_Show_Scripts.js')
-
-<script>
-    @if(Session::has('success'))
-    toastr.success("{{ Session::get('success') }}");
-    @endif
-</script>
 
 </body>
+
 </html>

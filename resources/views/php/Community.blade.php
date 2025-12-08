@@ -232,5 +232,50 @@
 
     @vite('resources/js/Community_Scripts.js')
 
+<div class="grass-background">
+        <div class="grass-layer"></div>
+    </div>
+
+<section class="before-footer">
+        <div class="minecraft">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="/about" class="footer-link">
+                                <span>➤ About Us</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Stay sharp as a fox — follow us for news and updates.</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/PampangaStateU" class="social-link" aria-label="PSU" target="_blank">
+                            <img class="psu" src="{{asset('/imgs/WhiteLogo_PSU.png')}}" alt="PSU">
+                        </a>
+                        <a href="https://www.facebook.com/dhvsu.ccssc" class="social-link" aria-label="CCS" target="_blank">
+                            <img class="ccs" src="{{asset('/imgs/WhiteLogo_CCSSC.png')}}" alt="PSU">
+                        </a>
+                        <a href="https://www.facebook.com/ComPressCCS" class="social-link" aria-label="ComPress" target="_blank">
+                            <img class="compress" src="{{asset('/imgs/WhiteLogo_ComPress.png')}}" alt="PSU">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 CodeHearted. All rights reserved. Built with ♥ for clever foxes everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
