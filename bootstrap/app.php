@@ -20,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'module.access' => CheckModuleAccess::class,
             'admin' => isUserAdmin::class,
         ]);
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
