@@ -38,3 +38,5 @@ RUN npm run build
 
 # 10. Fix Permissions (Crucial for storage)
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+CMD php artisan migrate --force && php artisan db:seed --force && apache2-foreground
