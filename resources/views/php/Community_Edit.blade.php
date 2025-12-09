@@ -79,8 +79,6 @@
         </div>
     </header>
 
-<hr>
-
 <main>
     <h1>Edit your {{ $post->Parent_ID ? 'Reply' : 'Discussion' }}</h1>
 

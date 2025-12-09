@@ -40,6 +40,10 @@ class ModuleController extends Controller
             case 'review':
             default:
                 $content = $module->review->content ?? '<p>No review content.</p>';
+                // Normalize relative image paths from stored HTML (e.g. "../../imgs/") to application asset URLs
+                if ($content && str_contains($content, '../../imgs/')) {
+                    $content = str_replace('../../imgs/', asset('imgs/'), $content);
+                }
                 break;
         }
 

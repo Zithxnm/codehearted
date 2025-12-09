@@ -41,100 +41,90 @@ class DiffCalSeeder extends Seeder
         Review::create([
             'module_id' => $mod1->id,
             'title' => 'Lesson 1: Basic Functions and Graphs',
-            'content' => ' <h2>🎯 Learning Objectives</h2>
+            'content' => '<h2>🎯 Learning Objectives</h2>
+                            <p>By the end of this lesson, you should be able to:</p>
+                            <ul>
+                                <li>Define and identify functions.</li>
+                                <li>Distinguish between domain and range.</li>
+                                <li>Evaluate functions at specific values.</li>
+                                <li>Recognize different types of functions and their graphs.</li>
+                                <li>Apply transformations (shifts, stretches, reflections) to graphs.</li>
+                            </ul>
 
-         <p>By the end of this lesson, students should be able to:</p>
-            <ul>
-                    <li>Define and identify functions.</li>
-                    <li>Distinguish between domain and range.</li>
-                    <li>Evaluate functions at specific values.</li>
-                    <li>Recognize different types of functions and their graphs.</li>
-                    <li>Apply transformations (shifts, stretches, reflections) to graphs.</li>
-                </ul>
-            </section>
+                            <h2>📘 Learning Materials & Core Lesson</h2>
 
-            <section class="core-lesson">
-                <h2>📘 Learning Materials & Core Lesson</h2>
+                            <h3>1. What Is a Function?</h3>
+                            <p>
+                                A <strong>function</strong> is a special type of relation in mathematics. It assigns each input value
+                                <strong>x</strong> to exactly one output value <strong>y</strong>. In other words, a function follows
+                                a rule that connects every element of the domain to one and only one element in the range.
+                            </p>
+                            <p>
+                                In set notation, a function <strong>f</strong> maps a non-empty set <strong>A</strong> (domain) to a
+                                non-empty set <strong>B</strong> (codomain). No two ordered pairs in a function have the same first
+                                element.
+                            </p>
 
-                <h3>1. What is a Function?</h3>
-                <p>
-                    In mathematics, a function is a particular type of relation with some rules.
-                    For example, mathematically, a function <strong>f</strong> is a relation from a
-                    non-empty set <strong>A</strong> to a non-empty set <strong>B</strong> such that
-                    the domain of <strong>f</strong> is <strong>A</strong> and no two distinct ordered
-                    pairs in <strong>f</strong> have the same first element. Also, we have different
-                    types of functions that can be defined based on their properties.
-                </p>
+                            <ul>
+                                <li><strong>Notation:</strong> <code>f(x) = y</code></li>
+                                <li><strong>Example:</strong> <code>f(x) = 2x + 3</code></li>
+                            </ul>
 
-                <p style="margin-top: 1rem;">
-                    A function is a rule that assigns to each input <strong>x</strong> exactly one
-                    output <strong>y</strong>.<br>
-                </p>
-                <ul>
-                    <li><strong>Notation:</strong> <code>f(x)=y</code></li>
-                    <li><strong>Example:</strong> <code>f(x)=2x+3</code></li>
-                </ul>
+                            <h3>2. Domain and Range</h3>
+                            <p>
+                                The <strong>domain</strong> of a function refers to all possible valid input values (x-values).  
+                                The <strong>range</strong> refers to all possible output values (y-values).
+                            </p>
+                            <p>
+                                Example: <code>f(x) = \sqrt{x}</code> → Domain: <code>x ≥ 0</code>, Range: <code>y ≥ 0</code>.
+                            </p>
 
-                <h3>2. Domain and Range</h3>
-                <p>
+                            <h3>3. Common Types of Functions and Graphs</h3>
+                            <ul>
+                                <li><strong>Linear:</strong> <code>f(x) = mx + b</code> → straight line</li>
+                                <li><strong>Quadratic:</strong> <code>f(x) = ax^2 + bx + c</code> → parabola</li>
+                                <li><strong>Cubic:</strong> <code>f(x) = x^3</code> → S-shaped curve</li>
+                                <li><strong>Square Root:</strong> <code>f(x) = \sqrt{x}</code></li>
+                                <li><strong>Reciprocal:</strong> <code>f(x) = 1/x</code></li>
+                                <li><strong>Absolute Value:</strong> <code>f(x) = |x|</code></li>
+                            </ul>
 
-                <strong>Domain:</strong> all possible input values (x-values). <br>
-                    <strong>Range:</strong> all possible output values (y-values).
-                </p>
-                <p>Example: <code>f(x)=√x</code> → Domain: <code>x≥0</code>, Range: <code>y≥0</code>.</p>
+                            <h3>4. Graph Transformations</h3>
+                            <ul>
+                                <li><strong>Vertical Shift:</strong> <code>f(x) + k</code> → moves graph up/down</li>
+                                <li><strong>Horizontal Shift:</strong> <code>f(x - h)</code> → moves graph left/right</li>
+                                <li><strong>Reflections:</strong>
+                                    <ul>
+                                        <li>Over x-axis: <code>-f(x)</code></li>
+                                        <li>Over y-axis: <code>f(-x)</code></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Stretch/Compression:</strong> <code>a·f(x)</code> (vertical), <code>f(bx)</code> (horizontal)</li>
+                            </ul>
 
-                <h3>3. Common Types of Functions and Graphs</h3>
-                <ul>
-                    <li><strong>Linear:</strong> <code>f(x)=mx+b</code> → straight line</li>
-                    <li><strong>Quadratic:</strong> <code>f(x)=ax²+bx+c</code> → parabola</li>
-                    <li><strong>Cubic:</strong> <code>f(x)=x³</code> → S-shaped curve</li>
-                    <li><strong>Square Root:</strong> <code>f(x)=√x</code></li>
-                    <li><strong>Reciprocal:</strong> <code>f(x)=1/x</code></li>
-                    <li><strong>Absolute Value:</strong> <code>f(x)=|x|</code></li>
-                </ul>
+                            <h3>Example: Linear Functions and Slope</h3>
+                            <p>
+                                Linear functions have the form <code>f(x) = ax + b</code>, where <code>a</code> and <code>b</code> are constants.
+                                When <code>a > 0</code>, the graph rises as <code>x</code> increases, meaning the function is increasing on
+                                <code>(-∞, ∞)</code>. When <code>a < 0</code>, the graph falls, making the function decreasing on the same interval.
+                                If <code>a = 0</code>, the function becomes a horizontal line.
+                            </p>
 
-                <h3>4. Graph Transformations</h3>
-                <ul>
-                    <li>Vertical shift: <code>f(x)+k</code> → move up/down</li>
-                    <li>Horizontal shift: <code>f(x−h)</code> → move left/right</li>
-                    <li>Reflection:
-                        <ul>
-                            <li>Over x-axis: <code>−f(x)</code></li>
-                            <li>Over y-axis: <code>f(−x)</code></li>
-                        </ul>
-                    </li>
-                    <li>Stretch/Compression: <code>a·f(x)</code> (vertical), <code>f(bx)</code> (horizontal)</li>
-                </ul>
+                            <div style="text-align:center; margin-top: 1.5rem;">
+                                <img src="../../imgs/module1.png" alt="Graph example image"
+                                    style="max-width:100%; border-radius:10px;">
+                            </div>
 
-                <h3>Example of Functions and Graphs: Linear Functions and Slope</h3>
-                <p>
-                    The easiest type of function to consider is a linear function.
-                    Linear functions have the form <code>f(x)=ax+b</code>, where <code>a</code> and
-                    <code>b</code> are constants. In the figure below, we see examples of linear functions
-                    when <code>a</code> is positive, negative, and zero. Note that if <code>a>0</code>,
-                    the graph of the line rises as <code>x</code> increases. In other words,
-                    <code>f(x)=ax+b</code> is increasing on <code>(−∞,∞)</code>. If <code>a<0</code>,
-                    the graph of the line falls as <code>x</code> increases. In this case,
-                    <code>f(x)=ax+b</code> is decreasing on <code>(−∞,∞)</code>. If <code>a=0</code>,
-                    the line is horizontal.
-                </p>
-                <div style="text-align:center; margin-top: 1.5rem;">
-                    <img src="../../imgs/module1.png" alt="Graph example image"
-                         style="max-width:100%; border-radius:10px;">
-                </div>
-            </section>
-                <h2>📚 References</h2>
-                <ul>
-                    <li>Khan Academy. (n.d.). <em>Functions and Graphs.</em> <a href="https://www.khanacademy.org/math/algebra" target="_blank">https://www.khanacademy.org/math/algebra</a></li>
-                    <li>Paul’s Online Notes. (n.d.). <em>Graphing Functions.</em> <a href="http://tutorial.math.lamar.edu" target="_blank">http://tutorial.math.lamar.edu</a></li>
-                    <li>Desmos Graphing Calculator. (n.d.). <a href="https://www.desmos.com/calculator" target="_blank">https://www.desmos.com/calculator</a></li>
-                    <li>Byju’s. (n.d.). <em>Functions and Their Graphs.</em> <a href="https://byjus.com" target="_blank">https://byjus.com</a></li>
-                </ul>',
-
-
+                            <section class="references">
+                                <h2>📚 References</h2>
+                                <ul>
+                                    <li>Khan Academy. (n.d.). <em>Functions and Graphs.</em> <a href="https://www.khanacademy.org/math/algebra" target="_blank">https://www.khanacademy.org/math/algebra</a></li>
+                                    <li>Paul’s Online Notes. (n.d.). <em>Graphing Functions.</em> <a href="http://tutorial.math.lamar.edu" target="_blank">http://tutorial.math.lamar.edu</a></li>
+                                    <li>Desmos Graphing Calculator. (n.d.). <a href="https://www.desmos.com/calculator" target="_blank">https://www.desmos.com/calculator</a></li>
+                                    <li>Byju’s. (n.d.). <em>Functions and Their Graphs.</em> <a href="https://byjus.com" target="_blank">https://byjus.com</a></li>
+                                </ul>
+                            </section>',
         ]);
-
-
 
         //Practice template
         $prac1 = Practice::create([
@@ -143,9 +133,6 @@ class DiffCalSeeder extends Seeder
             'content' => '<p>Practice Problems</p>',
 
               ]);
-
-
-
 
          // Practice 1 – Construct a Truth Table
         $pq1 = PracticeQuestion::create([
@@ -1316,7 +1303,7 @@ class DiffCalSeeder extends Seeder
 
         $q20 = Question::create([
             'quiz_id' => $quiz5->id,
-            'question_text' => 'What is the angle of rotation for a regular pentagonm is?',
+            'question_text' => 'What is the angle of rotation for a regular pentagon is?',
             'type' => 'multiple_choice',
             'points' => 1,
         ]);

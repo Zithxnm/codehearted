@@ -465,6 +465,7 @@ body {
     border-radius: 20px;
     cursor: pointer;
     font-family: Glacial;
+    font-size: 15px;
     font-weight: bold;
     margin-top: 10px;
     transition: all 0.2s;

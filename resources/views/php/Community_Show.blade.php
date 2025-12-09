@@ -152,8 +152,7 @@
             </button>
         </div>
     </article>
-    <hr>
-
+    
     <section>
         <h3 style="font-family: 'Retro'; color: #5a3100; margin-bottom: 1.5rem;">
             Replies ({{ $post->replies->count() }})
@@ -165,7 +164,7 @@
             @endphp
 
             <div class="reply-item {{ $isSolution ? 'solution-card' : '' }}"
-                 style="{{ $isSolution ? 'border: 2px solid #22c55e; background-color: #f0fdf4; padding: 1rem; border-radius: 8px;' : '' }}">
+                style="{{ $isSolution ? 'border: 2px solid #22c55e; background-color: #f0fdf4; padding: 1rem; border-radius: 8px;' : '' }}">
 
                 @if($isSolution)
                     <div style="color: #166534; font-weight: bold; font-size: 0.9rem; margin-bottom: 10px; display: flex; align-items: center; gap: 5px;">
@@ -229,7 +228,7 @@
                     {{ $reply->Content }}
                 </div>
             </div>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+            <hr style="border: 0; border-top: 1px solid #EFF6E0; margin: 1.5rem 0;">
         @empty
             <p style="text-align: center; color: #6b7280; font-style: italic;">No replies yet. Be the first to share your thoughts!</p>
         @endforelse
@@ -259,10 +258,6 @@
     toastr.success("{{ Session::get('success') }}");
     @endif
 </script>
-
-<div class="grass-background">
-    <div class="grass-layer"></div>
-</div>
 
 <section class="before-footer">
     <div class="minecraft">
