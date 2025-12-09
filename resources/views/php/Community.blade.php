@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
@@ -8,6 +9,7 @@
     @vite('resources/css/Community_Styles.css')
     <title>CodeHearted - Community Forum</title>
 </head>
+
 <body>
     <header class="header">
         <div class="container">
@@ -33,9 +35,9 @@
                         <button class="notif-btn" onclick="toggleNotifications(event)">
                             <i class="fa-solid fa-bell"></i>
                             @if(auth()->user()->unreadNotifications->count() > 0)
-                                <span class="notif-badge">
-                        {{ auth()->user()->unreadNotifications->count() }}
-                    </span>
+                            <span class="notif-badge">
+                                {{ auth()->user()->unreadNotifications->count() }}
+                            </span>
                             @endif
                         </button>
 
@@ -43,13 +45,13 @@
                             <div class="notif-header">Notifications</div>
                             <div class="notif-items">
                                 @forelse(auth()->user()->notifications->take(5) as $notification)
-                                    <a href="{{ $notification->data['link'] }}" class="notif-item {{ $notification->read_at ? 'read' : 'unread' }}">
-                                        <span class="notif-message">{{ $notification->data['message'] }}</span>
-                                        <span class="notif-time">{{ $notification->created_at->diffForHumans() }}</span>
-                                    </a>
-                                    {{ $notification->markAsRead() }}
+                                <a href="{{ $notification->data['link'] }}" class="notif-item {{ $notification->read_at ? 'read' : 'unread' }}">
+                                    <span class="notif-message">{{ $notification->data['message'] }}</span>
+                                    <span class="notif-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                </a>
+                                {{ $notification->markAsRead() }}
                                 @empty
-                                    <div class="notif-empty">No new notifications</div>
+                                <div class="notif-empty">No new notifications</div>
                                 @endforelse
                             </div>
                         </div>
@@ -60,14 +62,14 @@
                         <form class="burger-dropdown" method="POST" action="{{ route('logout') }}">
                             @csrf
                             @if(Auth::user()->isAdmin())
-                                <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
+                            <a href="{{ route('admin.index') }}" class="dropdown-link">Admin Panel</a>
                             @endif
                             <a href="{{ route('dashboard') }}" class="dropdown-link">Dashboard</a>
                             <a href="{{ route('profile') }}" class="dropdown-link">Profile</a>
                             <a href="{{ route('courses.index') }}" class="dropdown-link">Courses</a>
                             <a href="{{ route('about') }}" class="dropdown-link">About</a>
                             <a href="{{ route('logout') }}" class="dropdown-link"
-                               onclick="event.preventDefault(); this.closest('form').submit();">
+                                onclick="event.preventDefault(); this.closest('form').submit();">
                                 Logout</a>
                         </form>
                     </div>
@@ -101,57 +103,56 @@
                 </div>
 
                 @foreach($posts as $post)
-                    <div class="discussion-card" onclick="window.location='{{ route('community.show', $post->Community_ID) }}'">
-                        <div class="discussion-header">
-                            <img
-                                src="{{ $post->user->profile_picture_path ? asset($post->user->profile_picture_path) : asset('imgs/15.png') }}"
-                                alt="Profile"
-                                style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px; border: 2px solid #5a3100;"
-                            >
+                <div class="discussion-card" onclick="window.location='{{ route('community.show', $post->Community_ID) }}'">
+                    <div class="discussion-header">
+                        <img
+                            src="{{ $post->user->profile_picture_path ? asset($post->user->profile_picture_path) : asset('imgs/15.png') }}"
+                            alt="Profile"
+                            style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px; border: 2px solid #5a3100;">
 
-                            <div>
-                                <div class="discussion-title">{{ $post->Title }}</div>
-                                <div style="color: #6b7280; font-size: 0.875rem;">
-                                    By {{ $post->user->name ?? 'Unknown' }} • {{ $post->created_at->diffForHumans() }}
-                                </div>
+                        <div>
+                            <div class="discussion-title">{{ $post->Title }}</div>
+                            <div style="color: #6b7280; font-size: 0.875rem;">
+                                By {{ $post->user->name ?? 'Unknown' }} • {{ $post->created_at->diffForHumans() }}
                             </div>
-
-                            <span class="discussion-badge" style="margin-left: auto;">{{ $post->Category }}</span>
                         </div>
 
-                        <div class="discussion-meta" style="display: flex; align-items: center; gap: 15px;">
-
-            <span class="meta-item" style="display: flex; align-items: center;">
-                💬 {{ $post->replies_count }} replies
-            </span>
-
-                            <button
-                                class="like-btn"
-                                data-id="{{ $post->Community_ID }}"
-                                onclick="event.stopPropagation();"
-                                style="display: flex; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; color: {{ $post->is_liked ? '#e95e16' : '#9ca3af' }};">
-                                <i class="{{ $post->is_liked ? 'fa-solid' : 'fa-regular' }} fa-thumbs-up"></i>
-                                <span class="like-text">
-                    <span class="like-count">{{ $post->Likes }}</span>
-                </span>
-                            </button>
-
-                            @if(Auth::id() === $post->user_id)
-                                <a href="{{ route('community.edit', $post->Community_ID) }}" style="color: #2563eb; text-decoration: none; margin-right: 10px; font-size: 0.9rem;">
-                                    <i class="fa-solid fa-pen"></i> Edit
-                                </a>
-                            @endif
-                            @if(Auth::check() && Auth::user()->isAdmin())
-                                <form action="{{ route('community.destroy', $post->Community_ID) }}" method="POST" onclick="event.stopPropagation();" onsubmit="return confirm('Are you sure you want to delete this discussion?');" style="margin: 0;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" style="display: flex; align-items: center; justify-content: center; background:none; border:none; cursor:pointer; color: #ef4444; padding: 0;" title="Delete Discussion">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                            @endif
-                        </div>
+                        <span class="discussion-badge" style="margin-left: auto;">{{ $post->Category }}</span>
                     </div>
+
+                    <div class="discussion-meta" style="display: flex; align-items: center; gap: 15px;">
+
+                        <span class="meta-item" style="display: flex; align-items: center;">
+                            💬 {{ $post->replies_count }} replies
+                        </span>
+
+                        <button
+                            class="like-btn"
+                            data-id="{{ $post->Community_ID }}"
+                            onclick="event.stopPropagation();"
+                            style="display: flex; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; color: {{ $post->is_liked ? '#e95e16' : '#9ca3af' }};">
+                            <i class="{{ $post->is_liked ? 'fa-solid' : 'fa-regular' }} fa-thumbs-up"></i>
+                            <span class="like-text">
+                                <span class="like-count">{{ $post->Likes }}</span>
+                            </span>
+                        </button>
+
+                        @if(Auth::id() === $post->user_id)
+                        <a href="{{ route('community.edit', $post->Community_ID) }}" style="color: #2563eb; text-decoration: none; margin-right: 10px; font-size: 0.9rem;">
+                            <i class="fa-solid fa-pen"></i> Edit
+                        </a>
+                        @endif
+                        @if(Auth::check() && Auth::user()->isAdmin())
+                        <form action="{{ route('community.destroy', $post->Community_ID) }}" method="POST" onclick="event.stopPropagation();" onsubmit="return confirm('Are you sure you want to delete this discussion?');" style="margin: 0;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="display: flex; align-items: center; justify-content: center; background:none; border:none; cursor:pointer; color: #ef4444; padding: 0;" title="Delete Discussion">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                        @endif
+                    </div>
+                </div>
                 @endforeach
 
                 <div style="margin-top: 2rem;">
@@ -222,60 +223,54 @@
                         </div>
                         <div style="display:flex; justify-content:flex-end; gap:1rem;">
                             <button type="button" onclick="document.getElementById('newPostModal').style.display='none'" class="new-discussion-btn" ">Cancel</button>
-                            <button type="submit" class="new-discussion-btn">Post</button>
+                            <button type=" submit" class="new-discussion-btn">Post</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
     @vite('resources/js/Community_Scripts.js')
-
-<div class="grass-background">
-        <div class="grass-layer"></div>
-    </div>
-
-<section class="before-footer">
+    <section class="before-footer">
         <div class="minecraft">
         </div>
     </section>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li>
-                            <a href="/about" class="footer-link">
-                                <span>➤ About Us</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-title">Stay sharp as a fox — follow us for news and updates.</h4>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/PampangaStateU" class="social-link" aria-label="PSU" target="_blank">
-                            <img class="psu" src="{{asset('/imgs/WhiteLogo_PSU.png')}}" alt="PSU">
-                        </a>
-                        <a href="https://www.facebook.com/dhvsu.ccssc" class="social-link" aria-label="CCS" target="_blank">
-                            <img class="ccs" src="{{asset('/imgs/WhiteLogo_CCSSC.png')}}" alt="PSU">
-                        </a>
-                        <a href="https://www.facebook.com/ComPressCCS" class="social-link" aria-label="ComPress" target="_blank">
-                            <img class="compress" src="{{asset('/imgs/WhiteLogo_ComPress.png')}}" alt="PSU">
-                        </a>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="{{ route('courses.index') }}" class="footer-link"><span>➤ Learning Catalog</span></a></li>
+                    <li><a href="{{ route('profile') }}" class="footer-link"><span>➤ Profile</span></a></li>
+                    <li><a href="{{ route('dashboard') }}" class="footer-link"><span>➤ Dashboard</span></a></li>
+                    <li><a href="{{ route('about') }}" class="footer-link"><span>➤ About Us</span></a></li>
+                </ul>
             </div>
 
-            <div class="footer-bottom">
-                <p>© 2025 CodeHearted. All rights reserved. Built with ♥ for clever foxes everywhere.</p>
+            <div class="footer-section">
+                <h4 class="footer-title">Stay sharp as a fox — follow us for news and updates.</h4>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/PampangaStateU" class="social-link" aria-label="PSU" target="_blank">
+                        <img class="psu" src="{{ asset('imgs/WhiteLogo_PSU.png') }}" alt="PSU">
+                    </a>
+                    <a href="https://www.facebook.com/dhvsu.ccssc" class="social-link" aria-label="CCS" target="_blank">
+                        <img class="ccs" src="{{ asset('imgs/WhiteLogo_CCSSC.png') }}" alt="PSU">
+                    </a>
+                    <a href="https://www.facebook.com/ComPressCCS" class="social-link" aria-label="ComPress" target="_blank">
+                        <img class="compress" src="{{ asset('imgs/WhiteLogo_ComPress.png') }}" alt="PSU">
+                    </a>
+                </div>
             </div>
         </div>
-    </footer>
 
+
+        <div class="footer-bottom">
+            <p>© 2025 CodeHearted. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 </body>
+
 </html>

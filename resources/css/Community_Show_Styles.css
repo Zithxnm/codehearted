@@ -1,10 +1,16 @@
 @font-face {
-    font-family: Glacial;
-    src: url("/public/fonts/GlacialIndifference-Regular.otf");
+    font-family: Retro;
+    src: url("/public/fonts/Better VCR.ttf");
 }
+
 @font-face {
     font-family: VCR;
-    src: url("/public/fonts/Better VCR.ttf");
+    src: url("/public/fonts/Better\ VCR.ttf");
+}
+
+@font-face {
+    font-family: Glacial;
+    src: url("/public/fonts/GlacialIndifference-Regular.otf");
 }
 
 * {
@@ -13,13 +19,20 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background-color: #EFF6E0;
-    font-family: Glacial, sans-serif;
-    color: #3b2a1a;
-    text-align: justify;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
 
 .container {
@@ -28,7 +41,7 @@ body {
 }
 
 .header {
-    background-image: url("../../public/imgs/Header_BG.png");
+    background-image: url("/public/imgs/Header_BG.png");
     border-bottom: 1px solid rgba(229, 231, 235, 0.5);
     position: sticky;
     top: 0;
@@ -90,7 +103,7 @@ body {
     pointer-events: none;
 }
 
-.search-input {
+.search-container .search-input {
     width: 100%;
     padding: 0.5rem 0.75rem 0.5rem 2.5rem;
     background: white;
@@ -98,13 +111,14 @@ body {
     border-radius: 1rem;
     border-color: rgb(0, 55, 138);
     font-size: 0.875rem;
+    font-family: Glacial, sans-serif;
     transition: all 0.2s ease;
 
 }
 
-.search-input:focus {
+.search-container .search-input:focus {
     outline: none;
-    background: rgb(87, 46, 46);
+    background: white;
     border-color: hsl(18, 89%, 60%);
     box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1);
 }
@@ -148,7 +162,7 @@ body {
 .burger-icon {
     width: 2.5rem;
     height: 2.5rem;
-    background-image: url("../../public/imgs/Fox_Burger.png");
+    background-image: url("/public/imgs/Fox_Burger.png");
     background-size: 50px 50px;
     background-position: center;
     background-repeat: no-repeat;
@@ -197,6 +211,15 @@ body {
 
 .dropdown-link:hover {
     background: #fde68a;
+}
+
+main {
+background-color: #EFF6E0;
+    font-family: Glacial, sans-serif;
+    color: #3b2a1a;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
 }
 
 .header-actions {
@@ -396,12 +419,18 @@ main {
 
 }
 
+hr {
+    margin-bottom: 15px;
+    color: #71351a;
+}
+
 article {
     background: #ffffff;
-    border: 2px solid #71351a;
+    border: 3px solid #71351a;
     padding: 1rem 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
+    box-shadow: 5px 5px 0px rgba(90, 49, 0, 0.2);
 }
 
 article h1 {
@@ -643,7 +672,7 @@ small {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 7rem;
+    height: 4rem;
 }
 
 .discussion-badge {

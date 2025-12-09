@@ -224,7 +224,7 @@ body {
     flex-basis: 25%;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: rgba(221, 180, 83, 0.5);
+    background-color: rgba(228, 196, 124, 0.5);
     font-family: Retro;
 }
 
@@ -245,14 +245,14 @@ body {
 
 .right-panel h1 {
     font-size: 24px;
-    color: #ffffff;
+    color: #e95e16;
     /*margin-top: 10rem;*/
 }
 
 .right-panel a {
     font-family: Glacial;
     font-size: 0.9rem;
-    color: #f97316;
+    color: #71351a;
     text-decoration: none;
     padding-top: 15px;
 }
@@ -277,7 +277,7 @@ body {
 .achievements {
     font-family: Glacial;
     font-size: 1rem;
-    color: #ffffff;
+    color: #866348;
     text-align: center;
     margin-bottom: 15px;
 }
@@ -472,7 +472,7 @@ body {
 .stat-container p {
     font-size: 15px;
     margin-bottom: 5px;
-    color: #ffffff;
+    color: #866348;
 }
 
 .fa-solid {

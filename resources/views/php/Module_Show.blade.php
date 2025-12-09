@@ -13,7 +13,7 @@
     <div class="container">
         <div class="header-content">
             <div class="user-actions">
-                <a href="{{ route('courses.show', $module->course_id) }}" style="text-decoration: none; color: #124559; font-weight: bold;">
+                <a href="{{ route('courses.show', $module->course_id) }}" style="text-decoration: none; color: #71351a; font-weight: bold;">
                     &larr; Back to Modules
                 </a>
             </div>
@@ -23,9 +23,6 @@
 
 <main class="lesson-container">
     <section class="lesson-card">
-
-
-
         @if($section === 'quiz')
             @if($quiz)
                 <h1 class="lesson-title">
@@ -74,7 +71,7 @@
                 </div>
                 <div style="margin-top: 2rem; text-align: center;">
                     <a href="{{ request()->fullUrlWithQuery(['section' => 'practice']) }}" class="submit-btn" style="text-decoration: none; display: inline-block;">
-                        Go to Practice
+                        <button style="width: 200px;height: 50px;background-color:chocolate;color:white;border-radius: 10px;font-family: Times New Roman; font-size: 20px; cursor: pointer;"><b>Go to Practice</b></button>
                     </a>
                 </div>
 
@@ -231,13 +228,13 @@
                     @endforeach
 
                     <div style="display: flex; gap: 10px; margin-top: 2rem; justify-content: center;">
-                        <button type="button" class="submit-btn" onclick="checkPracticeAnswers()">Check All Answers</button>
-                        <button type="button" class="submit-btn" onclick="resetPractice()" style="background: #6b7280; display:none;" id="retryBtn">Reset All</button>
+                        <button type="button" class="submit-btn" onclick="checkPracticeAnswers()" style="background-color: #f58750ff; color: white">Check All Answers</button>
+                        <button type="button" class="submit-btn" onclick="resetPractice()" style="background: #6b7280; display:none; color: white" id="retryBtn">Reset All</button>
                     </div>
                 </form>
 
                 <div style="margin-top: 2rem; text-align: center;">
-                    <a href="{{ request()->fullUrlWithQuery(['section' => 'quiz']) }}" class="submit-btn" style="text-decoration: none; display: inline-block; background-color: #124559;">
+                    <a href="{{ request()->fullUrlWithQuery(['section' => 'quiz']) }}" class="submit-btn" style="text-decoration: none; display: inline-block; background-color: #2a81a3ff; color: white">
                         Ready? Take Quiz &rarr;
                     </a>
                 </div>
